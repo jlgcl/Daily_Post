@@ -1,0 +1,23 @@
+Use routing.js (similar to catalog.js) to handle routes to controllers
+
+1) protect editing functions with a username and password (use bcrypt) - passport JWT authenticate
+    - keep user in current session using express session & serialize (to use req.user as logged-in user) - include the codes in app.js? or passport.js?
+2) models: user (id, username, password), post (includes: title, message, date)
+    - give random id to the user using uuid
+3) leave username as a stamp and timestamp for every message posted (req.context.me = user[x])
+4) login fields and authentication (LocalStrategy)
+5) published vs. unpublished posts in database
+6) routes and controllers - think RESTful; use Postman & cURL for testing
+7) create a second page for authoring and editing your posts - show published vs unpublished posts, a button to publish posts/unpublish posts.
+
+
+STEPS
+
+1) in app.js, layout everything first without the use of app.use() routes.
+
+QUESTIONS
+
+1) how would Express receive the username & password information?
+    A) for passport-jwt, React would send username & password values along along with a POST header in a specific route. Passport.authenticate will be initiated then LocalStrategy.
+
+2) in passport.js what is payLoad.id for JWT?
