@@ -4,8 +4,10 @@ const passportJWT = require("passport-jwt");
 const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
 const User = require("./models/user");
+const bcrypt = require("bcryptjs");
 
 passport.use(
+  //for accessing protected routes
   new JWTStrategy(
     {
       jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
@@ -30,15 +32,20 @@ passport.use(
       passwordField: "password",
     },
     function (user, pasword, cb) {
-      return User.findOne({ username, password })
+      User.findOne({ username, password })
         .then((user) => {
           if (!user) {
             return cb(null, false, {
               message: "Incorrect username or password",
             });
           }
-
-          return cb(null, user, { message: "Logged In Successfully" });
+          bcrypt.compare(password, user.password, (err, res) => {
+            if (res) {
+              return cb(null, user, { message: "Logged In Successfully" });
+            } else {
+              return cb(null, false, { message: "Incorrect Password" });
+            }
+          });
         })
         .catch((err) => cb(err));
     }

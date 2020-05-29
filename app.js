@@ -5,6 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var session = require("expression-session");
 var passport = require("passport");
+var mongoose = require("mongoose");
 var LocalStrategy = require("passport-local").Strategy;
 var router = express.Router();
 var bcrypt = require("bcryptjs");
@@ -14,10 +15,19 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var passportRouter = require("passport");
 var auth = require("./routes/auth");
+var signupRouter = require("./routes/sign-up");
+var postRouter = require("./routes/post");
 
 var User = require("./models/user");
 
 var app = express();
+
+//Mongoose setup
+var mongoDB =
+  "mongodb+srv://jwljacl:OgBogden135@cluster0-yyxlx.mongodb.net/test?retryWrites=true&w=majority";
+mongoose.connect(mongoDB, { userNewUrlPraser: true });
+var db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB Connection Error:"));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -34,18 +44,22 @@ app.use("/users", usersRouter);
 
 ///--------------------PROJECT CODE--------------------------///
 
-app.use("/auth", auth);
-
-//add protected route
+//add protected route for protected page (edit posts)
 
 //sign-up GET/POST:
-app.get("./sign-up", (req, res) => {
-  res.render("./views/sign_up.pug");
-});
-app.post("./sign-up", [
-  body("username").trim().isLength({ min: 1 }),
-  body("password").trim().isLength({ min: 1 }),
-]);
+app.use("/log-in", signupRouter);
+
+//log-in passport
+app.use("/auth", auth);
+
+//Authentication middlewares:
+app.use(session({ secret: "cats", resave: false, saveUnitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.urlencoded({ extended: false }));
+
+//post controls
+app.use("/posts", postRouter);
 
 ///--------------------- ERROR HANDLER----------------------///
 

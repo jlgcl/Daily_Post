@@ -1,14 +1,29 @@
 Use routing.js (similar to catalog.js) to handle routes to controllers
+*TIP: any GET renders would be handled by the frontend. Backend should support database and POST controls.
 
-1) protect editing functions with a username and password (use bcrypt) - passport JWT authenticate
+
+1) sign-up username and password (use bcrypt)
+    - assign an ID for each user at sign-up using uuid - this will be used for JWTStrategy authentication (jwtpayLoad.id vs. user.id)
+2) login fields and authentication (LocalStrategy) & JWT tokens
+    - assign JWT token using jwt.sign(payload, "secretKey")
+        - one option is to assign different tokens in passport.authenticate() for admin vs. public user
+        - another (preferred) option is to have JWT only assigned & verified for the privileged user - but we won't be able to extract payload/user info for other purposes (i.e. creating a post)
+            - we would instead use user IDs to identify and obtain user information from the database (like typical locallibrary project .findOneById() controls) OR use req.user in sessions.
+                - this is preferred since when calling verifyToken() middleware in the '/post' POST control, we MUST have a token & may not be able to have two tokens as a parameter
     - keep user in current session using express session & serialize (to use req.user as logged-in user) - include the codes in app.js? or passport.js?
-2) models: user (id, username, password), post (includes: title, message, date)
-    - give random id to the user using uuid
-3) leave username as a stamp and timestamp for every message posted (req.context.me = user[x])
-4) login fields and authentication (LocalStrategy)
+3) models: user (id, username, password), post (includes: title, message, date)
+4) create posts: 
+    - create posts:
+        - passport.authenticate() & fromAuthHeaderAsBearerToken() for authentication to access restricted routes (jwt tokens act like the "passcodes")
+        - verifyToken & jwt.verify() if user information is a potential plan to extract JWT payload info (use req.user instead - see above log-in plan notes)
+        - leave username as a stamp and timestamp for every message posted (req.context.me = user[x] was used when a model was already available w/o Mongoose - use req.user instead)
+        - uuid OR jwt token OR req.user for user info (see login plan above)
+        - save to the Post object (sanitize&verify) w/ URI (using mongoose.save() - req.models.messages.messages[id] method doesn't work since we created a mongo model database)
 5) published vs. unpublished posts in database
 6) routes and controllers - think RESTful; use Postman & cURL for testing
 7) create a second page for authoring and editing your posts - show published vs unpublished posts, a button to publish posts/unpublish posts.
+    - use passport-jwt for authentication
+    - Delete/Update posts using URI
 
 
 STEPS
@@ -21,3 +36,9 @@ QUESTIONS
     A) for passport-jwt, React would send username & password values along along with a POST header in a specific route. Passport.authenticate will be initiated then LocalStrategy.
 
 2) in passport.js what is payLoad.id for JWT?
+    A) tokens have payloads. Frontend sends a token containing the payload (i.e. username) that was created when assigning a token to the user. ID can be used to search for a matching user in the database.
+
+3) how does app.use('/auth', auth) execute router.post('/log-in')?
+
+4) difference between verifyToken() in nodeauthapi VS. fromAuthHeaderAsBearerToken()?
+    A) does the same thing (extracts JWT from requests), but fromAuthHeaderAsBearerToken() is used with passport for authentication purpose, whereas verifyToken() is a custom middleware function that can be used anywhere.
