@@ -3,19 +3,21 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var session = require("expression-session");
+var session = require("express-session");
 var passport = require("passport");
 var mongoose = require("mongoose");
 var LocalStrategy = require("passport-local").Strategy;
 var router = express.Router();
 var bcrypt = require("bcryptjs");
-var { v4, uuidv4 } = require("uuid");
+var { v4: uuidv4 } = require("./node_modules/uuid");
+var { body, validationResult } = require("express-validator/check");
+var { sanitizeBody } = require("express-validator/filter");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var passportRouter = require("passport");
 var auth = require("./routes/auth");
-var signupRouter = require("./routes/sign-up");
+var signupRouter = require("./routes/sign_up");
 var postRouter = require("./routes/post");
 
 var User = require("./models/user");
@@ -40,17 +42,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+//app.use("/users", usersRouter);
 
 ///--------------------PROJECT CODE--------------------------///
 
 //add protected route for protected page (edit posts)
-
-//sign-up GET/POST:
-app.use("/log-in", signupRouter);
-
-//log-in passport
-app.use("/auth", auth);
 
 //Authentication middlewares:
 app.use(session({ secret: "cats", resave: false, saveUnitialized: true }));
@@ -58,8 +54,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
+//sign-up GET/POST:
+app.use(signupRouter);
+
+//log-in passport
+app.use("/auth", auth);
+
 //post controls
-app.use("/posts", postRouter);
+app.use(postRouter);
 
 ///--------------------- ERROR HANDLER----------------------///
 

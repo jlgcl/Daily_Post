@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 
-UserModel = new Schema({
-  id: { type: Number, required: true },
+var UserModel = new Schema({
+  id: { type: Number, required: false },
   username: { type: String, required: true },
   password: { type: String, required: true },
-  admin: { type: Boolean, default: false, required: true },
+  admin: { type: Boolean, default: false, required: false },
 });
 
 module.exports = mongoose.model("User", UserModel);

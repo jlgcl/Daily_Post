@@ -1,16 +1,16 @@
 const express = require("express");
-const { body, validationResult } = require("express-validator/filter");
-const sanitizeBody = require("express-validator/check");
+const { body, validationResult } = require("express-validator/check");
+const { sanitizeBody } = require("express-validator/filter");
 const router = express.Router();
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
-const { v4, uuidv4 } = require("uuidv");
+const { v4: uuidv4 } = require("../node_modules/uuid");
 
 // router.get("./sign-up", (req, res) => {
 //   res.render("./views/sign_up");
 // });
 
-router.post("/sign-up", [
+router.post("/signup", [
   body("username").trim().isLength({ min: 1 }),
   body("password").trim().isLength({ min: 1 }),
 
@@ -35,15 +35,18 @@ router.post("/sign-up", [
 
       if (!errors.isEmpty()) {
         //errors exist - rerender with errors & sanitized data
-        res.render("../views/sign-up-error");
+        res.render("../views/sign-up-error.pug");
+        return;
       }
 
       user.save((err) => {
         if (err) {
-          return next(err);
+          next(err);
         }
-        res.redirect("/");
+        res.send("user added");
       });
     });
   },
 ]);
+
+module.exports = router;

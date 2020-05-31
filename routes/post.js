@@ -1,10 +1,10 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
-const { body, validationResult } = require("express-validator/filter");
-const { sanitizeBody } = require("express-validator/check");
+const { body, validationResult } = require("express-validator/check");
+const { sanitizeBody } = require("express-validator/filter");
 const Post = require("../models/post");
-const { v4, uuidv4 } = require("uuid");
+const { v4, uuidv4 } = require("../node_modules/uuid");
 const User = require("../models/user");
 
 router.post("/posts", [
@@ -52,3 +52,5 @@ router.post("/posts", [
 //     res.sendStatus(404);
 //   }
 // }
+
+module.exports = router;

@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 
-PostModel = new Schema({
+var PostModel = new Schema({
   id: { type: Number, required: true },
   author: { type: String, required: true },
   title: { type: String, required: true },

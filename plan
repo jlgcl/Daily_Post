@@ -2,6 +2,16 @@ Use routing.js (similar to catalog.js) to handle routes to controllers
 *TIP: any GET renders would be handled by the frontend. Backend should support database and POST controls.
 
 
+STATUS:
+    - 404 error when posting to anywhere using Postman (request passes through the port fine, but response is error)
+        - running the router cod through app.post() works, but not through router.post().
+        SOLVED) use app.use(method) since the url is already defined in router.post() in the module.
+    - Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+        SOLVED) https://stackoverflow.com/questions/52122272/err-http-headers-sent-cannot-set-headers-after-they-are-sent-to-the-client 
+    - sign up fails (!errors.isEmpty())
+    - figure out how to setup database for published vs. unpublished posts
+
+
 1) sign-up username and password (use bcrypt)
     - assign an ID for each user at sign-up using uuid - this will be used for JWTStrategy authentication (jwtpayLoad.id vs. user.id)
 2) login fields and authentication (LocalStrategy) & JWT tokens
@@ -22,8 +32,8 @@ Use routing.js (similar to catalog.js) to handle routes to controllers
 5) published vs. unpublished posts in database
 6) routes and controllers - think RESTful; use Postman & cURL for testing
 7) create a second page for authoring and editing your posts - show published vs unpublished posts, a button to publish posts/unpublish posts.
-    - use passport-jwt for authentication
-    - Delete/Update posts using URI
+    - use passport-jwt for authentication: privilege to edit/modify/delete/publish the posts (only admin & author - if statements of usernames/passcodes)
+    - Delete/Update/access details of posts using URI - url virtual for /:id
 
 
 STEPS
@@ -39,6 +49,7 @@ QUESTIONS
     A) tokens have payloads. Frontend sends a token containing the payload (i.e. username) that was created when assigning a token to the user. ID can be used to search for a matching user in the database.
 
 3) how does app.use('/auth', auth) execute router.post('/log-in')?
+    A) auth.js require module.exports for all router.get().
 
 4) difference between verifyToken() in nodeauthapi VS. fromAuthHeaderAsBearerToken()?
     A) does the same thing (extracts JWT from requests), but fromAuthHeaderAsBearerToken() is used with passport for authentication purpose, whereas verifyToken() is a custom middleware function that can be used anywhere.
