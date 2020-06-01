@@ -18,6 +18,7 @@ STATUS:
         - at login POST, user: "false" - STRUGGLING***
             SOLVED) password shouldn't be passed to User.findOne() in passport.js LocalStrategy to find a matching user since passport is 'bcrypted'. Password is found using bcrypt.compare() instead.
         - Expected "payload" to be a plain object
+            SOLVED) https://stackoverflow.com/questions/52781477/expected-payload-to-be-a-plain-object-mean 
 
 
 
