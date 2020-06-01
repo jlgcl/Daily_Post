@@ -3,13 +3,22 @@ Use routing.js (similar to catalog.js) to handle routes to controllers
 
 
 STATUS:
-    - 404 error when posting to anywhere using Postman (request passes through the port fine, but response is error)
-        - running the router cod through app.post() works, but not through router.post().
-        SOLVED) use app.use(method) since the url is already defined in router.post() in the module.
-    - Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
-        SOLVED) https://stackoverflow.com/questions/52122272/err-http-headers-sent-cannot-set-headers-after-they-are-sent-to-the-client 
-    - sign up fails (!errors.isEmpty())
+    - test login
     - figure out how to setup database for published vs. unpublished posts
+
+    ERRORS:
+        - 404 error when posting to anywhere using Postman (request passes through the port fine, but response is error)
+            - running the router cod through app.post() works, but not through router.post().
+            SOLVED) use app.use(method) since the url is already defined in router.post() in the module.
+        - Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+            SOLVED) https://stackoverflow.com/questions/52122272/err-http-headers-sent-cannot-set-headers-after-they-are-sent-to-the-client 
+        - sign up fails (!errors.isEmpty())
+            SOLVED) .isLength({min: 0}), not min: 1 & Postman request must be: x-www.form-urlencoded, NOT form-data
+        - "locals" authentication error - in app.js, passport.js must be required as "./passport", not "passport" since this will conflict with the passportJS dependency.
+        - at login POST, user: "false" - STRUGGLING***
+            SOLVED) password shouldn't be passed to User.findOne() in passport.js LocalStrategy to find a matching user since passport is 'bcrypted'. Password is found using bcrypt.compare() instead.
+        - Expected "payload" to be a plain object
+
 
 
 1) sign-up username and password (use bcrypt)

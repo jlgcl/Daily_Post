@@ -7,6 +7,34 @@ const User = require("./models/user");
 const bcrypt = require("bcryptjs");
 
 passport.use(
+  new LocalStrategy(
+    {
+      usernameField: "username",
+      passwordField: "password",
+    },
+    function (username, password, cb) {
+      User.findOne({ username }, (err, user) => {
+        if (err) {
+          return cb(err);
+        }
+        if (!user) {
+          return cb(null, false, {
+            message: "Incorrect username or password",
+          });
+        }
+        bcrypt.compare(password, user.password, (err, res) => {
+          if (res) {
+            return cb(null, user, { message: "Logged In Successfully" });
+          } else {
+            return cb(null, false, { message: "Incorrect Password" });
+          }
+        });
+      });
+    }
+  )
+);
+
+passport.use(
   //for accessing protected routes
   new JWTStrategy(
     {
@@ -25,29 +53,19 @@ passport.use(
   )
 );
 
-passport.use(
-  new LocalStrategy(
-    {
-      usernameField: "username",
-      passwordField: "password",
-    },
-    function (user, pasword, cb) {
-      User.findOne({ username, password })
-        .then((user) => {
-          if (!user) {
-            return cb(null, false, {
-              message: "Incorrect username or password",
-            });
-          }
-          bcrypt.compare(password, user.password, (err, res) => {
-            if (res) {
-              return cb(null, user, { message: "Logged In Successfully" });
-            } else {
-              return cb(null, false, { message: "Incorrect Password" });
-            }
-          });
-        })
-        .catch((err) => cb(err));
-    }
-  )
-);
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+passport.deserializeUser(function (id, done) {
+  User.findById(id, function (err, user) {
+    done(err, user);
+  });
+});
+
+//     .then((user) => {
+
+//     })
+//     .catch((err) => cb(err));
+// }
+// )
+//);

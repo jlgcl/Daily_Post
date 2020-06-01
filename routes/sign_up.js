@@ -11,40 +11,52 @@ const { v4: uuidv4 } = require("../node_modules/uuid");
 // });
 
 router.post("/signup", [
-  body("username").trim().isLength({ min: 1 }),
-  body("password").trim().isLength({ min: 1 }),
+  body("username").trim().isLength({ min: 0 }),
+  body("password").trim().isLength({ min: 0 }),
 
   sanitizeBody("username").escape(),
   sanitizeBody("password").escape(),
 
   (req, res, next) => {
-    const errors = validationResult(req);
+    var errors = validationResult(req);
 
     bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
       if (err) {
         return next(err);
       }
 
-      req.body.password = hashedPassword;
-
       var user = new User({
         id: uuidv4(),
         username: req.body.username,
-        password: req.body.password,
+        password: hashedPassword,
       });
 
       if (!errors.isEmpty()) {
         //errors exist - rerender with errors & sanitized data
-        res.render("../views/sign-up-error.pug");
+        res.render("../views/sign-up-error.pug", { errors: errors.array() });
         return;
+      } else {
+        User.findOne({ username: req.body.username }).exec(function (
+          err,
+          results
+        ) {
+          if (err) {
+            return next(err);
+          }
+          if (!results) {
+            user.save((err) => {
+              if (err) {
+                return next(err);
+              }
+              res.redirect("/");
+            });
+          } else {
+            res.render("../views/sign-up-error.pug", {
+              title: "username already exists",
+            });
+          }
+        });
       }
-
-      user.save((err) => {
-        if (err) {
-          next(err);
-        }
-        res.send("user added");
-      });
     });
   },
 ]);

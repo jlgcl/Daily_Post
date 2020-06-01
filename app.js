@@ -48,6 +48,11 @@ app.use("/", indexRouter);
 
 //add protected route for protected page (edit posts)
 
+//log-in passport.js file, NOT passportJS dependency
+require("./passport");
+
+//Sessions & Serialization: MOVED TO passport.js
+
 //Authentication middlewares:
 app.use(session({ secret: "cats", resave: false, saveUnitialized: true }));
 app.use(passport.initialize());
@@ -57,8 +62,8 @@ app.use(express.urlencoded({ extended: false }));
 //sign-up GET/POST:
 app.use(signupRouter);
 
-//log-in passport
-app.use("/auth", auth);
+//login:
+app.use(auth);
 
 //post controls
 app.use(postRouter);

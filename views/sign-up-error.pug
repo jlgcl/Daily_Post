@@ -3,3 +3,10 @@ extends layout
 block content
 
     h1 SIGN UP FAILED
+    if title
+        h3=title
+
+    if errors 
+        ul
+            for error in errors
+                li!= error.msg

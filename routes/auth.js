@@ -3,16 +3,17 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 
-router.post("/login", (req, res) => {
-  passport.authenticate("local", { session: false }, (err, user, info) => {
-    if (er || !user) {
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err || !user) {
       return res.status(400).json({
-        message: "Something is not right",
+        message: info ? info.message : "login failed",
         user,
+        err,
       });
     }
 
-    req.login(user, { session: false }, (err) => {
+    req.login(user, (err) => {
       if (err) {
         res.send(err);
       }
@@ -27,7 +28,7 @@ router.post("/login", (req, res) => {
         return res.json({ user, token });
       }
     });
-  });
+  })(req, res);
 });
 
 module.exports = router;
