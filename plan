@@ -3,8 +3,15 @@ Use routing.js (similar to catalog.js) to handle routes to controllers
 
 
 STATUS:
-    - test login
-    - figure out how to setup database for published vs. unpublished posts
+    - test JWT authenticate for user delete
+    - consolidate post route files
+    - move onto frontend
+    - test login - COMPLETE
+    - logout - COMPLETE
+    - figure out how to setup database for published vs. unpublished posts - COMPLETE
+        A) model property - status enum
+    - create a control for privileged users: update, delete, publish posts - COMPLETE
+    - post GET should only show published posts; unpublished post GET should onyl show unpublished posts - COMPLETE
 
     ERRORS:
         - 404 error when posting to anywhere using Postman (request passes through the port fine, but response is error)
@@ -19,6 +26,7 @@ STATUS:
             SOLVED) password shouldn't be passed to User.findOne() in passport.js LocalStrategy to find a matching user since passport is 'bcrypted'. Password is found using bcrypt.compare() instead.
         - Expected "payload" to be a plain object
             SOLVED) https://stackoverflow.com/questions/52781477/expected-payload-to-be-a-plain-object-mean 
+        - For post update, I had to use findById(... (err, results)), NOT .then().
 
 
 
@@ -32,6 +40,7 @@ STATUS:
                 - this is preferred since when calling verifyToken() middleware in the '/post' POST control, we MUST have a token & may not be able to have two tokens as a parameter
     - keep user in current session using express session & serialize (to use req.user as logged-in user) - include the codes in app.js? or passport.js?
 3) models: user (id, username, password), post (includes: title, message, date)
+    - ONLY ADMIN TO DELETE USERS
 4) create posts: 
     - create posts:
         - passport.authenticate() & fromAuthHeaderAsBearerToken() for authentication to access restricted routes (jwt tokens act like the "passcodes")
@@ -44,6 +53,9 @@ STATUS:
 7) create a second page for authoring and editing your posts - show published vs unpublished posts, a button to publish posts/unpublish posts.
     - use passport-jwt for authentication: privilege to edit/modify/delete/publish the posts (only admin & author - if statements of usernames/passcodes)
     - Delete/Update/access details of posts using URI - url virtual for /:id
+    - check if the user is admin through passport.authenticate("jwt") OR the author for this route.
+8) in React, obtain all post models containing posts/:id, then use GET for each post with ID to show post details.
+9) consolidate all post controls into one postController.js (similar to catalog.js)
 
 
 STEPS
@@ -60,6 +72,7 @@ QUESTIONS
 
 3) how does app.use('/auth', auth) execute router.post('/log-in')?
     A) auth.js require module.exports for all router.get().
+    A) the actual path for login is: /auth/login - app.use('/auth') provides the base URL to extend from.
 
 4) difference between verifyToken() in nodeauthapi VS. fromAuthHeaderAsBearerToken()?
     A) does the same thing (extracts JWT from requests), but fromAuthHeaderAsBearerToken() is used with passport for authentication purpose, whereas verifyToken() is a custom middleware function that can be used anywhere.

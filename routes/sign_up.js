@@ -26,7 +26,7 @@ router.post("/signup", [
       }
 
       var user = new User({
-        id: uuidv4(),
+        uid: uuidv4(),
         username: req.body.username,
         password: hashedPassword,
       });

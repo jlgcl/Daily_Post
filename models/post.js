@@ -2,12 +2,21 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var PostModel = new Schema({
-  id: { type: String, required: true },
+  uid: { type: String, required: true },
   author: { type: String, required: true },
   title: { type: String, required: true },
   message: { type: String, required: true },
   date: { type: Date, default: Date.Now },
-  published: { type: Boolean, default: false, required: true },
+  status: {
+    type: String,
+    enum: ["published", "unpublished"],
+    default: "unpublished",
+    required: true,
+  },
+});
+
+PostModel.virtual("url").get(function () {
+  return "/posts/" + this._id;
 });
 
 module.exports = mongoose.model("Post", PostModel);

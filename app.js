@@ -18,7 +18,13 @@ var usersRouter = require("./routes/users");
 var passportRouter = require("passport");
 var auth = require("./routes/auth");
 var signupRouter = require("./routes/sign_up");
-var postRouter = require("./routes/post");
+var createPostRouter = require("./routes/create_post");
+var postRouter = require("./routes/posts");
+var unpubPostRouter = require("./routes/unpublished_post");
+var postDetail = require("./routes/post_detail");
+var postUpdate = require("./routes/update_post");
+var postDelete = require("./routes/delete_post");
+var userDelete = require("./routes/delete_user");
 
 var User = require("./models/user");
 
@@ -59,14 +65,28 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
-//sign-up GET/POST:
+//sign-up GET/POST
 app.use(signupRouter);
 
-//login:
+//login authentication
 app.use(auth);
 
 //post controls
 app.use(postRouter);
+app.use(unpubPostRouter);
+app.use(createPostRouter);
+app.use(postDetail);
+app.use(postUpdate);
+app.use(postDelete);
+
+//user delete
+app.use(passport.authenticate("jwt"), userDelete);
+
+//logout
+app.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
 
 ///--------------------- ERROR HANDLER----------------------///
 
