@@ -18,7 +18,7 @@ router.post("/login", (req, res, next) => {
         res.send(err);
       }
 
-      if (user.username == "admin") {
+      if (user.admin == true) {
         // token for admin users
         const token = jwt.sign(user.toJSON(), "secretJWT"); //what will be returned to the frontend - contains the user information corresponding to the signed-in user.
         return res.json({ user, token });
@@ -30,5 +30,5 @@ router.post("/login", (req, res, next) => {
     });
   })(req, res);
 });
-
+//5ed5af2eea2f7227bea09745
 module.exports = router;

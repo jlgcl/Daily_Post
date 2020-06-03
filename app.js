@@ -18,12 +18,13 @@ var usersRouter = require("./routes/users");
 var passportRouter = require("passport");
 var auth = require("./routes/auth");
 var signupRouter = require("./routes/sign_up");
-var createPostRouter = require("./routes/create_post");
-var postRouter = require("./routes/posts");
-var unpubPostRouter = require("./routes/unpublished_post");
-var postDetail = require("./routes/post_detail");
-var postUpdate = require("./routes/update_post");
-var postDelete = require("./routes/delete_post");
+// var createPostRouter = require("./routes/create_post");
+// var postRouter = require("./routes/posts");
+// var unpubPostRouter = require("./routes/unpublished_post");
+// var postDetail = require("./routes/post_detail");
+// var postUpdate = require("./routes/update_post");
+// var postDelete = require("./routes/delete_post");
+var postRoutes = require("./routes/post_routes");
 var userDelete = require("./routes/delete_user");
 
 var User = require("./models/user");
@@ -72,12 +73,13 @@ app.use(signupRouter);
 app.use(auth);
 
 //post controls
-app.use(postRouter);
-app.use(unpubPostRouter);
-app.use(createPostRouter);
-app.use(postDetail);
-app.use(postUpdate);
-app.use(postDelete);
+app.use(postRoutes);
+// app.use(postRouter);
+// app.use(unpubPostRouter);
+// app.use(createPostRouter);
+// app.use(postDetail);
+// app.use(postUpdate);
+// app.use(postDelete);
 
 //user delete
 app.use(passport.authenticate("jwt"), userDelete);

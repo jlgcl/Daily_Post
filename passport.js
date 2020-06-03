@@ -42,13 +42,17 @@ passport.use(
       secretOrKey: "secretJWT",
     },
     (jwtPayload, cb) => {
-      return User.findOneById(jwtPayload.id) //searches for id in the matching User object
-        .then((user) => {
+      User.findById(jwtPayload._id, (err, user) => {
+        //searches for id in the matching User object
+        if (err) {
+          return cb(err, false);
+        }
+        if (user) {
           return cb(null, user);
-        })
-        .catch((err) => {
-          return cb(err);
-        });
+        } else {
+          return cb(null, false);
+        }
+      });
     }
   )
 );

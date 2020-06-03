@@ -15,7 +15,11 @@ router.post("/post/:id/delete", (req, res, next) => {
       err.status = 404;
       next(err);
     } else {
-      if (result.author == req.user.username || result.author == "admin") {
+      if (
+        result.author == req.user.username ||
+        result.author == "admin" ||
+        req.user.admin == true
+      ) {
         Post.findByIdAndDelete(req.params.id, function deletePost(err) {
           if (err) {
             return next(err);

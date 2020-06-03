@@ -38,7 +38,11 @@ router.post("/posts/:id/update", [
         err.status = 404;
         next(err);
       }
-      if (result.author == req.user.username || result.author == "admin") {
+      if (
+        result.author == req.user.username ||
+        result.author == "admin" ||
+        req.user.admin == true
+      ) {
         Post.findByIdAndUpdate(req.params.id, post, {}, function (
           err,
           thepost

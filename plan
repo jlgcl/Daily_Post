@@ -3,9 +3,9 @@ Use routing.js (similar to catalog.js) to handle routes to controllers
 
 
 STATUS:
-    - test JWT authenticate for user delete
-    - consolidate post route files
-    - move onto frontend
+    * BACKEND COMPLETE FOR NOW *
+    - test JWT authenticate for user delete - COMPLETE
+    - consolidate post route files - COMPLETE
     - test login - COMPLETE
     - logout - COMPLETE
     - figure out how to setup database for published vs. unpublished posts - COMPLETE
@@ -27,8 +27,13 @@ STATUS:
         - Expected "payload" to be a plain object
             SOLVED) https://stackoverflow.com/questions/52781477/expected-payload-to-be-a-plain-object-mean 
         - For post update, I had to use findById(... (err, results)), NOT .then().
+        - user delete using passport-jwt, JWTStrategy - Unauthorized even w/ proper token
+            SOLVED) use jwtPayload._id NOT jwtPayload.id
+        - for some reason, when routing url for unpublished posts: Mongoose: CastError: Cast to ObjectId failed for value “[object Object]” at path “_id”
+            SOLVED) change the route from "/posts/unpublished" to "/unpubposts"
 
 
+PLAN:
 
 1) sign-up username and password (use bcrypt)
     - assign an ID for each user at sign-up using uuid - this will be used for JWTStrategy authentication (jwtpayLoad.id vs. user.id)
