@@ -1,0 +1,14 @@
+* FRONTEND PLAN *
+
+STATUS
+    - create a routing for different pages: about page, home, posts, user page, unpublished posts (link from the user page)
+    -   create a Bootstrap navigation bar for these routes
+
+ERRORS
+
+PLAN
+    - About page should be routed through React router.
+    - Use custom styling (media queries, colors, etc.) using a separate CSS file OR use styled-components.
+    - no need for: lifting states, context, HOC.
+    - need: forms/handling events, router, etc.
+    
