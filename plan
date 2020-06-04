@@ -12,6 +12,9 @@ STATUS:
         A) model property - status enum
     - create a control for privileged users: update, delete, publish posts - COMPLETE
     - post GET should only show published posts; unpublished post GET should onyl show unpublished posts - COMPLETE
+    - create comments for every post & visible in post detail - COMPLETE
+    - create categories for posts (genres)
+    - implement TinyMCE for managing comments
 
     ERRORS:
         - 404 error when posting to anywhere using Postman (request passes through the port fine, but response is error)

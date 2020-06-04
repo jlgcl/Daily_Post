@@ -13,6 +13,12 @@ var PostModel = new Schema({
     default: "unpublished",
     required: true,
   },
+  category: {
+    type: String,
+    enum: ["general", "politics", "business", "Technology"],
+    default: "general",
+    required: false,
+  },
 });
 
 PostModel.virtual("url").get(function () {
