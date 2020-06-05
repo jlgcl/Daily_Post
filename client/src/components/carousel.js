@@ -5,6 +5,10 @@ import styled from "styled-components";
 const Styles = styled.div`
   .slider-container {
     background: #f1fafa;
+
+    img {
+      background-color: linear-gradient(to bottom, rgba(245, 246, 252, 0.52));
+    }
   }
 `;
 

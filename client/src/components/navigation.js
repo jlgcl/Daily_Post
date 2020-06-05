@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Styles = styled.div`
   .navbar {
-    height: 50px;
+    height: 30px;
     box-shadow: -1px 3px 11px -3px rgba(0, 0, 0, 0.5);
   }
 `;
@@ -18,7 +18,7 @@ export const NavigationBar = () => (
         <Nav className="ml-auto">
           <Nav.Link href="http://localhost:3000/">Home</Nav.Link>
           <Nav.Link href="http://localhost:3000/about">About</Nav.Link>
-          <Nav.Link href="http://localhost:3000/posts">Posts</Nav.Link>
+          <Nav.Link href="http://localhost:3000/Contact">Contact</Nav.Link>
           <Nav.Link
             href="http://localhost:3000/login"
             style={{ color: "blue" }}

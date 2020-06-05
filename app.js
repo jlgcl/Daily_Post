@@ -72,6 +72,18 @@ app.use(signupRouter);
 //login authentication
 app.use(auth);
 
+app.get("/user_data", (req, res, next) => {
+  User.find({ username: req.user.username }, (req, res) => {
+    if (req.user === undefined) {
+      res.json({});
+    } else {
+      res.json({
+        username: req.user,
+      });
+    }
+  });
+});
+
 //post controls
 app.use(postRoutes);
 // app.use(postRouter);
