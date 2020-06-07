@@ -2,8 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { CarouselComp } from "../components/carousel";
 import MainNav from "../components/main_nav";
+import HomeMain from "./home_main";
 
 const Styles = styled.div`
+  .main {
+    margin: 20px 20px;
+    margin-top: 50px;
+  }
   .mainHeader {
     width: 100%;
     margin-top: 20px;
@@ -67,7 +72,7 @@ class Home extends React.Component {
   }
 
   async fetchUser() {
-    const header = {
+    const setting = {
       method: "GET",
       mode: "cors",
       credentials: "same-origin",
@@ -76,7 +81,7 @@ class Home extends React.Component {
       },
     };
     try {
-      let user = await fetch("http://localhost:8080/user_data", header);
+      let user = await fetch("http://localhost:8080/user_data", setting);
       let userRes = user.username.json();
       this.setState({ user: userRes });
     } catch (error) {
@@ -125,6 +130,9 @@ class Home extends React.Component {
           <CarouselComp />
           <div className="mainNav">
             <MainNav />
+          </div>
+          <div className="main">
+            <HomeMain />
           </div>
         </div>
       </Styles>

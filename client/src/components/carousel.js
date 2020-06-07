@@ -17,9 +17,10 @@ export const CarouselComp = () => (
     <Carousel className="slider-container">
       <Carousel.Item>
         <img
-          className="d-block w-100 mx-auto"
+          className="d-block mx-auto"
           src="https://www.apta.com/wp-content/uploads/home-banner-1.jpg"
           alt="covid-19 crisis"
+          style={{ height: "400px", width: "100%" }}
         />
         <Carousel.Caption>
           <h3>Should we be concerned about a second wave?</h3>
@@ -31,9 +32,10 @@ export const CarouselComp = () => (
       </Carousel.Item>
       <Carousel.Item>
         <img
-          className="d-block w-50 mx-auto"
-          src="https://blog.galvanize.com/wp-content/uploads/2020/01/Can-data-science-predict-the-stock-market-.jpg"
+          className="d-block mx-auto"
+          src="https://insights.som.yale.edu/sites/default/files/insights/background/What%20the%20Plunge%20in%20the%20Stock%20Market%20Means%20for%20Individual%20Investors.jpg"
           alt="stock market"
+          style={{ height: "400px", width: "100%" }}
         />
         <Carousel.Caption>
           <h3>Stock Market rallies towards the all time highs</h3>
@@ -45,9 +47,10 @@ export const CarouselComp = () => (
       </Carousel.Item>
       <Carousel.Item>
         <img
-          className="d-block w-50 mx-auto"
+          className="d-block mx-auto"
           src="https://cdn.shopify.com/shopify-marketing_assets/static/share-image-generic.jpg"
           alt="shopify"
+          style={{ height: "400px", width: "100%" }}
         />
         <Carousel.Caption>
           <h3 style={{ color: "black" }}>Shopify - the Canadian Story</h3>

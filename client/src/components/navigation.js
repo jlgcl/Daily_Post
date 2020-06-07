@@ -5,7 +5,6 @@ import styled from "styled-components";
 const Styles = styled.div`
   .navbar {
     height: 30px;
-    box-shadow: -1px 3px 11px -3px rgba(0, 0, 0, 0.5);
   }
 `;
 

@@ -3,16 +3,27 @@ import { Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
 
 const Styles = styled.div`
-  .navbar {
-    height: 50px;
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
   }
-  .navbar 
 `;
+//styled components for flex-box doesn't work for React Bootstrap nav
 
 export const MainNav = () => (
   <Styles>
-    <Navbar bg="dark" variant="dark">
-      <Nav className="nav-fill w-100">
+    <Navbar bg="dark" variant="dark" style={{ height: "50px" }}>
+      <Nav
+        className="nav-fill w-100"
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          alignContent: "center",
+          marginTop: "-8px",
+        }}
+      >
         <Nav.Link href="http://localhost:8080/posts">All Posts</Nav.Link>
         <Nav.Link href="http://localhost:8080/politics">Politics</Nav.Link>
         <Nav.Link href="http://localhost:8080/economics">Economics</Nav.Link>
