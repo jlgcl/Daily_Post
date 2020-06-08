@@ -21,11 +21,11 @@ router.post("/login", (req, res, next) => {
       if (user.admin == true) {
         // token for admin users
         const token = jwt.sign(user.toJSON(), "secretJWT"); //what will be returned to the frontend - contains the user information corresponding to the signed-in user.
-        return res.json({ user, token });
+        res.json(user);
       } else {
         // token for public users
         const token = jwt.sign(user.toJSON(), "publicJWT"); //what will be returned to the frontend - contains the user information corresponding to the signed-in user.
-        return res.json({ user, token });
+        res.json(user);
       }
     });
   })(req, res);

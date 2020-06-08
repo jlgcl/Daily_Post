@@ -4,7 +4,7 @@ const router = express.Router();
 const { body, validationResult } = require("express-validator/check");
 const { sanitizeBody } = require("express-validator/filter");
 const Post = require("../models/post");
-const Comment = rqeuire("../models/comments");
+const Comment = require("../models/comments");
 var { v4: uuidv4 } = require("../node_modules/uuid");
 const User = require("../models/user");
 

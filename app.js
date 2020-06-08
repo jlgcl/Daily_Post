@@ -12,6 +12,7 @@ var bcrypt = require("bcryptjs");
 var { v4: uuidv4 } = require("./node_modules/uuid");
 var { body, validationResult } = require("express-validator/check");
 var { sanitizeBody } = require("express-validator/filter");
+var cors = require("cors");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -65,6 +66,17 @@ app.use(session({ secret: "cats", resave: false, saveUnitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
+
+//CORS
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
+app.use(cors());
 
 //sign-up GET/POST
 app.use(signupRouter);
