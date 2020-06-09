@@ -21,14 +21,19 @@ router.post("/login", (req, res, next) => {
       if (user.admin == true) {
         // token for admin users
         const token = jwt.sign(user.toJSON(), "secretJWT"); //what will be returned to the frontend - contains the user information corresponding to the signed-in user.
-        res.json(user);
+        res.redirect("/");
       } else {
         // token for public users
         const token = jwt.sign(user.toJSON(), "publicJWT"); //what will be returned to the frontend - contains the user information corresponding to the signed-in user.
-        res.json(user);
+        res.redirect("/");
       }
     });
   })(req, res);
 });
-//5ed5af2eea2f7227bea09745
+
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
+
 module.exports = router;

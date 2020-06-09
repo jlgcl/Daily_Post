@@ -47,7 +47,7 @@ class Home extends React.Component {
       location: "",
       temperature: "",
       weather: "",
-      user: "",
+      username: "NOT LOGGED IN",
     };
     this.fetchWeather = this.fetchWeather.bind(this);
     this.fetchUser = this.fetchUser.bind(this);
@@ -74,22 +74,30 @@ class Home extends React.Component {
   async fetchUser() {
     const setting = {
       method: "GET",
-      mode: "cors",
-      credentials: "same-origin",
       headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods":
+          "GET, POST, OPTIONS, PUT, PATCH, DELETE",
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+        "Access-Control-Allow-Credentials": true,
         "Content-Type": "application/json",
       },
     };
     try {
-      let user = await fetch("http://localhost:8080/user_data", setting);
-      let userRes = user.username.json();
-      this.setState({ user: userRes });
-    } catch (error) {
-      this.setState({ user: "Not Logged In" });
+      let res = await fetch("/user_data", setting);
+      let resJsn = await res.json();
+      // let resJs = JSON.parse(resJson);
+      this.setState({
+        username: resJsn,
+      });
+    } catch (err) {
+      console.log(err);
     }
   }
 
   render() {
+    const { username } = this.state;
     let weatherState = this.state.weather;
     let weatherImg;
     if (weatherState === "Clear") {
@@ -124,7 +132,7 @@ class Home extends React.Component {
               ></img>
             </a>
             <div className="loginStatus">
-              <p>You're logged in as: {this.state.user}</p>
+              <p>You're logged in as: {this.state.username} </p>
             </div>
           </div>
           <CarouselComp />

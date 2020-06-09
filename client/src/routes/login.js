@@ -76,9 +76,9 @@ class Login extends React.Component {
 
     const setting = {
       method: "POST",
+      redirect: "follow",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods":
           "GET, POST, OPTIONS, PUT, PATCH, DELETE",
@@ -88,7 +88,10 @@ class Login extends React.Component {
       },
       body: JSON.stringify(this.state),
     };
-    fetch("/login", setting).then((res) => console.log(res.text()));
+    fetch("/login", setting).then((res) => {
+      console.log(res);
+      window.location.href = "/";
+    });
   }
 
   //   const { createProxyMiddleware } = require("http-proxy-middleware");

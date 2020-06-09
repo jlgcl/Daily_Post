@@ -16,7 +16,7 @@ STATUS:
     - create categories for posts (genres)
     - implement TinyMCE for managing comments
 
-    ERRORS:
+    ERRORS/LEARNED:
         - 404 error when posting to anywhere using Postman (request passes through the port fine, but response is error)
             - running the router cod through app.post() works, but not through router.post().
             SOLVED) use app.use(method) since the url is already defined in router.post() in the module.
@@ -34,6 +34,7 @@ STATUS:
             SOLVED) use jwtPayload._id NOT jwtPayload.id
         - for some reason, when routing url for unpublished posts: Mongoose: CastError: Cast to ObjectId failed for value “[object Object]” at path “_id”
             SOLVED) change the route from "/posts/unpublished" to "/unpubposts"
+        - app.get("/logout") must be in the auth.js file to work without 401 Unauthorized error.
 
 
 PLAN:

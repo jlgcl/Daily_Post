@@ -1,12 +1,12 @@
 * FRONTEND PLAN *
 
 STATUS
+    - signup*
     - create a routing for different pages: about page, home, posts, user page, unpublished posts (link from the user page)
         - create a Bootstrap navigation bar for these routes
             - create custom navbar design: different fonts, logo, bar design, etc.
             - make sticky navbar OR arrow to top of the page 
         - route for login page w/ form inputs
-        - navbar "Log In" should change to "Sign Out" if a user is logged into session
     - contact form fields (contact info on the right side, fields on the left)
     Home:
         - current weather: Geolocation API?
@@ -19,6 +19,11 @@ ERRORS/LEARNED
     - React can't handle every CSS styles inline (i.e. margin-left) - use other methods.
     - review setting up fetch headers
     - to call a function in JSX, use: {this.renderFunction()} in render().
+    - see login component & package.json to see how data is fetched from backend w/ different URL (CORS)
+    - use "window.location.href = "url"" to redirect upon fetch res.
+        - on redirect, POST /login will show 301/302 - this still means login succeeded, but it's redirecting to other url.
+    - Error: Objects are not valid as a React child (found: [object Promise]). If you meant to render a collection of children, use an array instead.
+        - NOT A SOLUTION: https://stackoverflow.com/questions/47658765/objects-are-not-valid-as-a-react-child-found-object-promise/47659112
 
 PLAN
     - for individual post thumbnail (in each post route), have summary input with character limit to show consistent thumbnail block size for all posts.
@@ -32,6 +37,8 @@ PLAN
 COMPLETED
     - main nav bar Bootstrap spacing
     - dark footer area
+    - navbar "Log In" should change to "Sign Out" if a user is logged into session
+    - Signout
     Home:
         - create a carousel to show main headlines
         - create cards of featured/latest posts with only LIMITED summary view (read more...)

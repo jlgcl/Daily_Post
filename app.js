@@ -85,13 +85,14 @@ app.use(signupRouter);
 app.use(auth);
 
 app.get("/user_data", (req, res, next) => {
-  User.find({ username: req.user.username }, (req, res) => {
-    if (req.user === undefined) {
-      res.json({});
+  User.find({ username: req.user.username }, (err, result) => {
+    if (err) {
+      return next(err);
+    }
+    if (res == undefined || res == null) {
+      res.json("not found");
     } else {
-      res.json({
-        username: req.user,
-      });
+      res.json(result[0].username);
     }
   });
 });
@@ -109,10 +110,11 @@ app.use(postRoutes);
 app.use(passport.authenticate("jwt"), userDelete);
 
 //logout
-app.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect("/");
-});
+// app.get("/logout", (req, res) => {
+//   req.session.destroy();
+//   req.logout();
+//   res.redirect("/");
+// });
 
 ///--------------------- ERROR HANDLER----------------------///
 
