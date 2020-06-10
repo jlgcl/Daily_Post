@@ -35,6 +35,9 @@ STATUS:
         - for some reason, when routing url for unpublished posts: Mongoose: CastError: Cast to ObjectId failed for value “[object Object]” at path “_id”
             SOLVED) change the route from "/posts/unpublished" to "/unpubposts"
         - app.get("/logout") must be in the auth.js file to work without 401 Unauthorized error.
+        - "Cast to ObjectId failed for value "{ post: '' }" at path "_id" for model "Comment""
+            SOLVED) posts/:id/update depends on any posts/:id control. In this case, posts/:id GET included async to findById the posts, but this ID is updated in the update POST control.
+                    posts/:id findById() for comments should change to find().
 
 
 PLAN:

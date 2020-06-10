@@ -29,9 +29,6 @@ export const MainNav = () => (
         <Nav.Link href="http://localhost:8080/economics">Economics</Nav.Link>
         <Nav.Link href="http://localhost:8080/business">Business</Nav.Link>
         <Nav.Link href="http://localhost:8080/technology">Technology</Nav.Link>
-        <Nav.Link href="http://localhost:8080/entertainment">
-          Entertainment
-        </Nav.Link>
       </Nav>
     </Navbar>
   </Styles>

@@ -38,14 +38,20 @@ class NavigationBar extends React.Component {
   render() {
     const userStatus = this.state.username;
     let status;
+    let logStatus;
     let logURL;
-    if (userStatus == "not logged in") {
+    let signUp;
+    if (userStatus === "not logged in") {
       status = "Log In";
       logURL = "http://localhost:3000/login";
+      signUp = "http://localhost:3000/signup";
+      logStatus = "Sign Up";
     }
     if (userStatus !== "not logged in") {
       status = "Log Out";
       logURL = "http://localhost:3000/logout";
+      signUp = "#";
+      logStatus = userStatus;
     }
 
     return (
@@ -60,6 +66,9 @@ class NavigationBar extends React.Component {
               <Nav.Link href="http://localhost:3000/Contact">Contact</Nav.Link>
               <Nav.Link href={logURL} style={{ color: "blue" }}>
                 {status}
+              </Nav.Link>
+              <Nav.Link href={signUp} style={{ color: "gray" }}>
+                {logStatus}
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

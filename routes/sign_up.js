@@ -12,7 +12,16 @@ const { v4: uuidv4 } = require("../node_modules/uuid");
 
 router.post("/signup", [
   body("username").trim().isLength({ min: 0 }),
-  body("password").trim().isLength({ min: 0 }),
+  body("password")
+    .trim()
+    .isLength({ min: 0 })
+    .custom((value, { req, loc, path }) => {
+      if (value !== req.body.confirmPassword) {
+        throw new Error("Passwords don't match");
+      } else {
+        return value;
+      }
+    }),
 
   sanitizeBody("username").escape(),
   sanitizeBody("password").escape(),
@@ -48,12 +57,14 @@ router.post("/signup", [
               if (err) {
                 return next(err);
               }
-              res.redirect("/");
+              res.json(user);
             });
-          } else {
-            res.render("../views/sign-up-error.pug", {
-              title: "username already exists",
-            });
+          } else if (results) {
+            // res.render("../views/sign-up-error.pug", {
+            //   title: "username already exists",
+            // }
+            // );
+            res.json("username already exists");
           }
         });
       }

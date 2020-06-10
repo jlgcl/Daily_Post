@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var PostModel = new Schema({
   uid: { type: String, required: true },
   author: { type: String, required: true },
+  summary: { type: String, required: true },
   title: { type: String, required: true },
   message: { type: String, required: true },
   date: { type: Date, default: Date.Now },
@@ -15,7 +16,7 @@ var PostModel = new Schema({
   },
   category: {
     type: String,
-    enum: ["general", "politics", "business", "Technology"],
+    enum: ["general", "politics", "economics", "business", "technology"],
     default: "general",
     required: false,
   },
