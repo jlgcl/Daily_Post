@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var PostModel = new Schema({
   uid: { type: String, required: true },
+  imageId: { type: String, required: false },
   author: { type: String, required: true },
   summary: { type: String, required: true },
   title: { type: String, required: true },

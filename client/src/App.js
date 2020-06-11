@@ -8,6 +8,7 @@ import Login from "./routes/login";
 import Logout from "./routes/logout";
 import Signup from "./routes/signup";
 import Posts from "./routes/posts";
+import CreatePost from "./routes/createPost";
 
 class App extends React.Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class App extends React.Component {
             <Route path="/signup" component={Signup} />
             {/* <Route path="/about" component={About} /> */}
             <Route path="/posts" component={Posts} />
+            <Route path="/create_post" component={CreatePost} />
           </div>
         </Router>
         <div className="footer">

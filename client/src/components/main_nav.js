@@ -24,11 +24,11 @@ export const MainNav = () => (
           marginTop: "-8px",
         }}
       >
-        <Nav.Link href="http://localhost:8080/posts">All Posts</Nav.Link>
-        <Nav.Link href="http://localhost:8080/politics">Politics</Nav.Link>
-        <Nav.Link href="http://localhost:8080/economics">Economics</Nav.Link>
-        <Nav.Link href="http://localhost:8080/business">Business</Nav.Link>
-        <Nav.Link href="http://localhost:8080/technology">Technology</Nav.Link>
+        <Nav.Link href="http://localhost:3000/posts">All Posts</Nav.Link>
+        <Nav.Link href="http://localhost:3000/politics">Politics</Nav.Link>
+        <Nav.Link href="http://localhost:3000/economics">Economics</Nav.Link>
+        <Nav.Link href="http://localhost:3000/business">Business</Nav.Link>
+        <Nav.Link href="http://localhost:3000/technology">Technology</Nav.Link>
       </Nav>
     </Navbar>
   </Styles>

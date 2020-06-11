@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { CarouselComp } from "../components/carousel";
 import MainNav from "../components/main_nav";
 import HomeMain from "./home_main";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Posts from "../routes/posts";
 
 const Styles = styled.div`
   .main {
@@ -142,6 +144,9 @@ class Home extends React.Component {
           <div className="main">
             <HomeMain />
           </div>
+          <Router>
+            <Route path="/posts" component={Posts}></Route>
+          </Router>
         </div>
       </Styles>
     );

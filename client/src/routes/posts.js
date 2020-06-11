@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import CreatePost from "./createPost";
 
 const Styles = styled.div``;
 
@@ -31,7 +33,9 @@ class Posts extends React.Component {
   render() {
     return (
       <Styles>
-        <div></div>
+        <div>
+          <a href="http://localhost:3000/create_post">Create a Post</a>
+        </div>
       </Styles>
     );
   }

@@ -11,7 +11,7 @@ STATUS
         - current weather: Geolocation API?
         - scroll right to see more cards THEN link to the full category site
     Each Category Page:
-        - start with All Posts*
+        - start with All Posts - create a post*
         - Top 3 posts as large thumbnails
         - Other posts using flexbox
     Each post:

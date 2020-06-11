@@ -7,10 +7,30 @@ const Post = require("../models/post");
 const Comment = require("../models/comments");
 var { v4: uuidv4 } = require("../node_modules/uuid");
 const User = require("../models/user");
+const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const Image = require("../models/image");
+
+//Cloudinary config:
+cloudinary.config({
+  cloud_name: "dkd85c8dn",
+  api_key: "299873643872433",
+  api_secret: "Lve8vXaqHOZmkuSoW0vqtWC61bM",
+});
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "samples",
+    format: async (req, file) => "png",
+    public_id: (req, file) => uuidv4(),
+  },
+});
+const parser = multer({ storage: storage });
 
 var async = require("async");
 
-router.post("/create_post", [
+router.post("/create_post", parser.single("image"), [
   body("title").trim().isLength({ min: 0 }),
   body("summary").trim().isLength({ min: 0 }),
   body("message").trim().isLength({ min: 0 }),
@@ -22,6 +42,14 @@ router.post("/create_post", [
   sanitizeBody("date").toDate(),
 
   (req, res, next) => {
+    //upload image:
+    const image = {};
+    image.url = req.file.url;
+    image.id = req.file.public_id;
+    Image.create(image)
+      .then((newImage) => res.json(newImage))
+      .catch((err) => console.log(err));
+
     const errors = validationResult(req);
 
     if (req.user !== undefined || req.user !== null) {
@@ -29,6 +57,7 @@ router.post("/create_post", [
         uid: uuidv4(),
         author: req.user.username, //replace with req.user.username - the user MUST be logged in the session.
         title: req.body.title,
+        imageId: image.id,
         summary: req.body.summary,
         message: req.body.message,
         date: new Date(),
