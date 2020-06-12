@@ -30,19 +30,22 @@ const parser = multer({ storage: storage });
 
 var async = require("async");
 
-router.post("/create_post", parser.single("image"), [
+router.post("/createpost", parser.single("image"), [
   body("title").trim().isLength({ min: 0 }),
   body("summary").trim().isLength({ min: 0 }),
+  body("author").trim().isLength({ min: 0 }),
   body("message").trim().isLength({ min: 0 }),
-  body("date").optional({ checkFalsey: true }).isISO8601(),
+  // body("date").optional({ checkFalsey: true }).isISO8601(),
 
   sanitizeBody("title").escape(),
   sanitizeBody("summary").escape(),
+  sanitizeBody("author").escape(),
   sanitizeBody("message").escape(),
-  sanitizeBody("date").toDate(),
+  // sanitizeBody("date").toDate(),
 
   (req, res, next) => {
     //upload image:
+
     const image = {};
     image.url = req.file.url;
     image.id = req.file.public_id;
@@ -55,7 +58,7 @@ router.post("/create_post", parser.single("image"), [
     if (req.user !== undefined || req.user !== null) {
       var post = new Post({
         uid: uuidv4(),
-        author: req.user.username, //replace with req.user.username - the user MUST be logged in the session.
+        author: req.user.username,
         title: req.body.title,
         imageId: image.id,
         summary: req.body.summary,

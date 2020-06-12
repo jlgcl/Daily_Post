@@ -57,48 +57,61 @@ class CreatePost extends React.Component {
     });
   }
 
-  async handleSubmit() {
+  async handleSubmit(e) {
+    e.preventDefault();
+
     const bodyRes = {
       title: this.state.title,
       author: this.state.author,
       summary: this.state.summary,
       message: this.state.message,
+      category: this.state.category,
     };
     const setting = {
       method: "POST",
-      header: {
+      redirect: "follow",
+      headers: {
+        "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Credentials": true,
+        "Access-Control-Allow-Methods":
+          "GET, POST, OPTIONS, PUT, PATCH, DELETE",
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept, Authorization",
       },
       body: JSON.stringify(bodyRes),
     };
 
     try {
-      let submitData = await fetch("/create_post", setting);
-      let submitDataRes = await submitData.json();
+      let submitData = await fetch("/createpost", setting);
+      // let submitDataRes = await submitData.json();
       window.location.href = "/";
     } catch (err) {
-      console.log(err);
+      console.log("error");
     }
   }
 
-  async handleImgSubmit() {
+  async handleImgSubmit(e) {
+    e.preventDefault();
+
     const data = new FormData();
     data.append("file", this.state.selectedFile);
+    console.log(data, this.state.selectedFile);
 
     const setting = {
       method: "POST",
-      header: {
+      headers: {
+        "Content-Type": "x-www.form.urlencoded",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Credentials": true,
       },
       body: data,
     };
     try {
-      let submitImgData = await fetch("/create_post", setting);
-      let submitImgDataRes = await submitImgData.json();
+      let submitImgData = await fetch("/createpost", setting);
+      //let submitImgDataRes = await submitImgData.json();
     } catch (err) {
-      console.log(err);
+      console.log("error");
     }
   }
 

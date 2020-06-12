@@ -12,6 +12,11 @@ STATUS
         - scroll right to see more cards THEN link to the full category site
     Each Category Page:
         - start with All Posts - create a post*
+            - IMAGE UPLOAD***
+                - create a separate image model @ backend.
+                - obtain current post's title and send it to backend to be used as an 'identifier'
+                - populate the objectId using post.find({title: identifier}).
+                - upload req.file to cloud (i.e. Google Cloud)
         - Top 3 posts as large thumbnails
         - Other posts using flexbox
     Each post:
