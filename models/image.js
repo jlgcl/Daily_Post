@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 var imageSchema = new Schema({
-  post: { type: Schema.Types.ObjectId, ref: "post", required: false },
+  uid: { type: String, required: true },
   img: { data: Buffer, contentType: String },
 });
 

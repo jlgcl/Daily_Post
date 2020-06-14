@@ -14,9 +14,8 @@ STATUS
         - start with All Posts - create a post*
             - IMAGE UPLOAD***
                 - create a separate image model @ backend.
-                - obtain current post's title and send it to backend to be used as an 'identifier'
-                - populate the objectId using post.find({title: identifier}).
-                - upload req.file to cloud (i.e. Google Cloud)
+                - make post_id state for the current post so that the image upload can also save it as its uid as well (shared IDs) - COMPLETED
+                - upload image to cloud (i.e. Google Cloud) or local storage & handle post data that is created*
         - Top 3 posts as large thumbnails
         - Other posts using flexbox
     Each post:

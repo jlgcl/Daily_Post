@@ -7,30 +7,13 @@ const Post = require("../models/post");
 const Comment = require("../models/comments");
 var { v4: uuidv4 } = require("../node_modules/uuid");
 const User = require("../models/user");
-const multer = require("multer");
-const cloudinary = require("cloudinary").v2;
-const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const Image = require("../models/image");
-
-//Cloudinary config:
-cloudinary.config({
-  cloud_name: "dkd85c8dn",
-  api_key: "299873643872433",
-  api_secret: "Lve8vXaqHOZmkuSoW0vqtWC61bM",
-});
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: "samples",
-    format: async (req, file) => "png",
-    public_id: (req, file) => uuidv4(),
-  },
-});
-const parser = multer({ storage: storage });
+const multer = require("multer");
+const upload = multer({ dest: "../imgs" });
 
 var async = require("async");
 
-router.post("/createpost", parser.single("image"), [
+router.post("/createpost", [
   body("title").trim().isLength({ min: 0 }),
   body("summary").trim().isLength({ min: 0 }),
   body("author").trim().isLength({ min: 0 }),
@@ -44,23 +27,14 @@ router.post("/createpost", parser.single("image"), [
   // sanitizeBody("date").toDate(),
 
   (req, res, next) => {
-    //upload image:
-
-    const image = {};
-    image.url = req.file.url;
-    image.id = req.file.public_id;
-    Image.create(image)
-      .then((newImage) => res.json(newImage))
-      .catch((err) => console.log(err));
-
     const errors = validationResult(req);
 
+    //POST control for post uploads:
     if (req.user !== undefined || req.user !== null) {
       var post = new Post({
-        uid: uuidv4(),
+        uid: req.body.uid,
         author: req.user.username,
         title: req.body.title,
-        imageId: image.id,
         summary: req.body.summary,
         message: req.body.message,
         date: new Date(),
@@ -81,6 +55,30 @@ router.post("/createpost", parser.single("image"), [
     }
   },
 ]);
+
+router.post("/uploadimg", upload.single("file"), (req, res, next) => {
+  //const errors = validationResult(req);
+  console.log(req.file, req.body);
+  //POST control for post uploads:
+  //if (req.user !== undefined || req.user !== null) {
+  // var image = new Image({
+  //   uid: req.body.uid,
+  //   img: req.body.file,
+  // });
+
+  // if (!errors.isEmpty()) {
+  //   res.send("INPUT ERROR");
+  //   return;
+  // }
+
+  // image.save((err) => {
+  //   if (err) {
+  //     return next(err);
+  //   }
+  //   res.json(image);
+  // });
+  //}
+});
 
 router.post("/post/:id/delete", (req, res, next) => {
   Post.findById(req.params.id, (err, result) => {

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ImgUpload from "./uploadImg";
 
 const Styles = styled.div``;
 
@@ -13,6 +14,7 @@ class CreatePost extends React.Component {
       message: "",
       category: "",
       selectedFile: "",
+      postId: "",
     };
     this.titleInput = this.titleInput.bind(this);
     this.authorInput = this.authorInput.bind(this);
@@ -20,8 +22,7 @@ class CreatePost extends React.Component {
     this.messageInput = this.messageInput.bind(this);
     this.inputCat = this.inputCat.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleImgSubmit = this.handleImgSubmit.bind(this);
-    this.inputImg = this.inputImg.bind(this);
+    this.handleIdChange = this.handleIdChange.bind(this);
   }
 
   titleInput(e) {
@@ -57,10 +58,17 @@ class CreatePost extends React.Component {
     });
   }
 
+  handleIdChange(id) {
+    this.setState({
+      postId: id,
+    });
+  }
+
   async handleSubmit(e) {
     e.preventDefault();
 
     const bodyRes = {
+      uid: this.state.postId,
       title: this.state.title,
       author: this.state.author,
       summary: this.state.summary,
@@ -91,29 +99,47 @@ class CreatePost extends React.Component {
     }
   }
 
-  async handleImgSubmit(e) {
-    e.preventDefault();
+  /* FAILED TO SEND MULTIPLE DATA IN ONE REQUEST - CREATE A SEPARATE ROUTE FOR IMAGE UPLOAD INSTEAD */
+  // async handleImgSubmit(e) {
+  //   e.preventDefault();
 
-    const data = new FormData();
-    data.append("file", this.state.selectedFile);
-    console.log(data, this.state.selectedFile);
+  //   this.setState({
+  //     postId: uuidv4(),
+  //   });
 
-    const setting = {
-      method: "POST",
-      headers: {
-        "Content-Type": "x-www.form.urlencoded",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": true,
-      },
-      body: data,
-    };
-    try {
-      let submitImgData = await fetch("/createpost", setting);
-      //let submitImgDataRes = await submitImgData.json();
-    } catch (err) {
-      console.log("error");
-    }
-  }
+  //   const title = JSON.stringify(this.state.title);
+  //   const summary = JSON.stringify(this.state.summary);
+  //   const message = JSON.stringify(this.state.message);
+  //   const author = JSON.stringify(this.state.author);
+  //   const category = JSON.stringify(this.state.category);
+
+  //   const data = new FormData();
+  //   data.append("file", this.state.selectedFile);
+  //   console.log(data, this.state.selectedFile);
+
+  //   const setting = {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //       "Access-Control-Allow-Origin": "*",
+  //       "Access-Control-Allow-Credentials": true,
+  //     },
+  //     body: {
+  //       // data,
+  //       title: title,
+  //       author: author,
+  //       summary: summary,
+  //       message: message,
+  //       category: category,
+  //     }, //req.body.data === this.state.selectedFile
+  //   };
+  //   try {
+  //     let submitImgData = await fetch("/createpost", setting);
+  //     //let submitImgDataRes = await submitImgData.json();
+  //   } catch (err) {
+  //     console.log("errofr");
+  //   }
+  // }
 
   render() {
     return (
@@ -177,10 +203,13 @@ class CreatePost extends React.Component {
             <label for="technology">Technology</label>
             <button type="primary">Submit</button>
           </form>
-          <form onSubmit={this.handleImgSubmit}>
-            <input type="file" name="image" onChange={this.inputImg}></input>
-            <button type="primary">Upload Image</button>
-          </form>
+          <p>
+            Upload image:{" "}
+            <ImgUpload
+              identifier={this.state.postId}
+              onIdChange={this.handleIdChange}
+            />
+          </p>
         </div>
       </Styles>
     );
