@@ -9,11 +9,24 @@ class Posts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      posts: [],
     };
+    this.getPosts = this.getPosts.bind(this);
+    this.getImages = this.getImages.bind(this);
   }
 
-  async getPosts() {
+  componentDidMount() {
+    this.getPosts();
+  }
+
+  async getImages(e) {
+    e.preventDefault();
+    //SENDING A REQUEST WITH AN OBJECT OF UIDs???*
+  }
+
+  async getPosts(e) {
+    e.preventDefault();
+
     const settings = {
       method: "GET",
       headers: {
@@ -24,7 +37,11 @@ class Posts extends React.Component {
     try {
       let getPost = await fetch("/posts", settings);
       let getRes = await getPost.json();
-      console.log(getRes);
+      this.setState({
+        posts: getRes,
+      });
+
+      this.getImages(getRes);
     } catch (err) {
       console.log(err);
     }

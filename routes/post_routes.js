@@ -9,7 +9,18 @@ var { v4: uuidv4 } = require("../node_modules/uuid");
 const User = require("../models/user");
 const Image = require("../models/image");
 const multer = require("multer");
-const upload = multer({ dest: "../imgs" });
+
+//storage function executes whenever a file is sent to server:
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./uploads/"); //cb(error, destination)
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname); //cb(error, file name) - originalname provides a proper extension for us to see the actual image.
+  },
+});
+
+const upload = multer({ storage: storage }); //alt: {dest: 'uploads/'}
 
 var async = require("async");
 
@@ -57,27 +68,29 @@ router.post("/createpost", [
 ]);
 
 router.post("/uploadimg", upload.single("file"), (req, res, next) => {
-  //const errors = validationResult(req);
-  console.log(req.file, req.body);
+  const errors = validationResult(req);
+
   //POST control for post uploads:
-  //if (req.user !== undefined || req.user !== null) {
-  // var image = new Image({
-  //   uid: req.body.uid,
-  //   img: req.body.file,
-  // });
+  if (req.user !== undefined || req.user !== null) {
+    var image = new Image({
+      uid: req.body.uid,
+      img: req.file,
+      path: req.file.path, //locates the path in which the multer stored the file.
+    });
 
-  // if (!errors.isEmpty()) {
-  //   res.send("INPUT ERROR");
-  //   return;
-  // }
+    if (!errors.isEmpty()) {
+      res.send("INPUT ERROR");
+      return;
+    }
 
-  // image.save((err) => {
-  //   if (err) {
-  //     return next(err);
-  //   }
-  //   res.json(image);
-  // });
-  //}
+    image.save((err) => {
+      if (err) {
+        return next(err);
+      }
+      res.json(req.file.path);
+      //MUST MAKE THE "uploads" DIRECTORY STATIC & ACCESSIBLE IN APP.JS
+    });
+  }
 });
 
 router.post("/post/:id/delete", (req, res, next) => {
@@ -204,6 +217,16 @@ router.get("/posts", (req, res, next) => {
     }
 
     res.json(results); //contains urls + model._id
+  });
+});
+
+router.get("/getimages", (req, res, next) => {
+  Image.find({ uid: req.body.uid }, (err, results) => {
+    if (err) {
+      return next(err);
+    }
+
+    res.json(results);
   });
 });
 

@@ -5,25 +5,33 @@ STATUS
         - create a Bootstrap navigation bar for these routes
             - create custom navbar design: different fonts, logo, bar design, etc.
             - make sticky navbar OR arrow to top of the page 
-        - route for login page w/ form inputs
+        - route for login page w/ form inputs - COMPLETED
     - contact form fields (contact info on the right side, fields on the left)
     Home:
         - current weather: Geolocation API?
         - scroll right to see more cards THEN link to the full category site
     Each Category Page:
-        - start with All Posts - create a post*
-            - IMAGE UPLOAD***
-                - create a separate image model @ backend.
-                - make post_id state for the current post so that the image upload can also save it as its uid as well (shared IDs) - COMPLETED
-                - upload image to cloud (i.e. Google Cloud) or local storage & handle post data that is created*
+        - start with All Posts
+            - page layout:
+                - latest 3 posts as big blocks w/ images at the top - fetch GET data responds with an array with the latest element being the most recently created post. 
+                - rest as flexbox blocks w/ images
+                - at componentDidMount() include 2 functions: obtain all published post documents, obtain all images documents corresponding to the uids of the posts (uid sorting done at client-side) - same array order as the posts.
+                    - router.get("/posts") async.parallel to find both posts and images won't work since images won't be in order for specific category queries.
+                    - //SENDING A REQUEST WITH AN OBJECT OF UIDs???*
+            - create a post - COMPLETED
+                - ***IMAGE UPLOAD***
+                    - create a separate image model @ backend.
+                    - make post_id state for the current post so that the image upload can also save it as its uid as well (shared IDs) - COMPLETED
+                    - upload image to cloud (i.e. Google Cloud) or local storage & handle post data that is created - COMPLETED
+                        - the image model contains a path indicating the storage location to have access later (i.e. update), and a uid to match with a post uid.
         - Top 3 posts as large thumbnails
         - Other posts using flexbox
-    Each post:
+    Each post (main tasks):
         - update post page
         - comment - like/dislike (sort by like?)
     
 
-ERRORS/LEARNED
+ERRORS/LEARNED (also see the project notes in Web Dev Notes)
     - 'Home is not exported from ./routes/home' - don't need to destructure the import (i.e. import { Home }) since we are directly pointing at the object.
     - center Carousel images: mx-auto in className
     - React can't handle every CSS styles inline (i.e. margin-left) - use other methods.
@@ -34,14 +42,18 @@ ERRORS/LEARNED
         - on redirect, POST /login will show 301/302 - this still means login succeeded, but it's redirecting to other url.
     - Error: Objects are not valid as a React child (found: [object Promise]). If you meant to render a collection of children, use an array instead.
         - NOT A SOLUTION: https://stackoverflow.com/questions/47658765/objects-are-not-valid-as-a-react-child-found-object-promise/47659112
+    - See Web Dev project notes & codes for this project for file upload process: server-side (multers, storage, etc.), client-side (fetch method, multipart/form-data, lifting states, etc.)
+    - "unexpected token < in JSON at position 0" OR issues with objects to render
+        - SOLVED) server side responses must be res.json() & client side fetch returns should be await returnedRes.json().
+        - if 'await' is not included, the json returned response from the server would still be a Promise object, which is not possible to render in JSX.
 
 PLAN
     - for individual post thumbnail (in each post route), have summary input with character limit to show consistent thumbnail block size for all posts.
     - use compositions/specializations to incorporate components.
     - Nav pages should be routed through React router.
     - Use custom styling (media queries, colors, etc.) using a separate CSS file OR use styled-components.
-    - no need for: lifting states, context, HOC.
-    - need: forms/handling events, router, conditional rendering, etc.
+    - no need for: context, HOC.
+    - need: forms/handling events, router, conditional rendering, lifting state up, etc.
     - mobile view - Responsive view
 
 COMPLETED
