@@ -220,13 +220,12 @@ router.get("/posts", (req, res, next) => {
   });
 });
 
-router.get("/getimages", (req, res, next) => {
-  Image.find({ uid: req.body.uid }, (err, results) => {
+router.post("/getimages", (req, res, next) => {
+  Image.find({ uid: req.body.uid }, (err, result) => {
     if (err) {
       return next(err);
     }
-
-    res.json(results);
+    res.json(result);
   });
 });
 

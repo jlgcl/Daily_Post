@@ -46,6 +46,10 @@ ERRORS/LEARNED (also see the project notes in Web Dev Notes)
     - "unexpected token < in JSON at position 0" OR issues with objects to render
         - SOLVED) server side responses must be res.json() & client side fetch returns should be await returnedRes.json().
         - if 'await' is not included, the json returned response from the server would still be a Promise object, which is not possible to render in JSX.
+        - the request MUST be an object (JSON is an object notation) - the request body can't just be a string.
+    - Render the last element of the state array
+        - SOLVED) need empty placeholders to render something at start because render() will execute before componentDidMount() fills in the state array. 
+        - Functions inside React components (not functional components) can return JSX & functional components can’t manage JS operations, but just return JSX DOM.
 
 PLAN
     - for individual post thumbnail (in each post route), have summary input with character limit to show consistent thumbnail block size for all posts.
