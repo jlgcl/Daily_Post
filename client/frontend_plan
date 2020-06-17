@@ -9,21 +9,22 @@ STATUS
     - contact form fields (contact info on the right side, fields on the left)
     Home:
         - current weather: Geolocation API?
-        - scroll right to see more cards THEN link to the full category site
+        - scroll right to see more cards THEN link to the full category site*
+        - flip cards for details?
     Each Category Page:
         - start with All Posts
-            - page layout:
+            - page layout*:
                 - latest 3 posts as big blocks w/ images at the top - fetch GET data responds with an array with the latest element being the most recently created post. 
                 - rest as flexbox blocks w/ images
                 - at componentDidMount() include 2 functions: obtain all published post documents, obtain all images documents corresponding to the uids of the posts (uid sorting done at client-side) - same array order as the posts.
-                    - router.get("/posts") async.parallel to find both posts and images won't work since images won't be in order for specific category queries.
-                    - //SENDING A REQUEST WITH AN OBJECT OF UIDs???*
+                    - router.get("/posts") async.parallel to find both posts and images won't work since images won't be in order for specific category queries. - COMPLETED
+                    - //SENDING A REQUEST WITH AN OBJECT OF UIDs??? - COMPLETED
             - create a post - COMPLETED
                 - ***IMAGE UPLOAD***
                     - create a separate image model @ backend.
                     - make post_id state for the current post so that the image upload can also save it as its uid as well (shared IDs) - COMPLETED
                     - upload image to cloud (i.e. Google Cloud) or local storage & handle post data that is created - COMPLETED
-                        - the image model contains a path indicating the storage location to have access later (i.e. update), and a uid to match with a post uid.
+                        - the image model contains a path indicating the storage location to have access later (i.e. update), and a uid to match with a post uid. - COMPLETED
         - Top 3 posts as large thumbnails
         - Other posts using flexbox
     Each post (main tasks):
