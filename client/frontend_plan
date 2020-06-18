@@ -9,11 +9,13 @@ STATUS
     - contact form fields (contact info on the right side, fields on the left)
     Home:
         - current weather: Geolocation API?
-        - scroll right to see more cards THEN link to the full category site*
+        - scroll right to see more cards THEN link to the full category site
         - flip cards for details?
     Each Category Page:
         - start with All Posts
-            - page layout*:
+            - page layout:
+                - page details
+                - page update*
                 - latest 3 posts as big blocks w/ images at the top - fetch GET data responds with an array with the latest element being the most recently created post. 
                 - rest as flexbox blocks w/ images
                 - at componentDidMount() include 2 functions: obtain all published post documents, obtain all images documents corresponding to the uids of the posts (uid sorting done at client-side) - same array order as the posts.
@@ -51,6 +53,7 @@ ERRORS/LEARNED (also see the project notes in Web Dev Notes)
     - Render the last element of the state array
         - SOLVED) need empty placeholders to render something at start because render() will execute before componentDidMount() fills in the state array. 
         - Functions inside React components (not functional components) can return JSX & functional components can’t manage JS operations, but just return JSX DOM.
+    - React Router <Switch>
 
 PLAN
     - for individual post thumbnail (in each post route), have summary input with character limit to show consistent thumbnail block size for all posts.

@@ -1,7 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  useRouteMatch,
+  useParams,
+} from "react-router-dom";
 import CreatePost from "./createPost";
+import PostDetail from "./postdetail";
 
 const Styles = styled.div`
   .topPosts {
@@ -10,13 +18,15 @@ const Styles = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     margin-top: 20px;
-    margin-left: 45px;
+    margin-left: 50px;
     margin-right: 50px;
     height: 400px;
     box-sizing: border-box;
     overflow: hidden;
   }
-
+  a {
+    color: black;
+  }
   .topLine {
     width: 95%;
   }
@@ -58,17 +68,106 @@ const Styles = styled.div`
 
   #imgContainer {
     width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 30px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .mainPosts {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 100%;
+    height: 1500px;
+    margin-top: 100px;
+  }
+  .postCard {
+    display: flex;
+    flex-direction: row;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 15px;
+  }
+  #mainContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+  }
+  .postCard #imgContainer {
+    width: 40%;
     display: flex;
     justify-content: center;
     padding-left: 10px;
     padding-right: 30px;
   }
+  .postCard #date {
+    font-size: 12px;
+    color: #ccbfbc;
+  }
 `;
 
 function MainPosts(props) {
+  const posts = props.onPosts;
   return (
     <div className="mainPosts">
-      <h3 style={{ marginLeft: "5%" }}>All Posts</h3>
+      <h3 style={{ marginLeft: "5%", marginTop: "30px", marginBottom: "20px" }}>
+        All Posts
+      </h3>
+      <div className="postCard">
+        <div id="date">{posts[posts.length - 4].date}</div>
+        <div id="mainContent">
+          <Link to={"/posts/" + posts[posts.length - 4]._id}>
+            <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
+              {posts[posts.length - 4].title}
+            </h3>
+          </Link>
+          <h7 style={{ fontSize: "15px" }}>
+            {posts[posts.length - 4].summary}
+          </h7>
+          <p style={{ fontSize: "10px" }}>
+            By {posts[posts.length - 4].author}
+          </p>
+        </div>
+        <div
+          id="imgContainer"
+          style={{
+            backgroundImage: `url(" ${props.onRenderImg(
+              posts[posts.length - 4]
+            )} ")`,
+          }}
+        ></div>
+      </div>
+      <hr style={{ width: "70%", marginTop: "30px" }}></hr>
+      <div className="postCard">
+        <div id="date">{posts[posts.length - 5].date}</div>
+        <div id="mainContent">
+          <Link to={"/posts/" + posts[posts.length - 5]._id}>
+            <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
+              {posts[posts.length - 5].title}
+            </h3>
+          </Link>
+          <h7 style={{ fontSize: "15px" }}>
+            {posts[posts.length - 5].summary}
+          </h7>
+          <p style={{ fontSize: "10px" }}>
+            By {posts[posts.length - 5].author}
+          </p>
+        </div>
+        <div
+          id="imgContainer"
+          style={{
+            backgroundImage: `url(" ${props.onRenderImg(
+              posts[posts.length - 5]
+            )} ")`,
+          }}
+        ></div>
+      </div>
     </div>
   );
 }
@@ -78,6 +177,48 @@ class Posts extends React.Component {
     super(props);
     this.state = {
       posts: [
+        {
+          title: "",
+          author: "",
+          summary: "",
+          message: "",
+        },
+        {
+          title: "",
+          author: "",
+          summary: "",
+          message: "",
+        },
+        {
+          title: "",
+          author: "",
+          summary: "",
+          message: "",
+        },
+        {
+          title: "",
+          author: "",
+          summary: "",
+          message: "",
+        },
+        {
+          title: "",
+          author: "",
+          summary: "",
+          message: "",
+        },
+        {
+          title: "",
+          author: "",
+          summary: "",
+          message: "",
+        },
+        {
+          title: "",
+          author: "",
+          summary: "",
+          message: "",
+        },
         {
           title: "",
           author: "",
@@ -162,113 +303,176 @@ class Posts extends React.Component {
     }
   }
 
-  renderImg(post, widthSize) {
+  renderImg(post) {
     let isImage = this.state.img;
     let isPost = post;
     let img;
 
     let imgInd = isImage.find((img) => img.uid === isPost.uid);
-    if (imgInd) {
-      img = (
-        <img
-          style={{
-            width: `${widthSize}%`,
-            height: "100%",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-          }}
-          src={imgInd.path}
-        />
-      );
-    } else {
-      img = "";
-    }
+    // if (imgInd) {
+    //   img = (
+    //     <img
+    //       style={{
+    //         width: "100%",
+    //         height: "100%",
+    //         backgroundSize: "cover",
+    //         backgroundRepeat: "no-repeat",
+    //       }}
+    //       src={imgInd.path}
+    //     />
+    //   );
+    // } else {
+    //   img = "";
+    // }
 
-    return <div>{img}</div>;
+    // return <div>{img}</div>;
+
+    if (imgInd) {
+      return imgInd.path;
+    } else {
+      return "";
+    }
   }
 
   render() {
     const posts = this.state.posts;
 
     return (
-      <Styles>
-        <div>
-          <h1
-            style={{
-              fontFamily: "helvetica,arial,sans-serif",
-              marginTop: "20px",
-              marginLeft: "30px",
+      <Router>
+        <Switch>
+          <Route
+            exact
+            path="/posts"
+            exact
+            render={() => {
+              return (
+                <Styles>
+                  <div>
+                    <h1
+                      style={{
+                        fontFamily: "helvetica,arial,sans-serif",
+                        marginTop: "20px",
+                        marginLeft: "30px",
+                      }}
+                    >
+                      Posts
+                    </h1>
+                    <hr className="topLine"></hr>
+                    <a
+                      style={{ marginLeft: "85%" }}
+                      href="http://localhost:3000/create_post"
+                    >
+                      Create a Post
+                    </a>
+                    <h3 style={{ marginLeft: "5%" }}>Latest</h3>
+                    <div className="topPosts">
+                      <div className="post1">
+                        <div id="topContent">
+                          <Link to={"/posts/" + posts[posts.length - 1]._id}>
+                            <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
+                              {posts[posts.length - 1].title}
+                            </h3>
+                          </Link>
+                          <h7 style={{ fontSize: "18px" }}>
+                            {posts[posts.length - 1].summary}
+                          </h7>
+                          <p style={{ fontSize: "12px" }}>
+                            By {posts[posts.length - 1].author}
+                          </p>
+                        </div>
+                        <div
+                          id="imgContainer"
+                          style={{
+                            marginRight: "20px",
+                            backgroundImage: `url(" ${this.renderImg(
+                              posts[posts.length - 1]
+                            )} ")`,
+                          }}
+                        ></div>
+                      </div>
+                      <div class="vl"></div>
+                      <div className="post2">
+                        <div id="topContent">
+                          <Link to={"/posts/" + posts[posts.length - 2]._id}>
+                            <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
+                              {posts[posts.length - 2].title}
+                            </h3>
+                          </Link>
+                          <h7 style={{ fontSize: "18px" }}>
+                            {posts[posts.length - 2].summary}
+                          </h7>
+                          <p style={{ fontSize: "12px" }}>
+                            By {posts[posts.length - 2].author}
+                          </p>
+                        </div>
+                        <div
+                          id="imgContainer"
+                          style={{
+                            backgroundImage: `url(" ${this.renderImg(
+                              posts[posts.length - 2]
+                            )} ")`,
+                          }}
+                        ></div>
+                      </div>
+                      <hr className="subLine"></hr>
+                      <div className="post2">
+                        <div id="topContent">
+                          <Link to={"/posts/" + posts[posts.length - 3]._id}>
+                            <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
+                              {posts[posts.length - 3].title}
+                            </h3>
+                          </Link>
+                          <h7 style={{ fontSize: "18px" }}>
+                            {posts[posts.length - 3].summary}
+                          </h7>
+                          <p style={{ fontSize: "12px" }}>
+                            By {posts[posts.length - 3].author}
+                          </p>
+                        </div>
+                        <div
+                          id="imgContainer"
+                          style={{
+                            backgroundImage: `url(" ${this.renderImg(
+                              posts[posts.length - 3]
+                            )} ")`,
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                    <MainPosts
+                      onPosts={this.state.posts}
+                      onImg={this.state.img}
+                      onRenderImg={this.renderImg}
+                    />
+                  </div>
+                </Styles>
+              );
             }}
-          >
-            Posts
-          </h1>
-          <hr className="topLine"></hr>
-          <a
-            style={{ marginLeft: "85%" }}
-            href="http://localhost:3000/create_post"
-          >
-            Create a Post
-          </a>
-          <h3 style={{ marginLeft: "5%" }}>Latest</h3>
-          <div className="topPosts">
-            <div className="post1">
-              <div id="topContent">
-                <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
-                  {posts[posts.length - 1].title}
-                </h3>
-                <h7 style={{ fontSize: "18px" }}>
-                  {posts[posts.length - 1].summary}
-                </h7>
-                <p style={{ fontSize: "12px" }}>
-                  By {posts[posts.length - 1].author}
-                </p>
-              </div>
-              <div id="imgContainer">
-                {this.renderImg(posts[posts.length - 1], 100)}
-              </div>
-            </div>
-            <div class="vl"></div>
-            <div className="post2">
-              <div id="topContent">
-                <h3 style={{ fontSize: "23px", fontWeight: "700" }}>
-                  {posts[posts.length - 2].title}
-                </h3>
-                <h7 style={{ fontSize: "18px" }}>
-                  {posts[posts.length - 2].summary}
-                </h7>
-                <p style={{ fontSize: "12px" }}>
-                  {posts[posts.length - 2].author}
-                </p>
-              </div>
-              <div id="imgContainer">
-                {this.renderImg(posts[posts.length - 2], 100)}
-              </div>
-            </div>
-            <hr className="subLine"></hr>
-            <div className="post2">
-              <div id="topContent">
-                <h3 style={{ fontSize: "23px", fontWeight: "700" }}>
-                  {posts[posts.length - 3].title}
-                </h3>
-                <h7 style={{ fontSize: "18px" }}>
-                  {posts[posts.length - 3].summary}
-                </h7>
-                <p style={{ fontSize: "12px" }}>
-                  {posts[posts.length - 3].author}
-                </p>
-              </div>
-              <div id="imgContainer">
-                {this.renderImg(posts[posts.length - 3], 100)}
-              </div>
-            </div>
-          </div>
-          <MainPosts
-            onPosts={this.state.posts}
-            onImg={this.state.img}
-            onRenderImg={this.renderImg}
           />
-        </div>
-      </Styles>
+
+          <Route exact path={"/posts/" + posts[posts.length - 1]._id}>
+            <PostDetail post={posts[posts.length - 1]} />
+          </Route>
+          <Route exact path={"/posts/" + posts[posts.length - 2]._id}>
+            <PostDetail post={posts[posts.length - 2]} />
+          </Route>
+          <Route exact path={"/posts/" + posts[posts.length - 3]._id}>
+            <PostDetail post={posts[posts.length - 3]} />
+          </Route>
+          <Route exact path={"/posts/" + posts[posts.length - 4]._id}>
+            <PostDetail post={posts[posts.length - 4]} />
+          </Route>
+          <Route exact path={"/posts/" + posts[posts.length - 5]._id}>
+            <PostDetail post={posts[posts.length - 5]} />
+          </Route>
+          {/* <Route exact path={"/posts/" + posts[posts.length - 6]._id}>
+            <PostDetail post={posts[posts.length - 6]} />
+          </Route>
+          <Route exact path={"/posts/" + posts[posts.length - 7]._id}>
+            <PostDetail post={posts[posts.length - 7]} />
+          </Route> */}
+        </Switch>
+      </Router>
     );
   }
 }

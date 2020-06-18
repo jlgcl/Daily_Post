@@ -3,18 +3,21 @@ import styled from "styled-components";
 import Card from "react-bootstrap/Card";
 
 const Styles = styled.div`
-  .politics,
-  .business,
-  .economics,
-  .technology {
+  .card-container {
     display: flex;
-    flex-direction: row;
-    flex: wrap;
-    justify-content: space-evenly;
     margin-bottom: 30px;
+    width: 100%;
+    overflow-x: auto;
   }
+  .card-container::-webkit-scrollbar {
+    display: none;
+  }
+
   .card {
     box-shadow: 10px 10px 22px -10px rgba(0, 0, 0, 0.75);
+    min-width: 300px;
+    margin-left: 50px;
+    margin-right: 50px;
   }
 `;
 
@@ -58,7 +61,17 @@ class HomeMain extends React.Component {
       <Styles>
         <div>
           <h3>Politics</h3> <hr></hr>
-          <div className="politics">
+          <div className="card-container">
+            <Card style={{ width: "18rem" }}>
+              <Card.Img
+                variant="top"
+                src="https://image.cnbcfm.com/api/v1/image/106240744-1573590258713politicaldebate.jpg?v=1573590321&w=1400&h=950"
+              />
+              <Card.Body>
+                <Card.Title>Headline Placeholder</Card.Title>
+                <Card.Text>Context placeholder</Card.Text>
+              </Card.Body>
+            </Card>
             <Card style={{ width: "18rem" }}>
               <Card.Img
                 variant="top"
@@ -91,7 +104,7 @@ class HomeMain extends React.Component {
             </Card>
           </div>
           <h3>Business</h3> <hr></hr>
-          <div className="business">
+          <div className="card-container">
             <Card style={{ width: "18rem" }}>
               <Card.Img
                 variant="top"
@@ -124,7 +137,7 @@ class HomeMain extends React.Component {
             </Card>
           </div>
           <h3>Economics</h3> <hr></hr>
-          <div className="economics">
+          <div className="card-container">
             <Card style={{ width: "18rem" }}>
               <Card.Img
                 variant="top"
@@ -157,7 +170,7 @@ class HomeMain extends React.Component {
             </Card>
           </div>
           <h3>Technology</h3> <hr></hr>
-          <div className="technology">
+          <div className="card-container">
             <Card style={{ width: "18rem" }}>
               <Card.Img
                 variant="top"
