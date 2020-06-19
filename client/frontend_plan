@@ -11,13 +11,14 @@ STATUS
         - current weather: Geolocation API?
         - scroll right to see more cards THEN link to the full category site
         - flip cards for details?
+        - link the post data to the cards
     Each Category Page:
         - start with All Posts
             - page layout:
-                - page details
-                - page update*
-                - latest 3 posts as big blocks w/ images at the top - fetch GET data responds with an array with the latest element being the most recently created post. 
-                - rest as flexbox blocks w/ images
+                - page details - COMPLETED
+                - page update - COMPLETED
+                - latest 3 posts as big blocks w/ images at the top - fetch GET data responds with an array with the latest element being the most recently created post. - COMPLETED
+                - rest as flexbox blocks w/ images - COMPLETED
                 - at componentDidMount() include 2 functions: obtain all published post documents, obtain all images documents corresponding to the uids of the posts (uid sorting done at client-side) - same array order as the posts.
                     - router.get("/posts") async.parallel to find both posts and images won't work since images won't be in order for specific category queries. - COMPLETED
                     - //SENDING A REQUEST WITH AN OBJECT OF UIDs??? - COMPLETED
@@ -27,11 +28,13 @@ STATUS
                     - make post_id state for the current post so that the image upload can also save it as its uid as well (shared IDs) - COMPLETED
                     - upload image to cloud (i.e. Google Cloud) or local storage & handle post data that is created - COMPLETED
                         - the image model contains a path indicating the storage location to have access later (i.e. update), and a uid to match with a post uid. - COMPLETED
-        - Top 3 posts as large thumbnails
-        - Other posts using flexbox
     Each post (main tasks):
         - update post page
-        - comment - like/dislike (sort by like?)
+        - comment - like/dislike (sort by like?)***
+            - create a Comment model that has like, dislike (default: 0), commentMessage. Whenever a like/dislike is clicked, POST the number to add to the existing # of likes/dislikes.
+            - use a rich text editor to enter comments - when a submit button is pressed, POST the comment to database.
+            - GET the current Comment model pertaining to the post & display in JSX DOM.
+            - Sorting by likes/dislikes??? - maybe tricky
     
 
 ERRORS/LEARNED (also see the project notes in Web Dev Notes)
@@ -54,6 +57,11 @@ ERRORS/LEARNED (also see the project notes in Web Dev Notes)
         - SOLVED) need empty placeholders to render something at start because render() will execute before componentDidMount() fills in the state array. 
         - Functions inside React components (not functional components) can return JSX & functional components can’t manage JS operations, but just return JSX DOM.
     - React Router <Switch>
+    - Multer /uploads file becomes /posts/uploads when routed from the parent /posts directory - results in 401 error when trying to get the file from that directory inside the child component.
+        - /posts + id is required for routing in order to load the parent states/contents to pass onto the child component; otherwise, the child component won't load anything at load.
+        SOLVED) source url(../imgPath) to avoid /post/uploads
+    - Follow the Mongoose doc method for findByIdAndUpdate().
+    ... continued in the Web Dev Notes file.
 
 PLAN
     - for individual post thumbnail (in each post route), have summary input with character limit to show consistent thumbnail block size for all posts.

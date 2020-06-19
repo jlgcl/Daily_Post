@@ -305,6 +305,7 @@ class Posts extends React.Component {
 
   renderImg(post) {
     let isImage = this.state.img;
+
     let isPost = post;
     let img;
 
@@ -368,7 +369,7 @@ class Posts extends React.Component {
                     <div className="topPosts">
                       <div className="post1">
                         <div id="topContent">
-                          <Link to={"/posts/" + posts[posts.length - 1]._id}>
+                          <Link to={`/posts/${posts[posts.length - 1]._id}`}>
                             <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
                               {posts[posts.length - 1].title}
                             </h3>
@@ -393,7 +394,7 @@ class Posts extends React.Component {
                       <div class="vl"></div>
                       <div className="post2">
                         <div id="topContent">
-                          <Link to={"/posts/" + posts[posts.length - 2]._id}>
+                          <Link to={`/${posts[posts.length - 2]._id}`}>
                             <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
                               {posts[posts.length - 2].title}
                             </h3>
@@ -450,20 +451,35 @@ class Posts extends React.Component {
             }}
           />
 
-          <Route exact path={"/posts/" + posts[posts.length - 1]._id}>
-            <PostDetail post={posts[posts.length - 1]} />
+          <Route exact path={`/posts/${posts[posts.length - 1]._id}`}>
+            <PostDetail
+              post={posts[posts.length - 1]}
+              onImg={this.renderImg(posts[posts.length - 1])}
+            />
           </Route>
-          <Route exact path={"/posts/" + posts[posts.length - 2]._id}>
-            <PostDetail post={posts[posts.length - 2]} />
+          <Route exact path={`/${posts[posts.length - 2]._id}`}>
+            <PostDetail
+              post={posts[posts.length - 2]}
+              onImg={this.renderImg(posts[posts.length - 2])}
+            />
           </Route>
           <Route exact path={"/posts/" + posts[posts.length - 3]._id}>
-            <PostDetail post={posts[posts.length - 3]} />
+            <PostDetail
+              post={posts[posts.length - 3]}
+              onImg={this.renderImg(posts[posts.length - 3])}
+            />
           </Route>
           <Route exact path={"/posts/" + posts[posts.length - 4]._id}>
-            <PostDetail post={posts[posts.length - 4]} />
+            <PostDetail
+              post={posts[posts.length - 4]}
+              onImg={this.renderImg(posts[posts.length - 4])}
+            />
           </Route>
           <Route exact path={"/posts/" + posts[posts.length - 5]._id}>
-            <PostDetail post={posts[posts.length - 5]} />
+            <PostDetail
+              post={posts[posts.length - 5]}
+              onImg={this.renderImg(posts[posts.length - 5])}
+            />
           </Route>
           {/* <Route exact path={"/posts/" + posts[posts.length - 6]._id}>
             <PostDetail post={posts[posts.length - 6]} />

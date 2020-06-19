@@ -93,6 +93,33 @@ router.post("/uploadimg", upload.single("file"), (req, res, next) => {
   }
 });
 
+router.post("/updateimg", upload.single("file"), (req, res, next) => {
+  Image.find({ uid: req.body.uid }, (err, result) => {
+    if (err) {
+      return next(err);
+    }
+
+    let image = new Image({
+      uid: req.body.uid,
+      img: req.file,
+      path: req.file.path,
+    });
+
+    Image.findByIdAndUpdate(
+      { _id: result[0]._id }, //REMEMBER: use result[0] since result is an array
+      { img: req.file, path: req.file.path },
+      { new: true },
+      function (err, theimage) {
+        if (err) {
+          return next(err);
+        }
+        res.json(theimage.path);
+        console.log(theimage);
+      }
+    );
+  });
+});
+
 router.post("/post/:id/delete", (req, res, next) => {
   Post.findById(req.params.id, (err, result) => {
     if (err) {
@@ -243,6 +270,7 @@ router.post("/posts/:id/update", [
   body("title").trim().isLength({ min: 0 }),
   body("summary").trim().isLength({ min: 0 }),
   body("message").trim().isLength({ min: 0 }),
+  body("status").trim().isLength({ min: 0 }),
 
   sanitizeBody("title").escape(),
   sanitizeBody("summary").escape(),
@@ -257,14 +285,14 @@ router.post("/posts/:id/update", [
       return;
     }
 
-    var post = new Post({
-      title: req.body.title,
-      summary: req.body.summary,
-      message: req.body.message,
-      date: new Date(),
-      status: req.body.status,
-      _id: req.params.id,
-    });
+    // var post = new Post({
+    //   title: req.body.title,
+    //   summary: req.body.summary,
+    //   message: req.body.message,
+    //   date: new Date(),
+    //   status: req.body.status,
+    //   _id: req.params.id,
+    // });
 
     Post.findById(req.params.id, (err, result) => {
       if (err) {
@@ -275,24 +303,32 @@ router.post("/posts/:id/update", [
         err.status = 404;
         next(err);
       }
-      if (
-        result.author == req.user.username ||
-        result.author == "admin" ||
-        req.user.admin == true
-      ) {
-        Post.findByIdAndUpdate(req.params.id, post, {}, function (
-          err,
-          thepost
-        ) {
-          if (err) {
-            return next(err);
+      console.log(req.params.id, result);
+      if (result.author == req.user.username || req.user.admin == true) {
+        //DIFFERENT FROM LOCALLIBRARY FINDBYIDANDUPDATE() EXAMPLE
+        Post.findByIdAndUpdate(
+          { _id: req.params.id },
+          {
+            title: req.body.title,
+            summary: req.body.summary,
+            message: req.body.message,
+            date: new Date(),
+            status: req.body.status,
+          },
+          { new: true },
+          function (err, thepost) {
+            if (err) {
+              return next(err);
+            }
+            res.json(thepost);
+
+            console.log(thepost);
           }
-          res.redirect(thepost.url);
-        });
+        );
       } else {
         var err = new Error("not authorized");
-        err.status = 403;
-        return next(err);
+        err.status = 401;
+        res.json("not authorized");
       }
     });
   },
