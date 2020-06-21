@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import UpdatePost from "./updatePost";
+import Comments from "./comments";
 
 const Styles = styled.div`
   .mainBody {
@@ -148,6 +149,7 @@ class PostDetail extends React.Component {
                     </p>
                     <p>{postEl.message}</p>
                   </div>
+                  <Comments post={this.props.post} />
                 </Styles>
               );
             }}

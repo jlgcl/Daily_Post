@@ -174,35 +174,117 @@ router.get("/posts/:id", (req, res, next) => {
   );
 });
 
-//comment POST
-// router.post("/posts/:id", [
-//   body("message").trim().isLength({ min: 0 }),
+//Comment GET
+router.post("/posts/:id/comment/get", (req, res, next) => {
+  Comment.find({ uid: req.body.uid }, (err, results) => {
+    if (err) {
+      return next(err);
+    }
+    if (req.user !== null || req.user !== undefined) {
+      res.json(results);
+    } else {
+      res.json("you must be logged in.");
+    }
+  });
+});
 
-//   sanitizeBody("message").escape(),
-//   sanitizeBody("date").toDate(),
+//Comment POST
+router.post("/posts/:id/comment", [
+  body("message").trim().isLength({ min: 0 }),
 
-//   (req, res, next) => {
-//     const errors = validationResult(req);
+  sanitizeBody("message").escape(),
 
-//     var comment = new Comment({
-//       post: req.params.id,
-//       author: req.user.username,
-//       message: req.body.message,
-//       date: now.Date(),
-//     });
-//     if (!errors.isEmpty()) {
-//       res.send("ERROR");
-//       return;
-//     } else {
-//       comment.save((err) => {
-//         if (err) {
-//           return next(err);
-//         }
-//         res.redirect(`/posts/${req.params.id}`);
-//       });
-//     }
-//   },
-// ]);
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    var comment = new Comment({
+      uid: req.body.uid,
+      key: uuidv4(),
+      author: req.user.username,
+      message: req.body.message,
+      date: new Date(),
+    });
+    if (!errors.isEmpty()) {
+      res.send("ERROR");
+      return;
+    } else {
+      comment.save((err) => {
+        if (err) {
+          return next(err);
+        }
+        Comment.find({ uid: req.body.uid }, (err, results) => {
+          if (err) {
+            return next(err);
+          }
+          res.json(results);
+        });
+      });
+    }
+  },
+]);
+
+//Comments like/dislike counters
+router.post("/posts/:id/comment/likes", (req, res, next) => {
+  Comment.find({ _id: req.body.id }, (err, result) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (req.body.likes === "like") {
+      const newLike = result[0].likes + 1;
+      Comment.findByIdAndUpdate(
+        { _id: req.body.id },
+        { likes: newLike },
+        { new: true },
+        function (err, newComment) {
+          if (err) {
+            return next(err);
+          }
+          res.json(newComment);
+        }
+      );
+    } else if (req.body.likes === "dislike") {
+      const newLike = result[0].dislikes + 1;
+      Comment.findByIdAndUpdate(
+        { _id: req.body.id },
+        { dislikes: newLike },
+        { new: true },
+        function (err, newComment) {
+          if (err) {
+            return next(err);
+          }
+          res.json(newComment);
+        }
+      );
+    } else if (req.body.likes === "likeUndo") {
+      const newLike = result[0].likes - 1;
+      Comment.findByIdAndUpdate(
+        { _id: req.body.id },
+        { likes: newLike },
+        { new: true },
+        function (err, newComment) {
+          if (err) {
+            return next(err);
+          }
+          res.json(newComment);
+        }
+      );
+    } else if (req.body.likes === "dislikeUndo") {
+      const newLike = result[0].dislikes - 1;
+      Comment.findByIdAndUpdate(
+        { _id: req.body.id },
+        { dislikes: newLike },
+        { new: true },
+        function (err, newComment) {
+          if (err) {
+            return next(err);
+          }
+          res.json(newComment);
+        }
+      );
+    }
+  });
+});
 
 router.get("/posts/politics", (req, res, next) => {
   Post.find({ category: "politics", status: "published" }, (err, results) => {
