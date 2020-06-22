@@ -286,6 +286,19 @@ router.post("/posts/:id/comment/likes", (req, res, next) => {
   });
 });
 
+router.post("/posts/:id/comment/delete", (req, res, next) => {
+  if (req.user === req.body.author || req.user.username === "admin") {
+    Comment.findByIdAndRemove(req.body.id, (err, result) => {
+      if (err) {
+        return next(err);
+      }
+      res.json(result);
+    });
+  } else {
+    res.json("Not Authorized");
+  }
+});
+
 router.get("/posts/politics", (req, res, next) => {
   Post.find({ category: "politics", status: "published" }, (err, results) => {
     if (err) {

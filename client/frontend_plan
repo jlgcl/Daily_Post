@@ -11,7 +11,7 @@ STATUS
         - current weather: Geolocation API?
         - scroll right to see more cards THEN link to the full category site
         - flip cards for details?
-        - link the post data to the cards
+        - link the post data to the cards***
     Each Category Page:
         - start with All Posts
             - page layout:
@@ -30,7 +30,7 @@ STATUS
                         - the image model contains a path indicating the storage location to have access later (i.e. update), and a uid to match with a post uid. - COMPLETED
     Each post (main tasks):
         - update post page
-        - comment - like/dislike (sort by like?)***
+        - comment - like/dislike (sort by like?) - COMPLETED
             - create a Comment model that has like, dislike (default: 0), commentMessage. Whenever a like/dislike is clicked, POST the number to add to the existing # of likes/dislikes.
             - use a rich text editor to enter comments - when a submit button is pressed, POST the comment to database.
             - GET the current Comment model pertaining to the post & display in JSX DOM.

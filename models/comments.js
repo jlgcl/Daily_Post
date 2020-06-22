@@ -10,6 +10,10 @@ var commentSchema = new Schema({
   date: { type: Date, default: Date.now },
   likes: { type: Number, default: 0 },
   dislikes: { type: Number, default: 0 },
+  likeSym: { type: String, default: "" },
+  dislikeSym: { type: String, default: "" },
+  likesCheck: { type: Boolean, default: false },
+  dislikesCheck: { type: Boolean, default: false },
 });
 
 module.exports = mongoose.model("Comment", commentSchema);

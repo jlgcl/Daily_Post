@@ -394,7 +394,7 @@ class Posts extends React.Component {
                       <div class="vl"></div>
                       <div className="post2">
                         <div id="topContent">
-                          <Link to={`/${posts[posts.length - 2]._id}`}>
+                          <Link to={`/posts/${posts[posts.length - 2]._id}`}>
                             <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
                               {posts[posts.length - 2].title}
                             </h3>
@@ -457,7 +457,7 @@ class Posts extends React.Component {
               onImg={this.renderImg(posts[posts.length - 1])}
             />
           </Route>
-          <Route exact path={`/${posts[posts.length - 2]._id}`}>
+          <Route exact path={`/posts/${posts[posts.length - 2]._id}`}>
             <PostDetail
               post={posts[posts.length - 2]}
               onImg={this.renderImg(posts[posts.length - 2])}
