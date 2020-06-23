@@ -13,7 +13,6 @@ var { v4: uuidv4 } = require("./node_modules/uuid");
 var { body, validationResult } = require("express-validator/check");
 var { sanitizeBody } = require("express-validator/filter");
 var cors = require("cors");
-const cowsay = require("cowsay");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -50,6 +49,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+//Serve static React files once it's in production:
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 app.use("/", indexRouter);
 //app.use("/users", usersRouter);

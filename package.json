@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
     "serverstart": "DEBUG=blog_api:* npm run devstart",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "ng build --prod"
   },
   "dependencies": {
     "async": "^3.2.0",
