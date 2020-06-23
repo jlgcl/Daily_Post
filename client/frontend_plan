@@ -10,6 +10,7 @@ STATUS
     Home:
         - current weather: Geolocation API?
         - scroll right to see more cards THEN link to the full category site
+            - REF: https://mdbootstrap.com/snippets/jquery/alexpiffero-it/696600
         - flip cards for details?
         - link the post data to the cards***
     Each Category Page:

@@ -86,7 +86,7 @@ class PostDetail extends React.Component {
     let updateMsg;
 
     if (user === postEl.author || user === "admin") {
-      update = `/posts/${postEl._id}/update`;
+      update = `/${postEl._id}/update`;
       updateMsg = "Update Post";
     } else {
       update = "";
@@ -98,7 +98,7 @@ class PostDetail extends React.Component {
         <Switch>
           <Route
             exact
-            path={`/posts/${postEl._id}`}
+            path={`/${postEl._id}`}
             exact
             render={() => {
               return (

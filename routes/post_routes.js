@@ -299,7 +299,7 @@ router.post("/posts/:id/comment/delete", (req, res, next) => {
   }
 });
 
-router.get("/posts/politics", (req, res, next) => {
+router.get("/politics", (req, res, next) => {
   Post.find({ category: "politics", status: "published" }, (err, results) => {
     if (err) {
       return next(err);
@@ -307,7 +307,7 @@ router.get("/posts/politics", (req, res, next) => {
     res.json(results);
   });
 });
-router.get("/posts/economics", (req, res, next) => {
+router.get("/economics", (req, res, next) => {
   Post.find({ category: "economics", status: "published" }, (err, results) => {
     if (err) {
       return next(err);
@@ -315,7 +315,7 @@ router.get("/posts/economics", (req, res, next) => {
     res.json(results);
   });
 });
-router.get("/posts/business", (req, res, next) => {
+router.get("/business", (req, res, next) => {
   Post.find({ category: "business", status: "published" }, (err, results) => {
     if (err) {
       return next(err);
@@ -323,7 +323,7 @@ router.get("/posts/business", (req, res, next) => {
     res.json(results);
   });
 });
-router.get("/posts/technology", (req, res, next) => {
+router.get("/technology", (req, res, next) => {
   Post.find({ category: "technology", status: "published" }, (err, results) => {
     if (err) {
       return next(err);

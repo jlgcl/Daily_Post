@@ -5,11 +5,17 @@ import MainNav from "../components/main_nav";
 import HomeMain from "./home_main";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Posts from "../routes/posts";
+import Politics from "./politics";
+import Economics from "../routes/economics";
+import Business from "../routes/business";
+import Technology from "../routes/technology";
 
 const Styles = styled.div`
   .main {
     margin: 20px 20px;
     margin-top: 50px;
+    max-width: 100%;
+    overflow: hidden;
   }
   .mainHeader {
     width: 100%;
@@ -18,6 +24,8 @@ const Styles = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    max-width: 100%;
+    overflow: hidden;
   }
   a {
     margin-top: 10px;
@@ -126,7 +134,7 @@ class Home extends React.Component {
                 <p>{this.state.weather}</p>
               </div>
             </div>
-            <a href="https://fontmeme.com/old-english-fonts/">
+            <a href="http://localhost:3000/">
               <img
                 src="https://fontmeme.com/permalink/200604/747543f1e3d6d2672290ec8f66f2bdfb.png"
                 alt="old-english-fonts"
@@ -145,7 +153,11 @@ class Home extends React.Component {
             <HomeMain />
           </div>
           <Router>
-            <Route path="/posts" component={Posts}></Route>
+            <Route exact path="/posts" component={Posts}></Route>
+            <Route exact path="/politics" component={Politics}></Route>
+            <Route path="/economics" component={Economics}></Route>
+            <Route path="/business" component={Business}></Route>
+            <Route path="/Technology" component={Technology}></Route>
           </Router>
         </div>
       </Styles>

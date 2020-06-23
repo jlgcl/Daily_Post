@@ -172,7 +172,7 @@ function MainPosts(props) {
   );
 }
 
-class Posts extends React.Component {
+class Economics extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -291,7 +291,7 @@ class Posts extends React.Component {
       },
     };
     try {
-      let getPost = await fetch("/posts", settings);
+      let getPost = await fetch("/economics", settings);
       let getRes = await getPost.json();
       this.setState({
         posts: getRes,
@@ -299,7 +299,7 @@ class Posts extends React.Component {
 
       this.getImages(this.state.posts);
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   }
 
@@ -343,7 +343,7 @@ class Posts extends React.Component {
         <Switch>
           <Route
             exact
-            path="/posts"
+            path="/economics"
             exact
             render={() => {
               return (
@@ -356,7 +356,7 @@ class Posts extends React.Component {
                         marginLeft: "30px",
                       }}
                     >
-                      Posts
+                      Economics
                     </h1>
                     <hr className="topLine"></hr>
                     <a
@@ -493,4 +493,4 @@ class Posts extends React.Component {
   }
 }
 
-export default Posts;
+export default Economics;

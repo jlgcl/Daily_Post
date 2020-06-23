@@ -13,6 +13,7 @@ var { v4: uuidv4 } = require("./node_modules/uuid");
 var { body, validationResult } = require("express-validator/check");
 var { sanitizeBody } = require("express-validator/filter");
 var cors = require("cors");
+const cowsay = require("cowsay");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");

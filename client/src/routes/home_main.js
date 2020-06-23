@@ -7,7 +7,8 @@ const Styles = styled.div`
     display: flex;
     margin-bottom: 30px;
     width: 100%;
-    overflow-x: auto;
+    max-width: 100%;
+    overflow: hidden;
   }
   .card-container::-webkit-scrollbar {
     display: none;

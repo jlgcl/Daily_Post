@@ -2,12 +2,18 @@ import React from "react";
 import styled from "styled-components";
 
 const Styles = styled.div`
+  .footer {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    margin-top: 30px;
+  }
   .footerTop {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 60px;
-    margin-top: 50px;
+    margin-top: 10px;
     margin-left: 50px;
   }
   #logo {

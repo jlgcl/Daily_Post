@@ -20,6 +20,7 @@ const Styles = styled.div`
     color: black;
     margin-left: 33%;
     margin-top: 20px;
+    margin-bottom: 100px;
     width: 500px;
     height: 220px;
     border: 1px solid green;

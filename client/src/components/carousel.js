@@ -9,6 +9,9 @@ const Styles = styled.div`
     img {
       background-color: linear-gradient(to bottom, rgba(245, 246, 252, 0.52));
     }
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .carouselImg1 {
