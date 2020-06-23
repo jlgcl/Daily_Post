@@ -8,8 +8,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
-    "serverstart": "DEBUG=blog_api:* npm run devstart",
-    "heroku-postbuild": "ng build --prod"
+    "serverstart": "DEBUG=blog_api:* npm run devstart"
   },
   "dependencies": {
     "async": "^3.2.0",
