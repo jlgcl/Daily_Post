@@ -75,7 +75,7 @@ router.post("/uploadimg", upload.single("file"), (req, res, next) => {
     var image = new Image({
       uid: req.body.uid,
       img: req.file,
-      path: req.file.path, //locates the path in which the multer stored the file.
+      path: req.file.path, //IMPORTANT: locates the path in which the multer stored the file.
     });
 
     if (!errors.isEmpty()) {

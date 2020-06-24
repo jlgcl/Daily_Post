@@ -51,11 +51,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 //Serve static React files once it's in production:
-app.use(express.static(path.join(__dirname, "build")));
+//THESE CODE WILL GIVE 304 ERROR IF REQ SENT TO SERVER W/O DEPLOYMENT
+// app.use(express.static(path.join(__dirname, "build")));
 
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+// app.get("/*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
 app.use("/", indexRouter);
 //app.use("/users", usersRouter);
