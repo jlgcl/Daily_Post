@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ImgUpdate from "./updateImg";
+import DeletePost from "./deletePost";
 
 const Styles = styled.div`
   h3 {
@@ -54,9 +55,9 @@ class UpdatePost extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      summary: "",
-      message: "",
+      title: this.props.post.title,
+      summary: this.props.post.summary,
+      message: this.props.post.message,
       status: "",
       category: "",
       selectedFile: "",
@@ -155,11 +156,24 @@ class UpdatePost extends React.Component {
           <h3 style={{ font: "loginFont" }}>Update Post</h3>
           <form className="form-container" onSubmit={this.handleSubmit}>
             <label for="title">Title:&nbsp;</label>
-            <input type="text" name="title" onChange={this.titleInput}></input>
+            <input
+              type="text"
+              name="title"
+              value={this.state.title}
+              onChange={this.titleInput}
+            ></input>
             <label for="summary">Summary:&nbsp;</label>
-            <textarea name="summary" onChange={this.summaryInput}></textarea>
+            <textarea
+              name="summary"
+              value={this.state.summary}
+              onChange={this.summaryInput}
+            ></textarea>
             <label for="message">Message:&nbsp;</label>
-            <textarea name="message" onChange={this.messageInput}></textarea>
+            <textarea
+              name="message"
+              value={this.state.message}
+              onChange={this.messageInput}
+            ></textarea>
             <div className="checkboxes">
               <input
                 type="checkbox"
@@ -218,6 +232,9 @@ class UpdatePost extends React.Component {
             </button>
           </form>
           <ImgUpdate post={this.props.post} />
+          <div clasName="deletePost" style={{ marginLeft: "15px" }}>
+            <DeletePost post={this.props.post} />
+          </div>
         </div>
       </Styles>
     );

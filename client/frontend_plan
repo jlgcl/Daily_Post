@@ -72,6 +72,7 @@ PLAN
     - no need for: context, HOC.
     - need: forms/handling events, router, conditional rendering, lifting state up, etc.
     - mobile view - Responsive view
+    - SHOULD HAVE USED HOC TO AVOID DIY!!!
 
 COMPLETED
     - main nav bar Bootstrap spacing

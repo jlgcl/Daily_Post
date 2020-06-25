@@ -53,7 +53,6 @@ class CreatePost extends React.Component {
     super(props);
     this.state = {
       title: "",
-      // author: "",
       summary: "",
       message: "",
       category: "",
@@ -61,7 +60,6 @@ class CreatePost extends React.Component {
       postId: "",
     };
     this.titleInput = this.titleInput.bind(this);
-    // this.authorInput = this.authorInput.bind(this);
     this.summaryInput = this.summaryInput.bind(this);
     this.messageInput = this.messageInput.bind(this);
     this.inputCat = this.inputCat.bind(this);
@@ -74,11 +72,6 @@ class CreatePost extends React.Component {
       title: e.target.value,
     });
   }
-  // authorInput(e) {
-  //   this.setState({
-  //     author: e.target.value,
-  //   });
-  // }
   summaryInput(e) {
     this.setState({
       summary: e.target.value,
@@ -136,54 +129,11 @@ class CreatePost extends React.Component {
 
     try {
       let submitData = await fetch("/createpost", setting);
-      // let submitDataRes = await submitData.json();
       window.location.href = "/";
     } catch (err) {
       console.log("error");
     }
   }
-
-  /* FAILED TO SEND MULTIPLE DATA IN ONE REQUEST - CREATE A SEPARATE ROUTE FOR IMAGE UPLOAD INSTEAD */
-  // async handleImgSubmit(e) {
-  //   e.preventDefault();
-
-  //   this.setState({
-  //     postId: uuidv4(),
-  //   });
-
-  //   const title = JSON.stringify(this.state.title);
-  //   const summary = JSON.stringify(this.state.summary);
-  //   const message = JSON.stringify(this.state.message);
-  //   const author = JSON.stringify(this.state.author);
-  //   const category = JSON.stringify(this.state.category);
-
-  //   const data = new FormData();
-  //   data.append("file", this.state.selectedFile);
-  //   console.log(data, this.state.selectedFile);
-
-  //   const setting = {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "multipart/form-data",
-  //       "Access-Control-Allow-Origin": "*",
-  //       "Access-Control-Allow-Credentials": true,
-  //     },
-  //     body: {
-  //       // data,
-  //       title: title,
-  //       author: author,
-  //       summary: summary,
-  //       message: message,
-  //       category: category,
-  //     }, //req.body.data === this.state.selectedFile
-  //   };
-  //   try {
-  //     let submitImgData = await fetch("/createpost", setting);
-  //     //let submitImgDataRes = await submitImgData.json();
-  //   } catch (err) {
-  //     console.log("errofr");
-  //   }
-  // }
 
   render() {
     return (
@@ -192,17 +142,24 @@ class CreatePost extends React.Component {
           <h3 style={{ font: "loginFont" }}>Create a Post</h3>
           <form className="form-container" onSubmit={this.handleSubmit}>
             <label for="title">Title:&nbsp;</label>
-            <input type="text" name="title" onChange={this.titleInput}></input>
-            {/* <label for="author">Author:&nbsp;</label>
             <input
               type="text"
-              name="author"
-              onChange={this.authorInput}
-            ></input> */}
+              name="title"
+              onChange={this.titleInput}
+              maxlength="20"
+            ></input>
             <label for="summary">Summary:&nbsp;</label>
-            <textarea name="summary" onChange={this.summaryInput}></textarea>
+            <textarea
+              name="summary"
+              onChange={this.summaryInput}
+              maxlength="20"
+            ></textarea>
             <label for="message">Message:&nbsp;</label>
-            <textarea name="message" onChange={this.messageInput}></textarea>
+            <textarea
+              name="message"
+              onChange={this.messageInput}
+              maxlength="20"
+            ></textarea>
             <div className="checkboxes">
               <input
                 type="checkbox"

@@ -120,8 +120,9 @@ router.post("/updateimg", upload.single("file"), (req, res, next) => {
   });
 });
 
-router.post("/post/:id/delete", (req, res, next) => {
+router.post("/:id/delete", (req, res, next) => {
   Post.findById(req.params.id, (err, result) => {
+    console.log(req.user.admin);
     if (err) {
       return next(err);
     }
@@ -130,16 +131,12 @@ router.post("/post/:id/delete", (req, res, next) => {
       err.status = 404;
       next(err);
     } else {
-      if (
-        result.author == req.user.username ||
-        result.author == "admin" ||
-        req.user.admin == true
-      ) {
+      if (result.author === req.user.username || req.user.admin === true) {
         Post.findByIdAndDelete(req.params.id, function deletePost(err) {
           if (err) {
             return next(err);
           }
-          res.redirect("/posts");
+          res.json("deleted");
         });
       } else {
         var err = new Error("not authorized");
@@ -352,13 +349,16 @@ router.post("/getimages", (req, res, next) => {
 });
 
 router.get("/unpubposts", (req, res, next) => {
-  Post.find({ status: "unpublished" }, (err, results) => {
-    if (err) {
-      return next(err);
-    }
+  Post.find(
+    { status: "unpublished", author: req.user.username },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
 
-    res.json(results); //contains urls + model._id
-  });
+      res.json(results); //contains urls + model._id
+    }
+  );
 });
 
 router.post("/posts/:id/update", [

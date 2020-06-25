@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { CarouselComp } from "../components/carousel";
+import CarouselComp from "../components/carousel";
 import MainNav from "../components/main_nav";
 import HomeMain from "./home_main";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -116,6 +116,8 @@ class Home extends React.Component {
       weatherImg = "https://openweathermap.org/img/wn/03d.png";
     } else if (weatherState === "Rain") {
       weatherImg = "https://openweathermap.org/img/wn/09d.png";
+    } else if (weatherState === "Snow") {
+      weatherImg = "https://openweathermap.org/img/wn/13d.png";
     } else {
       weatherImg = "n/a";
     }

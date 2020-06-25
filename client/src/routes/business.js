@@ -59,6 +59,8 @@ const Styles = styled.div`
   }
   #topContent {
     width: 50%;
+    margin-left: -20px;
+    margin-right: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -123,7 +125,13 @@ function MainPosts(props) {
         <div id="date">{posts[posts.length - 4].date}</div>
         <div id="mainContent">
           <Link to={"/" + posts[posts.length - 4]._id}>
-            <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
+            <h3
+              style={{
+                fontSize: "25px",
+                fontWeight: "700",
+                wordWrap: "break-word",
+              }}
+            >
               {posts[posts.length - 4].title}
             </h3>
           </Link>
@@ -148,7 +156,13 @@ function MainPosts(props) {
         <div id="date">{posts[posts.length - 5].date}</div>
         <div id="mainContent">
           <Link to={"/" + posts[posts.length - 5]._id}>
-            <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
+            <h3
+              style={{
+                fontSize: "25px",
+                fontWeight: "700",
+                wordWrap: "break-word",
+              }}
+            >
               {posts[posts.length - 5].title}
             </h3>
           </Link>
@@ -368,13 +382,25 @@ class Business extends React.Component {
                     <h3 style={{ marginLeft: "5%" }}>Latest</h3>
                     <div className="topPosts">
                       <div className="post1">
-                        <div id="topContent">
+                        <div id="topContent" style={{ height: "80%" }}>
                           <Link to={`/${posts[posts.length - 1]._id}`}>
-                            <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
+                            <h3
+                              style={{
+                                fontSize: "25px",
+                                fontWeight: "700",
+                                wordWrap: "break-word",
+                              }}
+                            >
                               {posts[posts.length - 1].title}
                             </h3>
                           </Link>
-                          <h7 style={{ fontSize: "18px" }}>
+                          <h7
+                            style={{
+                              fontSize: "18px",
+                              wordWrap: "break-word",
+                              marginRight: "40px",
+                            }}
+                          >
                             {posts[posts.length - 1].summary}
                           </h7>
                           <p style={{ fontSize: "12px" }}>
@@ -395,11 +421,19 @@ class Business extends React.Component {
                       <div className="post2">
                         <div id="topContent">
                           <Link to={`/${posts[posts.length - 2]._id}`}>
-                            <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
+                            <h3
+                              style={{
+                                fontSize: "25px",
+                                fontWeight: "700",
+                                wordWrap: "break-word",
+                              }}
+                            >
                               {posts[posts.length - 2].title}
                             </h3>
                           </Link>
-                          <h7 style={{ fontSize: "18px" }}>
+                          <h7
+                            style={{ fontSize: "18px", wordWrap: "break-word" }}
+                          >
                             {posts[posts.length - 2].summary}
                           </h7>
                           <p style={{ fontSize: "12px" }}>
@@ -419,11 +453,19 @@ class Business extends React.Component {
                       <div className="post2">
                         <div id="topContent">
                           <Link to={"/" + posts[posts.length - 3]._id}>
-                            <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
+                            <h3
+                              style={{
+                                fontSize: "25px",
+                                fontWeight: "700",
+                                wordWrap: "break-word",
+                              }}
+                            >
                               {posts[posts.length - 3].title}
                             </h3>
                           </Link>
-                          <h7 style={{ fontSize: "18px" }}>
+                          <h7
+                            style={{ fontSize: "18px", wordWrap: "break-word" }}
+                          >
                             {posts[posts.length - 3].summary}
                           </h7>
                           <p style={{ fontSize: "12px" }}>

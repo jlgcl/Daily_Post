@@ -18,7 +18,6 @@ const Styles = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     margin-top: 20px;
-    margin-left: 50px;
     margin-right: 50px;
     height: 400px;
     box-sizing: border-box;
@@ -41,7 +40,8 @@ const Styles = styled.div`
   }
   .post1 {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     width: 50%;
     height: 100%;
@@ -50,15 +50,18 @@ const Styles = styled.div`
   }
   .post2 {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
     width: 50%;
     height: 40%;
-    box-sizing: border-box;
+    box-sizing: content-box
     overflow: hidden;
   }
   #topContent {
     width: 50%;
+    margin-left: -20px;
+    margin-right: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -98,6 +101,7 @@ const Styles = styled.div`
     flex-direction: column;
     justify-content: center;
     width: 60%;
+    margin-right: 15px;
   }
   .postCard #imgContainer {
     width: 40%;
@@ -123,11 +127,17 @@ function MainPosts(props) {
         <div id="date">{posts[posts.length - 4].date}</div>
         <div id="mainContent">
           <Link to={"/" + posts[posts.length - 4]._id}>
-            <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
+            <h3
+              style={{
+                fontSize: "25px",
+                fontWeight: "700",
+                wordWrap: "break-word",
+              }}
+            >
               {posts[posts.length - 4].title}
             </h3>
           </Link>
-          <h7 style={{ fontSize: "15px" }}>
+          <h7 style={{ fontSize: "15px", wordWrap: "break-word" }}>
             {posts[posts.length - 4].summary}
           </h7>
           <p style={{ fontSize: "10px" }}>
@@ -148,11 +158,17 @@ function MainPosts(props) {
         <div id="date">{posts[posts.length - 5].date}</div>
         <div id="mainContent">
           <Link to={"/" + posts[posts.length - 5]._id}>
-            <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
+            <h3
+              style={{
+                fontSize: "25px",
+                fontWeight: "700",
+                wordWrap: "break-word",
+              }}
+            >
               {posts[posts.length - 5].title}
             </h3>
           </Link>
-          <h7 style={{ fontSize: "15px" }}>
+          <h7 style={{ fontSize: "15px", wordWrap: "break-word" }}>
             {posts[posts.length - 5].summary}
           </h7>
           <p style={{ fontSize: "10px" }}>
@@ -368,13 +384,25 @@ class Posts extends React.Component {
                     <h3 style={{ marginLeft: "5%" }}>Latest</h3>
                     <div className="topPosts">
                       <div className="post1">
-                        <div id="topContent">
+                        <div id="topContent" style={{ height: "80%" }}>
                           <Link to={`/${posts[posts.length - 1]._id}`}>
-                            <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
+                            <h3
+                              style={{
+                                fontSize: "25px",
+                                fontWeight: "700",
+                                wordWrap: "break-word",
+                              }}
+                            >
                               {posts[posts.length - 1].title}
                             </h3>
                           </Link>
-                          <h7 style={{ fontSize: "18px" }}>
+                          <h7
+                            style={{
+                              fontSize: "18px",
+                              wordWrap: "break-word",
+                              marginRight: "40px",
+                            }}
+                          >
                             {posts[posts.length - 1].summary}
                           </h7>
                           <p style={{ fontSize: "12px" }}>
@@ -395,11 +423,19 @@ class Posts extends React.Component {
                       <div className="post2">
                         <div id="topContent">
                           <Link to={`/${posts[posts.length - 2]._id}`}>
-                            <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
+                            <h3
+                              style={{
+                                fontSize: "25px",
+                                fontWeight: "700",
+                                wordWrap: "break-word",
+                              }}
+                            >
                               {posts[posts.length - 2].title}
                             </h3>
                           </Link>
-                          <h7 style={{ fontSize: "18px" }}>
+                          <h7
+                            style={{ fontSize: "18px", wordWrap: "break-word" }}
+                          >
                             {posts[posts.length - 2].summary}
                           </h7>
                           <p style={{ fontSize: "12px" }}>
@@ -419,11 +455,19 @@ class Posts extends React.Component {
                       <div className="post2">
                         <div id="topContent">
                           <Link to={"/" + posts[posts.length - 3]._id}>
-                            <h3 style={{ fontSize: "25px", fontWeight: "700" }}>
+                            <h3
+                              style={{
+                                fontSize: "25px",
+                                fontWeight: "700",
+                                wordWrap: "break-word",
+                              }}
+                            >
                               {posts[posts.length - 3].title}
                             </h3>
                           </Link>
-                          <h7 style={{ fontSize: "18px" }}>
+                          <h7
+                            style={{ fontSize: "18px", wordWrap: "break-word" }}
+                          >
                             {posts[posts.length - 3].summary}
                           </h7>
                           <p style={{ fontSize: "12px" }}>

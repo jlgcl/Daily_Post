@@ -117,6 +117,7 @@ class PostDetail extends React.Component {
                         fontFamily:
                           "nyt-cheltenham,georgia,'times new roman',times,serif",
                         marginBottom: "20px",
+                        wordWrap: "break-word",
                       }}
                     >
                       {postEl.title}
@@ -129,6 +130,7 @@ class PostDetail extends React.Component {
                         fontFamily:
                           "nyt-cheltenham,georgia,'times new roman',times,serif",
                         marginBottom: "20px",
+                        wordWrap: "break-word",
                       }}
                     >
                       {postEl.summary}
@@ -147,7 +149,7 @@ class PostDetail extends React.Component {
                     <p style={{ marginBottom: "50px", marginTop: "20px" }}>
                       {postEl.date}
                     </p>
-                    <p>{postEl.message}</p>
+                    <p style={{ wordWrap: "break-word" }}>{postEl.message}</p>
                   </div>
                   <Comments post={this.props.post} />
                 </Styles>

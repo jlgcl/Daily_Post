@@ -123,7 +123,7 @@ class Comments extends React.Component {
         }
       );
       let deleteRes = await deleteReq.json();
-      window.location.href = `/posts/${this.props.post._id}`;
+      window.location.href = `/${this.props.post._id}`;
     } catch (err) {
       console.log(err.message);
     }
