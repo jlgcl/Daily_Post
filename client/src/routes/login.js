@@ -74,6 +74,10 @@ class Login extends React.Component {
   }
   handleSubmit(event) {
     event.preventDefault();
+    const bodyReq = {
+      username: this.state.username,
+      password: this.state.password,
+    };
 
     const setting = {
       method: "POST",
@@ -87,12 +91,19 @@ class Login extends React.Component {
           "Origin, X-Requested-With, Content-Type, Accept, Authorization",
         "Access-Control-Allow-Credentials": true,
       },
-      body: JSON.stringify(this.state),
+      body: JSON.stringify(bodyReq),
     };
-    fetch("/login", setting).then((res) => {
-      console.log(res);
-      window.location.href = "/";
-    });
+
+    fetch("/login", setting)
+      .then((res) =>
+        res.json().then((data) => ({
+          data: data,
+          status: res.status,
+        }))
+      )
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+      });
   }
 
   //   const { createProxyMiddleware } = require("http-proxy-middleware");

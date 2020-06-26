@@ -26,6 +26,7 @@ var signupRouter = require("./routes/sign_up");
 // var postUpdate = require("./routes/update_post");
 // var postDelete = require("./routes/delete_post");
 var postRoutes = require("./routes/post_routes");
+var users = require("./routes/users");
 var userDelete = require("./routes/delete_user");
 
 var User = require("./models/user");
@@ -115,8 +116,8 @@ app.use(postRoutes);
 // app.use(postUpdate);
 // app.use(postDelete);
 
-//user delete
-app.use(passport.authenticate("jwt"), userDelete);
+//user get & delete
+app.use(passport.authenticate("jwt"), users);
 
 //logout
 // app.get("/logout", (req, res) => {

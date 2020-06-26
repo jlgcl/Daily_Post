@@ -5,7 +5,7 @@ const { sanitizeBody } = require("express-validator/filter");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 
-router.post("/user/:id/delete", (req, res, next) => {
+router.post("/users/:id/delete", (req, res, next) => {
   User.findById(req.params.id, (err, result) => {
     if (err) {
       return next(err);

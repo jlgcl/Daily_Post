@@ -14,6 +14,7 @@ class Logout extends React.Component {
       },
     };
     try {
+      localStorage.removeItem("token");
       let log = await fetch("/logout", settings);
       window.location.href = "/";
     } catch (err) {

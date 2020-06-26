@@ -68,6 +68,7 @@ class NavigationBar extends React.Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
+              <Nav.Link href="http://localhost:3000/users">Users</Nav.Link>
               <Nav.Link href={unpublished} style={{ color: "teal" }}>
                 {unpubPosts}
               </Nav.Link>

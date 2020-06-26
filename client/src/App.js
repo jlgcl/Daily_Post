@@ -15,6 +15,7 @@ import Technology from "./routes/technology";
 import CreatePost from "./routes/createPost";
 import Unpublished from "./routes/unpubposts";
 import PostDetail from "./routes/postdetail";
+import Users from "./routes/users";
 
 class App extends React.Component {
   constructor(props) {
@@ -138,6 +139,7 @@ class App extends React.Component {
             <Route path="/technology" component={Technology} />
             <Route path="/create_post" component={CreatePost} />
             <Route path="/unpublished" component={Unpublished} />
+            <Route path="/users" component={Users} />
             <Route exact path={`/${posts[posts.length - 1]._id}`}>
               <PostDetail
                 post={posts[posts.length - 1]}
