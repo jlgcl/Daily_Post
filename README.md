@@ -2,7 +2,7 @@
 
 Steps to Run:
 
-1. Download the source files.
+1. git clone/download the source files.
 2. Start server: node ./bin/www
 3. Start client: npm start
 
