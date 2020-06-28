@@ -3,9 +3,9 @@
 Daily Blog website that allows the user to signup, login, fetch weather, show login status, create/update/publish/delete posts, upload images for the post, comment on the post with likes/dislikes.
 
 Tools used:
-* Server-side: Express.js/Node.js
-* Client-side: React, Styled Components for modularized CSS, Bootstrap
-* Others: multer (for file uploads), PassportJS: LocalStrategy (login authentication) & JWTStrategy (delete user access), bcrypt (password encryption)
+* <b>Server-side</b>: Express.js/Node.js
+* <b>Client-side</b>: React, Styled Components for modularized CSS, Bootstrap
+* <b>Others</b>: multer (for file uploads), PassportJS: LocalStrategy (login authentication) & JWTStrategy (delete user access), bcrypt (password encryption)
 
 Steps to Run:
 
