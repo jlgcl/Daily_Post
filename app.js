@@ -36,7 +36,9 @@ var app = express();
 //Mongoose setup
 var mongoDB =
   "mongodb+srv://jwljacl:OgBogden135@cluster0-yyxlx.mongodb.net/test?retryWrites=true&w=majority";
-mongoose.connect(mongoDB, { userNewUrlPraser: true });
+mongoose.connect(process.env.MONGODB_URI || mongoDB, {
+  userNewUrlPraser: true,
+});
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB Connection Error:"));
 
@@ -53,11 +55,14 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Serve static React files once it's in production:
 // THESE CODE WILL GIVE 304 ERROR IF REQ SENT TO SERVER W/O DEPLOYMENT
-app.use(express.static(path.join(__dirname, "build")));
+// app.use(express.static(path.join(__dirname, "build")));
 
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+// app.get("/*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 app.use("/", indexRouter);
 //app.use("/users", usersRouter);
