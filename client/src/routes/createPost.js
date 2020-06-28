@@ -58,6 +58,7 @@ class CreatePost extends React.Component {
       category: "",
       selectedFile: "",
       postId: "",
+      user: "",
     };
     this.titleInput = this.titleInput.bind(this);
     this.summaryInput = this.summaryInput.bind(this);
@@ -65,6 +66,11 @@ class CreatePost extends React.Component {
     this.inputCat = this.inputCat.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleIdChange = this.handleIdChange.bind(this);
+    this.fetchUser = this.fetchUser.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchUser();
   }
 
   titleInput(e) {
@@ -104,38 +110,68 @@ class CreatePost extends React.Component {
   async handleSubmit(e) {
     e.preventDefault();
 
-    const bodyRes = {
-      uid: this.state.postId,
-      title: this.state.title,
-      // author: this.state.author,
-      summary: this.state.summary,
-      message: this.state.message,
-      category: this.state.category,
-    };
-    const setting = {
-      method: "POST",
-      redirect: "follow",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": true,
-        "Access-Control-Allow-Methods":
-          "GET, POST, OPTIONS, PUT, PATCH, DELETE",
-        "Access-Control-Allow-Headers":
-          "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-      },
-      body: JSON.stringify(bodyRes),
-    };
+    if (this.state.user === "admin" || this.state.user !== "") {
+      const bodyRes = {
+        uid: this.state.postId,
+        title: this.state.title,
+        summary: this.state.summary,
+        message: this.state.message,
+        category: this.state.category,
+      };
+      const setting = {
+        method: "POST",
+        redirect: "follow",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+          "Access-Control-Allow-Methods":
+            "GET, POST, OPTIONS, PUT, PATCH, DELETE",
+          "Access-Control-Allow-Headers":
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+        },
+        body: JSON.stringify(bodyRes),
+      };
 
+      try {
+        let submitData = await fetch("/createpost", setting);
+        window.location.href = "/";
+      } catch (err) {
+        console.log("error");
+      }
+    } else {
+      window.location.href = "/create_post";
+    }
+  }
+
+  async fetchUser() {
     try {
-      let submitData = await fetch("/createpost", setting);
-      window.location.href = "/";
+      let userReq = await fetch("/user_data", {
+        method: "GET",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+        },
+      });
+      let userRes = await userReq.json();
+      this.setState({
+        user: userRes,
+      });
+      console.log(this.state.user);
     } catch (err) {
-      console.log("error");
+      console.log(err.message);
     }
   }
 
   render() {
+    let user = this.state.user;
+    let userStatus;
+    if (user === "admin" || user !== "") {
+      userStatus = "Submit";
+    } else if (user === "") {
+      userStatus = "Must be Logged In";
+    }
+
     return (
       <Styles>
         <div className="body">
@@ -199,7 +235,7 @@ class CreatePost extends React.Component {
             </div>
 
             <button className="button" type="primary">
-              Submit
+              {userStatus}
             </button>
           </form>
           <p>

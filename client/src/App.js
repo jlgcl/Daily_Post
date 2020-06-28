@@ -16,6 +16,8 @@ import CreatePost from "./routes/createPost";
 import Unpublished from "./routes/unpubposts";
 import PostDetail from "./routes/postdetail";
 import Users from "./routes/users";
+import { About } from "./routes/about";
+import { Contact } from "./routes/contact";
 
 class App extends React.Component {
   constructor(props) {
@@ -131,7 +133,8 @@ class App extends React.Component {
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
             <Route path="/signup" component={Signup} />
-            {/* <Route path="/about" component={About} /> */}
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
             <Route path="/posts" component={Posts} />
             <Route path="/politics" component={Politics} />
             <Route path="/economics" component={Economics} />

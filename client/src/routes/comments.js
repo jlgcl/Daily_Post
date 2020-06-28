@@ -87,6 +87,7 @@ class Comments extends React.Component {
       likeSym: "",
       dislikeSym: "",
       commentSort: false,
+      user: "",
     };
     this.fetchComments = this.fetchComments.bind(this);
     this.postComments = this.postComments.bind(this);
@@ -95,10 +96,12 @@ class Comments extends React.Component {
     this.onDislike = this.onDislike.bind(this);
     this.sortComments = this.sortComments.bind(this);
     this.commentDelete = this.commentDelete.bind(this);
+    this.fetchUser = this.fetchUser.bind(this);
   }
 
   componentDidMount() {
     this.fetchComments();
+    this.fetchUser();
   }
 
   async commentDelete(e) {
@@ -375,11 +378,37 @@ class Comments extends React.Component {
     });
   }
 
+  async fetchUser() {
+    try {
+      let userReq = await fetch("/user_data", {
+        method: "GET",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+        },
+      });
+      let userRes = await userReq.json();
+      this.setState({
+        user: userRes,
+      });
+      console.log(this.state.user);
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
   //***JS sort methods to organize comments by likes, date (newest -> oldest; currently: oldest -> newest) - do this as display: none tab, or nested react router
 
   render() {
     let like;
     let dislike;
+
+    let user = this.state.user;
+    let userStatus;
+    if (user === "admin" || user !== "") {
+      userStatus = "Submit";
+    } else if (user === "") {
+      userStatus = "Must be Logged In";
+    }
 
     /// UNSORTED COMMENTS ///
     const listComments = this.state.comments.map((comment) => {
@@ -544,7 +573,7 @@ class Comments extends React.Component {
               type="primary"
               style={{ marginLeft: "90px" }}
             >
-              Submit
+              {userStatus}
             </button>
           </form>
         </div>

@@ -44,6 +44,8 @@ class NavigationBar extends React.Component {
     let signUp;
     let unpubPosts;
     let unpublished;
+    let users;
+    let usersLink;
     if (userStatus === "not logged in") {
       status = "Log In";
       logURL = "http://localhost:3000/login";
@@ -51,6 +53,8 @@ class NavigationBar extends React.Component {
       logStatus = "Sign Up";
       unpubPosts = "";
       unpublished = "";
+      usersLink = null;
+      users = "";
     }
     if (userStatus !== "not logged in") {
       status = "Log Out";
@@ -59,6 +63,8 @@ class NavigationBar extends React.Component {
       logStatus = userStatus;
       unpubPosts = "Unpublished Posts";
       unpublished = "http://localhost:3000/unpublished";
+      usersLink = "http://localhost:3000/users";
+      users = "Users";
     }
 
     return (
@@ -68,13 +74,13 @@ class NavigationBar extends React.Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-              <Nav.Link href="http://localhost:3000/users">Users</Nav.Link>
+              <Nav.Link href={usersLink}>{users}</Nav.Link>
               <Nav.Link href={unpublished} style={{ color: "teal" }}>
                 {unpubPosts}
               </Nav.Link>
               <Nav.Link href="http://localhost:3000/">Home</Nav.Link>
               <Nav.Link href="http://localhost:3000/about">About</Nav.Link>
-              <Nav.Link href="http://localhost:3000/Contact">Contact</Nav.Link>
+              <Nav.Link href="http://localhost:3000/contact">Contact</Nav.Link>
               <Nav.Link href={logURL} style={{ color: "blue" }}>
                 {status}
               </Nav.Link>

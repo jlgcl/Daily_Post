@@ -326,24 +326,6 @@ class Posts extends React.Component {
     let img;
 
     let imgInd = isImage.find((img) => img.uid === isPost.uid);
-    // if (imgInd) {
-    //   img = (
-    //     <img
-    //       style={{
-    //         width: "100%",
-    //         height: "100%",
-    //         backgroundSize: "cover",
-    //         backgroundRepeat: "no-repeat",
-    //       }}
-    //       src={imgInd.path}
-    //     />
-    //   );
-    // } else {
-    //   img = "";
-    // }
-
-    // return <div>{img}</div>;
-
     if (imgInd) {
       return imgInd.path;
     } else {

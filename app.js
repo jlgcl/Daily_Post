@@ -51,13 +51,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-//Serve static React files once it's in production:
-//THESE CODE WILL GIVE 304 ERROR IF REQ SENT TO SERVER W/O DEPLOYMENT
-// app.use(express.static(path.join(__dirname, "build")));
+// Serve static React files once it's in production:
+// THESE CODE WILL GIVE 304 ERROR IF REQ SENT TO SERVER W/O DEPLOYMENT
+app.use(express.static(path.join(__dirname, "build")));
 
-// app.get("/*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 app.use("/", indexRouter);
 //app.use("/users", usersRouter);
@@ -99,7 +99,7 @@ app.get("/user_data", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    if (res == undefined || res == null) {
+    if (result == undefined || result == null) {
       res.json("not found");
     } else {
       res.json(result[0].username);

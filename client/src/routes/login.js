@@ -103,6 +103,7 @@ class Login extends React.Component {
       )
       .then((res) => {
         localStorage.setItem("token", res.data.token);
+        window.location.href = "/";
       });
   }
 
