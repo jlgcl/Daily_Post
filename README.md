@@ -1,6 +1,6 @@
 # Blog_API
 
-Daily Blog website that allows the user to signup, login, fetch weather, show login status, create/update/publish/delete posts, upload images for the post, comment on the post with likes/dislikes.
+Daily Blog website that allows the user to signup, login, fetch weather, show login status, create/update/publish/delete posts, designate/view posts by category, upload images for the post, comment on the post with likes/dislikes.
 
 Tools used:
 * <b>Server-side</b>: Express.js/Node.js
