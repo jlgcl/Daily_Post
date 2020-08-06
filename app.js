@@ -33,10 +33,10 @@ var User = require("./models/user");
 
 var app = express();
 
-//Mongoose setup
+//Mongoose setup - NEED database such as Atlas to store models and documents
 var mongoDB =
   "mongodb+srv://jwljacl:OgBogden135@cluster0-yyxlx.mongodb.net/test?retryWrites=true&w=majority";
-mongoose.connect(process.env.MONGODB_URI || mongoDB, {
+mongoose.connect(mongoDB, {
   userNewUrlPraser: true,
 });
 var db = mongoose.connection;
@@ -51,7 +51,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public"))); // defines public directory and access to the files inside the directory.
 
 // Serve static React files once it's in production:
 // THESE CODE WILL GIVE 304 ERROR IF REQ SENT TO SERVER W/O DEPLOYMENT
@@ -60,9 +60,9 @@ app.use(express.static(path.join(__dirname, "public")));
 // app.get("/*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "build", "index.html"));
 // });
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
+// }
 
 app.use("/", indexRouter);
 //app.use("/users", usersRouter);

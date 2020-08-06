@@ -101,6 +101,7 @@ class PostDetail extends React.Component {
             path={`/${postEl._id}`}
             exact
             render={() => {
+              // render prop (?) is used to navigate to a full page through a specific URL path, instead of rendering the component within a parent page.
               return (
                 <Styles>
                   <div className="mainBody">

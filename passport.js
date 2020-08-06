@@ -1,3 +1,7 @@
+/*
+  Defines LocalStrategy & JWTStrategy
+*/
+
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const passportJWT = require("passport-jwt");
@@ -38,7 +42,7 @@ passport.use(
   //for accessing protected routes
   new JWTStrategy(
     {
-      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(), // extracts token from the header "bearer"
       secretOrKey: "secretJWT",
     },
     (jwtPayload, cb) => {
