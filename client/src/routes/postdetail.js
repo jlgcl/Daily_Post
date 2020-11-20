@@ -50,10 +50,6 @@ class PostDetail extends React.Component {
   async fetchPostDetail() {
     const settings = {
       method: "GET",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Alow-Credentials": true,
-      },
     };
 
     try {
@@ -150,7 +146,11 @@ class PostDetail extends React.Component {
                     <p style={{ marginBottom: "50px", marginTop: "20px" }}>
                       {postEl.date}
                     </p>
-                    <p style={{ wordWrap: "break-word" }}>{postEl.message}</p>
+                    <p
+                      style={{ wordWrap: "break-word", whiteSpace: "pre-wrap" }}
+                    >
+                      {postEl.message}
+                    </p>
                   </div>
                   <Comments post={this.props.post} />
                 </Styles>

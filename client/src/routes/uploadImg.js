@@ -64,10 +64,6 @@ class ImgUpload extends React.Component {
 
     const settings = {
       method: "POST",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": true,
-      },
       body: data,
     };
 
@@ -77,7 +73,6 @@ class ImgUpload extends React.Component {
       this.setState({
         resFile: resImg,
       });
-      console.log(this.state.resFile);
     } catch (err) {
       console.log("err");
     }

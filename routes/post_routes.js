@@ -114,7 +114,6 @@ router.post("/updateimg", upload.single("file"), (req, res, next) => {
           return next(err);
         }
         res.json(theimage.path);
-        console.log(theimage);
       }
     );
   });
@@ -122,7 +121,6 @@ router.post("/updateimg", upload.single("file"), (req, res, next) => {
 
 router.post("/:id/delete", (req, res, next) => {
   Post.findById(req.params.id, (err, result) => {
-    console.log(req.user.admin);
     if (err) {
       return next(err);
     }

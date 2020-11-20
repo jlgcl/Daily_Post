@@ -194,7 +194,7 @@ class CreatePost extends React.Component {
             <textarea
               name="message"
               onChange={this.messageInput}
-              maxlength="20"
+              maxlength="5000"
             ></textarea>
             <div className="checkboxes">
               <input

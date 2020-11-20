@@ -44,12 +44,35 @@ class ImgUpdate extends React.Component {
     };
     this.inputImg = this.inputImg.bind(this);
     this.handleImgSubmit = this.handleImgSubmit.bind(this);
+    this.fetchCurrentImg = this.fetchCurrentImg.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.post !== undefined && this.props.post !== null)
+      this.fetchCurrentImg();
   }
 
   inputImg(e) {
     this.setState({
       selectedFile: e.target.files[0],
     });
+  }
+
+  async fetchCurrentImg() {
+    let bodyJson = { uid: this.props.post.uid };
+    try {
+      let imgRes = await fetch("/getimages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bodyJson),
+      });
+      let imgJson = await imgRes.json();
+      this.setState({ resFile: imgJson[0].path });
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 
   async handleImgSubmit(e) {

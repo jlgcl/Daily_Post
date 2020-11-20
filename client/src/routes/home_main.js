@@ -336,7 +336,6 @@ class HomeMain extends React.Component {
     let imgB = this.state.busImg;
     let imgT = this.state.techImg;
     let images = imgP.concat(imgE, imgB, imgT);
-    console.log(images);
 
     let isPost = post;
 
