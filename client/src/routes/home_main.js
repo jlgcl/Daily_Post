@@ -368,7 +368,7 @@ class HomeMain extends React.Component {
               return (
                 <Styles>
                   <div>
-                    <h3>Politics</h3> <hr></hr>
+                    <h3 className="main_section_header">Politics</h3> <hr></hr>
                     <div className="card-container">
                       <Card style={{ width: "18rem" }}>
                         <Card.Img
@@ -436,7 +436,7 @@ class HomeMain extends React.Component {
                         </Card.Body>
                       </Card>
                     </div>
-                    <h3>Business</h3> <hr></hr>
+                    <h3 className="main_section_header">Business</h3> <hr></hr>
                     <div className="card-container">
                       <Card style={{ width: "18rem" }}>
                         <Card.Img
@@ -503,7 +503,7 @@ class HomeMain extends React.Component {
                         </Card.Body>
                       </Card>
                     </div>
-                    <h3>Economics</h3> <hr></hr>
+                    <h3 className="main_section_header">Economics</h3> <hr></hr>
                     <div className="card-container">
                       <Card style={{ width: "18rem" }}>
                         <Card.Img
@@ -570,7 +570,8 @@ class HomeMain extends React.Component {
                         </Card.Body>
                       </Card>
                     </div>
-                    <h3>Technology</h3> <hr></hr>
+                    <h3 className="main_section_header">Technology</h3>{" "}
+                    <hr></hr>
                     <div className="card-container">
                       <Card style={{ width: "18rem" }}>
                         <Card.Img

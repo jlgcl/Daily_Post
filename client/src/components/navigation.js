@@ -3,6 +3,15 @@ import { Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
 
 const Styles = styled.div`
+  @font-face {
+    font-family: Canterbury;
+    src: url("../Assets/Canterbury.ttf");
+  }
+
+  .nav_header {
+    font: 20px Canterbury;
+  }
+
   .navbar {
     height: 30px;
     width: 100%;
@@ -69,8 +78,10 @@ class NavigationBar extends React.Component {
 
     return (
       <Styles>
-        <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="http://localhost:3000/">Daily Blog</Navbar.Brand>
+        <Navbar className="nav_parent" bg="light" expand="lg">
+          <Navbar.Brand className="nav_header" href="http://localhost:3000/">
+            Daily Post
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">

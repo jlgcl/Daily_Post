@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import CarouselComp from "../components/carousel";
 import MainNav from "../components/main_nav";
 import HomeMain from "./home_main";
@@ -9,6 +9,7 @@ import Politics from "./politics";
 import Economics from "../routes/economics";
 import Business from "../routes/business";
 import Technology from "../routes/technology";
+import "../App.css";
 
 const Styles = styled.div`
   .main {
@@ -138,19 +139,19 @@ class Home extends React.Component {
             </div>
             <a href="http://localhost:3000/">
               <img
-                src="https://fontmeme.com/permalink/200604/747543f1e3d6d2672290ec8f66f2bdfb.png"
-                alt="old-english-fonts"
+                src="https://fontmeme.com/permalink/201122/47c59add3e0aeac48b623766ffbe81a2.png"
+                alt="engravers-old-english-font"
                 border="0"
-              ></img>
+              />
             </a>
             <div className="loginStatus">
               <p>You're logged in as: {this.state.username} </p>
             </div>
           </div>
-          <CarouselComp />
           <div className="mainNav">
             <MainNav />
           </div>
+          <CarouselComp />
           <div className="main">
             <HomeMain />
           </div>
