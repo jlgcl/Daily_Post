@@ -2,6 +2,15 @@ import React from "react";
 import styled from "styled-components";
 
 const Styles = styled.div`
+  .signup_container {
+    min-height: 70vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   body {
     font-family: arial;
     font-size: 13px;
@@ -11,30 +20,24 @@ const Styles = styled.div`
     font-family: loginFont;
     display: flex;
     flex-direction: row;
-    margin-left: 42%;
     margin-top: 30px;
   }
   .form-container {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background: white;
     color: black;
-    margin-left: 35%;
     margin-top: 20px;
-    width: 450px;
     height: 480px;
+    width: 400px;
     border: 1px solid green;
     border-radius: 5px;
-    padding: 10px;
-  }
-  input {
-    margin-left: 80px;
-  }
-  label {
-    margin-left: 80px;
+    padding: 30px;
   }
   .button {
-    margin-top: 90px;
-    margin-left: 180px;
+    margin-top: 50px;
+    margin-left: 37%;
     border: 1px solid black;
     padding: 5px 10px;
     border-radius: 5px;
@@ -45,8 +48,7 @@ const Styles = styled.div`
     color: white;
   }
   h7 {
-    margin-left: 43%;
-    margin-top: 60px;
+    margin-top: 20px;
   }
 `;
 
@@ -143,11 +145,11 @@ class Signup extends React.Component {
 
     return (
       <Styles>
-        <div>
+        <div className="signup_container">
           <div className="head">
             <img
-              src="https://banner2.cleanpng.com/20180418/gre/kisspng-human-resources-login-management-information-payro-track-5ad7cda3586cb1.5605091515240923233622.jpg"
-              style={{ height: "50px", width: "70px" }}
+              src="https://cdn.onlinewebfonts.com/svg/img_509043.png"
+              style={{ height: "50px", width: "50px" }}
             ></img>
             <h5 style={{ marginTop: "10px", marginLeft: "20px" }}>
               Signup to Daily Blogs {statusMsg}

@@ -11,6 +11,9 @@ const Styles = styled.div`
     width: 100%;
     max-width: 100%;
     overflow-x: auto;
+    color: black;
+    font-family: times new roman;
+    text-decoration: none;
   }
   .card-container::-webkit-scrollbar {
     display: none;
@@ -19,7 +22,7 @@ const Styles = styled.div`
     box-shadow: 10px 10px 22px -10px rgba(0, 0, 0, 0.75);
     min-width: 300px;
     margin-left: 50px;
-    margin-right: 50px;
+    margin-right: 100px;
   }
   .card-img-top {
     width: 100%;
@@ -377,8 +380,11 @@ class HomeMain extends React.Component {
                           className="cardImg"
                         />
                         <Card.Body>
-                          <Card.Title>
-                            <Link to={`/${postP[postP.length - 1]._id}`}>
+                          <Card.Title style={{ fontWeight: "bold" }}>
+                            <Link
+                              to={`/${postP[postP.length - 1]._id}`}
+                              style={{ color: "black" }}
+                            >
                               {postP[postP.length - 1].title}
                             </Link>
                           </Card.Title>
@@ -393,8 +399,11 @@ class HomeMain extends React.Component {
                           src={imgP[imgP.length - 2].path}
                         />
                         <Card.Body>
-                          <Card.Title>
-                            <Link to={`/${postP[postP.length - 2]._id}`}>
+                          <Card.Title style={{ fontWeight: "bold" }}>
+                            <Link
+                              to={`/${postP[postP.length - 2]._id}`}
+                              style={{ color: "black" }}
+                            >
                               {postP[postP.length - 2].title}
                             </Link>
                           </Card.Title>
@@ -409,8 +418,11 @@ class HomeMain extends React.Component {
                           src={imgP[imgP.length - 3].path}
                         />
                         <Card.Body>
-                          <Card.Title>
-                            <Link to={`/${postP[postP.length - 3]._id}`}>
+                          <Card.Title style={{ fontWeight: "bold" }}>
+                            <Link
+                              to={`/${postP[postP.length - 3]._id}`}
+                              style={{ color: "black" }}
+                            >
                               {postP[postP.length - 3].title}
                             </Link>
                           </Card.Title>
@@ -425,8 +437,11 @@ class HomeMain extends React.Component {
                           src={imgP[imgP.length - 4].path}
                         />
                         <Card.Body>
-                          <Card.Title>
-                            <Link to={`/${postP[postP.length - 4]._id}`}>
+                          <Card.Title style={{ fontWeight: "bold" }}>
+                            <Link
+                              to={`/${postP[postP.length - 4]._id}`}
+                              style={{ color: "black" }}
+                            >
                               {postP[postP.length - 4].title}
                             </Link>
                           </Card.Title>
@@ -444,8 +459,11 @@ class HomeMain extends React.Component {
                           src={imgB[imgB.length - 1].path}
                         />
                         <Card.Body>
-                          <Card.Title>
-                            <Link to={`/${postB[postB.length - 1]._id}`}>
+                          <Card.Title style={{ fontWeight: "bold" }}>
+                            <Link
+                              to={`/${postB[postB.length - 1]._id}`}
+                              style={{ color: "black" }}
+                            >
                               {postB[postB.length - 1].title}
                             </Link>
                           </Card.Title>
@@ -460,8 +478,11 @@ class HomeMain extends React.Component {
                           src={imgB[imgB.length - 2].path}
                         />
                         <Card.Body>
-                          <Card.Title>
-                            <Link to={`/${postB[postB.length - 2]._id}`}>
+                          <Card.Title style={{ fontWeight: "bold" }}>
+                            <Link
+                              to={`/${postB[postB.length - 2]._id}`}
+                              style={{ color: "black" }}
+                            >
                               {postB[postB.length - 2].title}
                             </Link>
                           </Card.Title>
@@ -476,8 +497,11 @@ class HomeMain extends React.Component {
                           src={imgB[imgB.length - 3].path}
                         />
                         <Card.Body>
-                          <Card.Title>
-                            <Link to={`/${postB[postB.length - 3]._id}`}>
+                          <Card.Title style={{ fontWeight: "bold" }}>
+                            <Link
+                              to={`/${postB[postB.length - 3]._id}`}
+                              style={{ color: "black" }}
+                            >
                               {postB[postB.length - 3].title}
                             </Link>
                           </Card.Title>
@@ -492,8 +516,11 @@ class HomeMain extends React.Component {
                           src={imgB[imgB.length - 4].path}
                         />
                         <Card.Body>
-                          <Card.Title>
-                            <Link to={`/${postB[postB.length - 4]._id}`}>
+                          <Card.Title style={{ fontWeight: "bold" }}>
+                            <Link
+                              to={`/${postB[postB.length - 4]._id}`}
+                              style={{ color: "black" }}
+                            >
                               {postB[postB.length - 4].title}
                             </Link>
                           </Card.Title>
@@ -511,8 +538,11 @@ class HomeMain extends React.Component {
                           src={imgE[imgE.length - 1].path}
                         />
                         <Card.Body>
-                          <Card.Title>
-                            <Link to={`/${postE[postE.length - 1]._id}`}>
+                          <Card.Title style={{ fontWeight: "bold" }}>
+                            <Link
+                              to={`/${postE[postE.length - 1]._id}`}
+                              style={{ color: "black" }}
+                            >
                               {postE[postE.length - 1].title}
                             </Link>
                           </Card.Title>
@@ -527,8 +557,11 @@ class HomeMain extends React.Component {
                           src={imgE[imgE.length - 2].path}
                         />
                         <Card.Body>
-                          <Card.Title>
-                            <Link to={`/${postE[postE.length - 2]._id}`}>
+                          <Card.Title style={{ fontWeight: "bold" }}>
+                            <Link
+                              to={`/${postE[postE.length - 2]._id}`}
+                              style={{ color: "black" }}
+                            >
                               {postE[postE.length - 2].title}
                             </Link>
                           </Card.Title>
@@ -543,8 +576,11 @@ class HomeMain extends React.Component {
                           src={imgE[imgE.length - 3].path}
                         />
                         <Card.Body>
-                          <Card.Title>
-                            <Link to={`/${postE[postE.length - 3]._id}`}>
+                          <Card.Title style={{ fontWeight: "bold" }}>
+                            <Link
+                              to={`/${postE[postE.length - 3]._id}`}
+                              style={{ color: "black" }}
+                            >
                               {postE[postE.length - 3].title}
                             </Link>
                           </Card.Title>
@@ -559,8 +595,11 @@ class HomeMain extends React.Component {
                           src={imgE[imgE.length - 4].path}
                         />
                         <Card.Body>
-                          <Card.Title>
-                            <Link to={`/${postE[postE.length - 4]._id}`}>
+                          <Card.Title style={{ fontWeight: "bold" }}>
+                            <Link
+                              to={`/${postE[postE.length - 4]._id}`}
+                              style={{ color: "black" }}
+                            >
                               {postE[postE.length - 4].title}
                             </Link>
                           </Card.Title>
@@ -579,8 +618,11 @@ class HomeMain extends React.Component {
                           src={imgT[imgT.length - 1].path}
                         />
                         <Card.Body>
-                          <Card.Title>
-                            <Link to={`/${postT[postT.length - 1]._id}`}>
+                          <Card.Title style={{ fontWeight: "bold" }}>
+                            <Link
+                              to={`/${postT[postT.length - 1]._id}`}
+                              style={{ color: "black" }}
+                            >
                               {postT[postT.length - 1].title}
                             </Link>
                           </Card.Title>
@@ -595,8 +637,11 @@ class HomeMain extends React.Component {
                           src={imgT[imgT.length - 2].path}
                         />
                         <Card.Body>
-                          <Card.Title>
-                            <Link to={`/${postT[postT.length - 2]._id}`}>
+                          <Card.Title style={{ fontWeight: "bold" }}>
+                            <Link
+                              to={`/${postT[postT.length - 2]._id}`}
+                              style={{ color: "black" }}
+                            >
                               {postT[postT.length - 2].title}
                             </Link>
                           </Card.Title>
@@ -611,8 +656,11 @@ class HomeMain extends React.Component {
                           src={imgT[imgT.length - 3].path}
                         />
                         <Card.Body>
-                          <Card.Title>
-                            <Link to={`/${postT[postT.length - 3]._id}`}>
+                          <Card.Title style={{ fontWeight: "bold" }}>
+                            <Link
+                              to={`/${postT[postT.length - 3]._id}`}
+                              style={{ color: "black" }}
+                            >
                               {postT[postT.length - 3].title}
                             </Link>
                           </Card.Title>
@@ -627,8 +675,11 @@ class HomeMain extends React.Component {
                           src={imgT[imgT.length - 4].path}
                         />
                         <Card.Body>
-                          <Card.Title>
-                            <Link to={`/${postT[postT.length - 4]._id}`}>
+                          <Card.Title style={{ fontWeight: "bold" }}>
+                            <Link
+                              to={`/${postT[postT.length - 4]._id}`}
+                              style={{ color: "black" }}
+                            >
                               {postT[postT.length - 4].title}
                             </Link>
                           </Card.Title>

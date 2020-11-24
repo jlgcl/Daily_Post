@@ -19,7 +19,7 @@ const Styles = styled.div`
     justify-content: space-evenly;
     margin-top: 20px;
     margin-right: 50px;
-    height: 400px;
+    height: 700px;
     box-sizing: border-box;
     overflow: hidden;
   }
@@ -88,6 +88,7 @@ const Styles = styled.div`
     width: 100%;
     height: 1500px;
     margin-top: 100px;
+    font-family: georgia, "times new roman", times, serif;
   }
   .postCard {
     display: flex;
@@ -120,7 +121,14 @@ function MainPosts(props) {
   const posts = props.onPosts;
   return (
     <div className="mainPosts">
-      <h3 style={{ marginLeft: "5%", marginTop: "30px", marginBottom: "20px" }}>
+      <h3
+        style={{
+          marginLeft: "5%",
+          marginTop: "30px",
+          marginBottom: "20px",
+          fontFamily: "times new roman",
+        }}
+      >
         All Posts
       </h3>
       <div className="postCard">
@@ -349,7 +357,7 @@ class Posts extends React.Component {
                   <div>
                     <h1
                       style={{
-                        fontFamily: "helvetica,arial,sans-serif",
+                        fontFamily: "Merriweather",
                         marginTop: "20px",
                         marginLeft: "30px",
                       }}
@@ -363,7 +371,14 @@ class Posts extends React.Component {
                     >
                       Create a Post
                     </a>
-                    <h3 style={{ marginLeft: "5%" }}>Latest</h3>
+                    <h3
+                      style={{
+                        marginLeft: "5%",
+                        fontFamily: "times new roman",
+                      }}
+                    >
+                      Latest
+                    </h3>
                     <div className="topPosts">
                       <div className="post1">
                         <div id="topContent" style={{ height: "80%" }}>

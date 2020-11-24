@@ -2,41 +2,44 @@ import React from "react";
 import styled from "styled-components";
 
 const Styles = styled.div`
+  .login_container {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   body {
     font-family: arial;
     font-size: 13px;
     background: #eceef1;
   }
+
   .head {
     font-family: loginFont;
     display: flex;
     flex-direction: row;
-    margin-left: 42%;
-    margin-top: 30px;
+    margin-top: 50px;
   }
+
   .form-container {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background: white;
     color: black;
-    margin-left: 33%;
     margin-top: 20px;
     margin-bottom: 100px;
     width: 500px;
-    height: 220px;
+    height: 260px;
     border: 1px solid green;
     border-radius: 5px;
-    padding: 10px;
-  }
-  input {
-    margin-top: 20px;
-    margin-left: 20px;
-  }
-  label {
-    margin-left: 35px;
+    padding: 30px;
   }
   .button {
-    margin-top: 13px;
-    margin-left: 220px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 37%;
     border: 1px solid black;
     padding: 5px 10px;
     border-radius: 5px;
@@ -107,30 +110,19 @@ class Login extends React.Component {
       });
   }
 
-  //   const { createProxyMiddleware } = require("http-proxy-middleware");
-  // module.exports = function (app) {
-  //   app.use(
-  //     "/api",
-  //     createProxyMiddleware({
-  //       target: "http://localhost:8080",
-  //       changeOrigin: true,
-  //     })
-  //   );
-  // };
-
   render() {
     return (
       <Styles>
-        <div>
+        <div className="login_container">
           <div className="head">
             <img
-              src="https://banner2.cleanpng.com/20180418/gre/kisspng-human-resources-login-management-information-payro-track-5ad7cda3586cb1.5605091515240923233622.jpg"
-              style={{ height: "50px", width: "70px" }}
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbh4Aa8IpQ_mptRwguGDj7PlZCSiQBwMrVlA&usqp=CAU"
+              style={{ height: "50px", width: "50px" }}
             ></img>
             <h5 style={{ marginTop: "10px", marginLeft: "40px" }}>Login</h5>
           </div>
           <div className="form-container">
-            <h7 style={{ marginTop: "20px", marginLeft: "25%" }}>
+            <h7 style={{ marginTop: "20px", marginBottom: "20px" }}>
               Enter your username and Password
             </h7>
             <form onSubmit={this.handleSubmit}>

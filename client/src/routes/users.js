@@ -2,7 +2,16 @@ import React from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import styled from "styled-components";
 
-const Styles = styled.div``;
+const Styles = styled.div`
+  .user_list {
+    margin-top: 50px;
+    margin-left: 50px;
+    min-height: 70vh;
+  }
+  .user {
+    padding-top: 10px;
+  }
+`;
 
 class Users extends React.Component {
   constructor(props) {
@@ -68,8 +77,8 @@ class Users extends React.Component {
     const userList = this.state.users.map((user) => (
       <div className="user">
         <li key={user._id} onClick={this.deleteUser}>
-          Username: {user.username} - Password: {user.password}
-          <button type="primary" id={user._id}>
+          Username: {user.username}
+          <button type="primary" id={user._id} style={{ marginLeft: "10px" }}>
             Delete User
           </button>
         </li>
@@ -78,7 +87,10 @@ class Users extends React.Component {
 
     return (
       <Styles>
-        <div>{userList}</div>
+        <div className="user_list">
+          <h3>Registered Users</h3>
+          {userList}
+        </div>
       </Styles>
     );
   }

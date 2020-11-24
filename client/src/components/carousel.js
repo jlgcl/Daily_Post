@@ -23,6 +23,7 @@ const Styles = styled.div`
     background-position: center center;
     width: 100%;
     height: 400px;
+    z-index: -1;
   }
   .carouselImg2 {
     background-image: url("https://insights.som.yale.edu/sites/default/files/insights/background/What%20the%20Plunge%20in%20the%20Stock%20Market%20Means%20for%20Individual%20Investors.jpg");
@@ -31,6 +32,7 @@ const Styles = styled.div`
     background-position: center center;
     width: 100%;
     height: 400px;
+    z-index: -1;
   }
   .carouselImg3 {
     background-image: url("https://cdn.shopify.com/shopify-marketing_assets/static/share-image-generic.jpg");
@@ -39,15 +41,24 @@ const Styles = styled.div`
     background-position: center center;
     width: 100%;
     height: 400px;
+    z-index: -1;
   }
-  h3 {
+  .carousel_post_title {
     color: black;
-  }
-  h3:hover {
-    color: black;
+    font-family: times new roman;
+    font-weight: bold;
   }
   p {
     color: black;
+    font-family: times new roman;
+  }
+
+  .carousel_overlay {
+    position: absolute;
+    height: 400px;
+    width: 100%;
+    background-color: rgba(247, 247, 247, 0.4);
+    z-index: 1;
   }
 `;
 
@@ -158,6 +169,7 @@ class CarouselComp extends React.Component {
 
     return (
       <Styles>
+        <div className="carousel_overlay"></div>
         <Carousel className="slider-container">
           <Carousel.Item>
             <div
@@ -168,7 +180,9 @@ class CarouselComp extends React.Component {
             ></div>
             <Carousel.Caption>
               <Link to={`/${posts[posts.length - 1]._id}`}>
-                <h3>{posts[posts.length - 1].title}</h3>
+                <h3 className="carousel_post_title">
+                  {posts[posts.length - 1].title}
+                </h3>
               </Link>
               <p>{posts[posts.length - 1].summary}</p>
             </Carousel.Caption>
@@ -182,7 +196,9 @@ class CarouselComp extends React.Component {
             ></div>
             <Carousel.Caption>
               <Link to={`/${posts[posts.length - 2]._id}`}>
-                <h3>{posts[posts.length - 2].title}</h3>
+                <h3 className="carousel_post_title">
+                  {posts[posts.length - 2].title}
+                </h3>
               </Link>
               <p>{posts[posts.length - 2].summary}</p>
             </Carousel.Caption>
@@ -196,7 +212,9 @@ class CarouselComp extends React.Component {
             ></div>
             <Carousel.Caption>
               <Link to={`/${posts[posts.length - 3]._id}`}>
-                <h3>{posts[posts.length - 3].title}</h3>
+                <h3 className="carousel_post_title">
+                  {posts[posts.length - 3].title}
+                </h3>
               </Link>
               <p>{posts[posts.length - 3].summary}</p>
             </Carousel.Caption>

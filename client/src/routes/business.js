@@ -1,15 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Link,
-  useRouteMatch,
-  useParams,
-} from "react-router-dom";
-import CreatePost from "./createPost";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import PostDetail from "./postdetail";
+import "./sections.css";
 
 const Styles = styled.div`
   .topPosts {
@@ -20,7 +13,7 @@ const Styles = styled.div`
     margin-top: 20px;
     margin-left: 50px;
     margin-right: 50px;
-    height: 400px;
+    height: 700px;
     box-sizing: border-box;
     overflow: hidden;
   }
@@ -100,6 +93,7 @@ const Styles = styled.div`
     flex-direction: column;
     justify-content: center;
     width: 60%;
+    font-family: georgia, "times new roman", times, serif;
   }
   .postCard #imgContainer {
     width: 40%;
@@ -118,7 +112,14 @@ function MainPosts(props) {
   const posts = props.onPosts;
   return (
     <div className="mainPosts">
-      <h3 style={{ marginLeft: "5%", marginTop: "30px", marginBottom: "20px" }}>
+      <h3
+        style={{
+          marginLeft: "5%",
+          marginTop: "30px",
+          marginBottom: "20px",
+          fontFamily: "times new roman",
+        }}
+      >
         All Posts
       </h3>
       <div className="postCard">
@@ -324,23 +325,6 @@ class Business extends React.Component {
     let img;
 
     let imgInd = isImage.find((img) => img.uid === isPost.uid);
-    // if (imgInd) {
-    //   img = (
-    //     <img
-    //       style={{
-    //         width: "100%",
-    //         height: "100%",
-    //         backgroundSize: "cover",
-    //         backgroundRepeat: "no-repeat",
-    //       }}
-    //       src={imgInd.path}
-    //     />
-    //   );
-    // } else {
-    //   img = "";
-    // }
-
-    // return <div>{img}</div>;
 
     if (imgInd) {
       return imgInd.path;
@@ -365,9 +349,10 @@ class Business extends React.Component {
                   <div>
                     <h1
                       style={{
-                        fontFamily: "helvetica,arial,sans-serif",
+                        fontFamily: "Merriweather",
                         marginTop: "20px",
                         marginLeft: "30px",
+                        className: "section_title",
                       }}
                     >
                       Business
@@ -379,7 +364,14 @@ class Business extends React.Component {
                     >
                       Create a Post
                     </a>
-                    <h3 style={{ marginLeft: "5%" }}>Latest</h3>
+                    <h3
+                      style={{
+                        marginLeft: "5%",
+                        fontFamily: "times new roman",
+                      }}
+                    >
+                      Latest
+                    </h3>
                     <div className="topPosts">
                       <div className="post1">
                         <div id="topContent" style={{ height: "80%" }}>

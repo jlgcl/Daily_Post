@@ -11,11 +11,11 @@ const Styles = styled.div`
     margin-top: 5%;
     margin-bottom: 10%;
     display: block;
-    height: 1000px;
+    height: 100%;
   }
   #imgContainer {
     width: 100%;
-    height: 50%;
+    height: 550px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;

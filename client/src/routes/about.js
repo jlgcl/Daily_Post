@@ -2,6 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const Styles = styled.div`
+  .about_container {
+    min-height: 70vh;
+  }
+
   .title {
     margin-left: 5%;
     margin-top: 5%;
@@ -26,9 +30,9 @@ const Styles = styled.div`
 
 export const About = () => (
   <Styles>
-    <div>
+    <div className="about_container">
       <div className="title">
-        <h1>About Daily Blog</h1>
+        <h1>About Daily Post</h1>
 
         <h5>Journalism Discovered</h5>
       </div>
@@ -36,7 +40,7 @@ export const About = () => (
         <div id="img"></div>
         <div id="body">
           <p>
-            Launched in June 2020, the ‘Daily Blog’ unites independent
+            Launched in June 2020, the ‘Daily Post' unites independent
             commentators and opinion shapers to provide the other side of the
             story on today’s news, media and political agendas. The Daily Blog
             Editor says one of the primary objectives of the blog will be to
@@ -45,8 +49,8 @@ export const About = () => (
             sign up, login, and post anything as they please.
             <br></br>
             <br></br>
-            For visitors who wish to explore the site's functionalities login
-            as: <br></br>
+            For visitors who wish to explore the site's full functionalities
+            login as: <br></br>
             username: admin <br></br>
             password: adminPass
           </p>
