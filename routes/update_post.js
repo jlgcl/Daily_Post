@@ -5,7 +5,7 @@ const { sanitizeBody } = require("express-validator/filter");
 const Post = require("../models/post");
 const jwt = require("jsonwebtoken");
 
-router.post("/api/posts/:id/update", [
+router.post("/posts/:id/update", [
   body("title").trim().isLength({ min: 0 }),
   body("message").trim().isLength({ min: 0 }),
 

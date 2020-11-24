@@ -130,19 +130,19 @@ class App extends React.Component {
         <Router>
           <div>
             <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/about" component={About} />
-            <Route path="/contact" component={Contact} />
-            <Route path="/posts" component={Posts} />
-            <Route path="/politics" component={Politics} />
-            <Route path="/economics" component={Economics} />
-            <Route path="/business" component={Business} />
-            <Route path="/technology" component={Technology} />
-            <Route path="/create_post" component={CreatePost} />
-            <Route path="/unpublished" component={Unpublished} />
-            <Route path="/users" component={Users} />
+            <Route path="/loginPage" component={Login} />
+            <Route path="/logoutPage" component={Logout} />
+            <Route path="/signupPage" component={Signup} />
+            <Route path="/aboutPage" component={About} />
+            <Route path="/contactPage" component={Contact} />
+            <Route path="/postsPage" component={Posts} />
+            <Route path="/politicsPage" component={Politics} />
+            <Route path="/economicsPage" component={Economics} />
+            <Route path="/businessPage" component={Business} />
+            <Route path="/technologyPage" component={Technology} />
+            <Route path="/create_postPage" component={CreatePost} />
+            <Route path="/unpublishedPage" component={Unpublished} />
+            <Route path="/usersPage" component={Users} />
             <Route exact path={`/${posts[posts.length - 1]._id}`}>
               <PostDetail
                 post={posts[posts.length - 1]}

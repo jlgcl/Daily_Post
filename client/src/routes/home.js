@@ -156,11 +156,11 @@ class Home extends React.Component {
             <HomeMain />
           </div>
           <Router>
-            <Route exact path="/posts" component={Posts}></Route>
-            <Route exact path="/politics" component={Politics}></Route>
-            <Route path="/economics" component={Economics}></Route>
-            <Route path="/business" component={Business}></Route>
-            <Route path="/technology" component={Technology}></Route>
+            <Route exact path="/postsPage" component={Posts}></Route>
+            <Route exact path="/politicsPage" component={Politics}></Route>
+            <Route path="/economicsPage" component={Economics}></Route>
+            <Route path="/businessPage" component={Business}></Route>
+            <Route path="/technologyPage" component={Technology}></Route>
           </Router>
         </div>
       </Styles>

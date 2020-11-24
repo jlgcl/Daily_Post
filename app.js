@@ -46,7 +46,7 @@ db.on("error", console.error.bind(console, "MongoDB Connection Error:"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
-app.use("/api/uploads", express.static("uploads")); //allows the app to access localhost:8080/uploads directory that contains multer images
+app.use("/uploads", express.static("uploads")); //allows the app to access localhost:8080/uploads directory that contains multer images
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -64,7 +64,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.use("/api", indexRouter);
+app.use("/", indexRouter);
 //app.use("/users", usersRouter);
 
 ///--------------------PROJECT CODE--------------------------///
@@ -99,7 +99,7 @@ app.use(signupRouter);
 //login authentication
 app.use(auth);
 
-app.get("/api/user_data", (req, res, next) => {
+app.get("/user_data", (req, res, next) => {
   User.find({ username: req.user.username }, (err, result) => {
     if (err) {
       return next(err);

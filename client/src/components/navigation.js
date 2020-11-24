@@ -57,8 +57,8 @@ class NavigationBar extends React.Component {
     let usersLink;
     if (userStatus === "not logged in") {
       status = "Log In";
-      logURL = "/login";
-      signUp = "/signup";
+      logURL = "/loginPage";
+      signUp = "/signupPage";
       logStatus = "Sign Up";
       unpubPosts = "";
       unpublished = "";
@@ -67,12 +67,12 @@ class NavigationBar extends React.Component {
     }
     if (userStatus !== "not logged in") {
       status = "Log Out";
-      logURL = "/logout";
+      logURL = "/logoutPage";
       signUp = "#";
       logStatus = userStatus;
       unpubPosts = "Unpublished Posts";
-      unpublished = "/unpublished";
-      usersLink = "/users";
+      unpublished = "/unpublishedPage";
+      usersLink = "/usersPage";
       users = "Users";
     }
 
@@ -90,8 +90,8 @@ class NavigationBar extends React.Component {
                 {unpubPosts}
               </Nav.Link>
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/about">About</Nav.Link>
-              <Nav.Link href="/contact">Contact</Nav.Link>
+              <Nav.Link href="/aboutPage">About</Nav.Link>
+              <Nav.Link href="/contactPage">Contact</Nav.Link>
               <Nav.Link href={logURL} style={{ color: "blue" }}>
                 {status}
               </Nav.Link>
