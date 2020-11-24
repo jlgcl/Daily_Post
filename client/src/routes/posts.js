@@ -349,7 +349,7 @@ class Posts extends React.Component {
         <Switch>
           <Route
             exact
-            path="/posts"
+            path="/postsPage"
             exact
             render={() => {
               return (

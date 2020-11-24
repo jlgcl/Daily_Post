@@ -342,7 +342,7 @@ class Economics extends React.Component {
         <Switch>
           <Route
             exact
-            path="/economics"
+            path="/economicsPage"
             exact
             render={() => {
               return (

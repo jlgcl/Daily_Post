@@ -342,7 +342,7 @@ class Politics extends React.Component {
         <Switch>
           <Route
             exact
-            path="/politics"
+            path="/politicsPage"
             exact
             render={() => {
               return (

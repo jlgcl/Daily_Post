@@ -341,7 +341,7 @@ class Business extends React.Component {
         <Switch>
           <Route
             exact
-            path="/business"
+            path="/businessPage"
             exact
             render={() => {
               return (

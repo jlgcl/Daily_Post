@@ -335,7 +335,7 @@ class Technology extends React.Component {
         <Switch>
           <Route
             exact
-            path="/technology"
+            path="/technologyPage"
             exact
             render={() => {
               return (
