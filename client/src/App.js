@@ -129,38 +129,40 @@ class App extends React.Component {
         <NavigationBar />
         <Router>
           <div>
-            <Route exact path="/" component={Home} />
-            <Route path="/loginPage" component={Login} />
-            <Route path="/logoutPage" component={Logout} />
-            <Route path="/signupPage" component={Signup} />
-            <Route path="/aboutPage" component={About} />
-            <Route path="/contactPage" component={Contact} />
-            <Route path="/postsPage" component={Posts} />
-            <Route path="/politicsPage" component={Politics} />
-            <Route path="/economicsPage" component={Economics} />
-            <Route path="/businessPage" component={Business} />
-            <Route path="/technologyPage" component={Technology} />
-            <Route path="/create_postPage" component={CreatePost} />
-            <Route path="/unpublishedPage" component={Unpublished} />
-            <Route path="/usersPage" component={Users} />
-            <Route exact path={`/${posts[posts.length - 1]._id}`}>
-              <PostDetail
-                post={posts[posts.length - 1]}
-                onImg={this.renderImg(posts[posts.length - 1])}
-              />
-            </Route>
-            <Route exact path={`/${posts[posts.length - 2]._id}`}>
-              <PostDetail
-                post={posts[posts.length - 2]}
-                onImg={this.renderImg(posts[posts.length - 2])}
-              />
-            </Route>
-            <Route exact path={`/${posts[posts.length - 3]._id}`}>
-              <PostDetail
-                post={posts[posts.length - 3]}
-                onImg={this.renderImg(posts[posts.length - 3])}
-              />
-            </Route>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/loginPage" component={Login} />
+              <Route path="/logoutPage" component={Logout} />
+              <Route path="/signupPage" component={Signup} />
+              <Route exact path="/aboutPage" component={About} />
+              <Route path="/contactPage" component={Contact} />
+              <Route path="/postsPage" component={Posts} />
+              <Route path="/politicsPage" component={Politics} />
+              <Route path="/economicsPage" component={Economics} />
+              <Route path="/businessPage" component={Business} />
+              <Route path="/technologyPage" component={Technology} />
+              <Route path="/create_postPage" component={CreatePost} />
+              <Route path="/unpublishedPage" component={Unpublished} />
+              <Route path="/usersPage" component={Users} />
+              <Route exact path={`/${posts[posts.length - 1]._id}`}>
+                <PostDetail
+                  post={posts[posts.length - 1]}
+                  onImg={this.renderImg(posts[posts.length - 1])}
+                />
+              </Route>
+              <Route exact path={`/${posts[posts.length - 2]._id}`}>
+                <PostDetail
+                  post={posts[posts.length - 2]}
+                  onImg={this.renderImg(posts[posts.length - 2])}
+                />
+              </Route>
+              <Route exact path={`/${posts[posts.length - 3]._id}`}>
+                <PostDetail
+                  post={posts[posts.length - 3]}
+                  onImg={this.renderImg(posts[posts.length - 3])}
+                />
+              </Route>
+            </Switch>
           </div>
         </Router>
         <div className="footer">
