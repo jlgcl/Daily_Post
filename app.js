@@ -36,7 +36,7 @@ var app = express();
 //Mongoose setup - NEED database such as Atlas to store models and documents
 var mongoDB =
   "mongodb+srv://jwljacl:OgBogden135@cluster0-yyxlx.mongodb.net/test?retryWrites=true&w=majority";
-mongoose.connect(mongoDB, {
+mongoose.connect(process.env.MONGODB_URI || mongoDB, {
   userNewUrlPraser: true,
 });
 var db = mongoose.connection;
@@ -53,16 +53,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public"))); // defines public directory and access to the files inside the directory.
 
-// Serve static React files once it's in production:
+/// Serve static React files once it's in production ///
 // THESE CODE WILL GIVE 304 ERROR IF REQ SENT TO SERVER W/O DEPLOYMENT
 // app.use(express.static(path.join(__dirname, "build")));
 
 // app.get("/*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "build", "index.html"));
 // });
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
-// }
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 app.use("/", indexRouter);
 //app.use("/users", usersRouter);
@@ -130,6 +130,10 @@ app.use(passport.authenticate("jwt"), users);
 //   req.logout();
 //   res.redirect("/");
 // });
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
+});
 
 ///--------------------- ERROR HANDLER----------------------///
 
