@@ -42,11 +42,11 @@ export const About = () => (
           <p>
             Launched in June 2020, the ‘Daily Post' unites independent
             commentators and opinion shapers to provide the other side of the
-            story on today’s news, media and political agendas. The Daily Blog
-            Editor says one of the primary objectives of the blog will be to
-            widen the debate in the social sphere. The Blog is supported by the
-            editor himself with no external contributions. All are permitted to
-            sign up, login, and post anything as they please.
+            story on today’s news, media and political agendas. The Daily Post
+            Editor says one of the primary objectives of the outlet will be to
+            widen the debate in the social sphere. The Post is supported by the
+            editor himself with external sources and contributions. All are
+            permitted to sign up, login, and post anything as they please.
             <br></br>
             <br></br>
             For visitors who wish to explore the site's full functionalities
