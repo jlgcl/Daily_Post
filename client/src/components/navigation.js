@@ -57,8 +57,8 @@ class NavigationBar extends React.Component {
     let usersLink;
     if (userStatus === "not logged in") {
       status = "Log In";
-      logURL = "http://localhost:3000/login";
-      signUp = "http://localhost:3000/signup";
+      logURL = "/login";
+      signUp = "/signup";
       logStatus = "Sign Up";
       unpubPosts = "";
       unpublished = "";
@@ -67,19 +67,19 @@ class NavigationBar extends React.Component {
     }
     if (userStatus !== "not logged in") {
       status = "Log Out";
-      logURL = "http://localhost:3000/logout";
+      logURL = "/logout";
       signUp = "#";
       logStatus = userStatus;
       unpubPosts = "Unpublished Posts";
-      unpublished = "http://localhost:3000/unpublished";
-      usersLink = "http://localhost:3000/users";
+      unpublished = "/unpublished";
+      usersLink = "/users";
       users = "Users";
     }
 
     return (
       <Styles>
         <Navbar className="nav_parent" bg="light" expand="lg">
-          <Navbar.Brand className="nav_header" href="http://localhost:3000/">
+          <Navbar.Brand className="nav_header" href="/">
             Daily Post
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -89,9 +89,9 @@ class NavigationBar extends React.Component {
               <Nav.Link href={unpublished} style={{ color: "teal" }}>
                 {unpubPosts}
               </Nav.Link>
-              <Nav.Link href="http://localhost:3000/">Home</Nav.Link>
-              <Nav.Link href="http://localhost:3000/about">About</Nav.Link>
-              <Nav.Link href="http://localhost:3000/contact">Contact</Nav.Link>
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/about">About</Nav.Link>
+              <Nav.Link href="/contact">Contact</Nav.Link>
               <Nav.Link href={logURL} style={{ color: "blue" }}>
                 {status}
               </Nav.Link>
