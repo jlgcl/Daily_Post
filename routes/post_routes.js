@@ -24,7 +24,7 @@ const upload = multer({ storage: storage }); //alt: {dest: 'uploads/'}
 
 var async = require("async");
 
-router.post("/createpost", [
+router.post("/api/createpost", [
   body("title").trim().isLength({ min: 0 }),
   body("summary").trim().isLength({ min: 0 }),
   body("author").trim().isLength({ min: 0 }),
@@ -67,7 +67,7 @@ router.post("/createpost", [
   },
 ]);
 
-router.post("/uploadimg", upload.single("file"), (req, res, next) => {
+router.post("/api/uploadimg", upload.single("file"), (req, res, next) => {
   const errors = validationResult(req);
 
   //POST control for post uploads:
@@ -93,7 +93,7 @@ router.post("/uploadimg", upload.single("file"), (req, res, next) => {
   }
 });
 
-router.post("/updateimg", upload.single("file"), (req, res, next) => {
+router.post("/api/updateimg", upload.single("file"), (req, res, next) => {
   Image.find({ uid: req.body.uid }, (err, result) => {
     if (err) {
       return next(err);
@@ -119,7 +119,7 @@ router.post("/updateimg", upload.single("file"), (req, res, next) => {
   });
 });
 
-router.post("/:id/delete", (req, res, next) => {
+router.post("/api/:id/delete", (req, res, next) => {
   Post.findById(req.params.id, (err, result) => {
     if (err) {
       return next(err);
@@ -145,7 +145,7 @@ router.post("/:id/delete", (req, res, next) => {
   });
 });
 
-router.get("/posts/:id", (req, res, next) => {
+router.get("/api/posts/:id", (req, res, next) => {
   async.parallel(
     {
       post: function (callback) {
@@ -170,7 +170,7 @@ router.get("/posts/:id", (req, res, next) => {
 });
 
 //Comment GET
-router.post("/posts/:id/comment/get", (req, res, next) => {
+router.post("/api/posts/:id/comment/get", (req, res, next) => {
   Comment.find({ uid: req.body.uid }, (err, results) => {
     if (err) {
       return next(err);
@@ -184,7 +184,7 @@ router.post("/posts/:id/comment/get", (req, res, next) => {
 });
 
 //Comment POST
-router.post("/posts/:id/comment", [
+router.post("/api/posts/:id/comment", [
   body("message").trim().isLength({ min: 0 }),
 
   sanitizeBody("message").escape(),
@@ -219,7 +219,7 @@ router.post("/posts/:id/comment", [
 ]);
 
 //Comments like/dislike counters
-router.post("/posts/:id/comment/likes", (req, res, next) => {
+router.post("/api/posts/:id/comment/likes", (req, res, next) => {
   Comment.find({ _id: req.body.id }, (err, result) => {
     if (err) {
       return next(err);
@@ -281,7 +281,7 @@ router.post("/posts/:id/comment/likes", (req, res, next) => {
   });
 });
 
-router.post("/posts/:id/comment/delete", (req, res, next) => {
+router.post("/api/posts/:id/comment/delete", (req, res, next) => {
   if (req.user === req.body.author || req.user.username === "admin") {
     Comment.findByIdAndRemove(req.body.id, (err, result) => {
       if (err) {
@@ -294,7 +294,7 @@ router.post("/posts/:id/comment/delete", (req, res, next) => {
   }
 });
 
-router.get("/politics", (req, res, next) => {
+router.get("/api/politics", (req, res, next) => {
   Post.find({ category: "politics", status: "published" }, (err, results) => {
     if (err) {
       return next(err);
@@ -302,7 +302,7 @@ router.get("/politics", (req, res, next) => {
     res.json(results);
   });
 });
-router.get("/economics", (req, res, next) => {
+router.get("/api/economics", (req, res, next) => {
   Post.find({ category: "economics", status: "published" }, (err, results) => {
     if (err) {
       return next(err);
@@ -310,7 +310,7 @@ router.get("/economics", (req, res, next) => {
     res.json(results);
   });
 });
-router.get("/business", (req, res, next) => {
+router.get("/api/business", (req, res, next) => {
   Post.find({ category: "business", status: "published" }, (err, results) => {
     if (err) {
       return next(err);
@@ -318,7 +318,7 @@ router.get("/business", (req, res, next) => {
     res.json(results);
   });
 });
-router.get("/technology", (req, res, next) => {
+router.get("/api/technology", (req, res, next) => {
   Post.find({ category: "technology", status: "published" }, (err, results) => {
     if (err) {
       return next(err);
@@ -327,7 +327,7 @@ router.get("/technology", (req, res, next) => {
   });
 });
 
-router.get("/posts", (req, res, next) => {
+router.get("/api/posts", (req, res, next) => {
   Post.find({ status: "published" }, (err, results) => {
     if (err) {
       return next(err);
@@ -337,7 +337,7 @@ router.get("/posts", (req, res, next) => {
   });
 });
 
-router.post("/getimages", (req, res, next) => {
+router.post("/api/getimages", (req, res, next) => {
   Image.find({ uid: req.body.uid }, (err, result) => {
     if (err) {
       return next(err);
@@ -346,7 +346,7 @@ router.post("/getimages", (req, res, next) => {
   });
 });
 
-router.get("/unpubposts", (req, res, next) => {
+router.get("/api/unpubposts", (req, res, next) => {
   Post.find(
     { status: "unpublished", author: req.user.username },
     (err, results) => {
@@ -359,7 +359,7 @@ router.get("/unpubposts", (req, res, next) => {
   );
 });
 
-router.post("/posts/:id/update", [
+router.post("/api/posts/:id/update", [
   body("title").trim().isLength({ min: 0 }),
   body("summary").trim().isLength({ min: 0 }),
   body("message").trim().isLength({ min: 0 }),

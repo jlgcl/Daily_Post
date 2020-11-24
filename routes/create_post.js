@@ -7,7 +7,7 @@ const Post = require("../models/post");
 var { v4: uuidv4 } = require("../node_modules/uuid");
 const User = require("../models/user");
 
-router.post("/create_post", [
+router.post("/api/create_post", [
   body("title").trim().isLength({ min: 0 }),
   body("message").trim().isLength({ min: 0 }),
   body("date").optional({ checkFalsey: true }).isISO8601(),

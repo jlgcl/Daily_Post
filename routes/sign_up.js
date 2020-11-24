@@ -10,7 +10,7 @@ const { v4: uuidv4 } = require("../node_modules/uuid");
 //   res.render("./views/sign_up");
 // });
 
-router.post("/signup", [
+router.post("/api/signup", [
   body("username").trim().isLength({ min: 0 }),
   body("password")
     .trim()

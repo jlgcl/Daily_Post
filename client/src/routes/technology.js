@@ -352,10 +352,7 @@ class Technology extends React.Component {
                       Technology
                     </h1>
                     <hr className="topLine"></hr>
-                    <a
-                      style={{ marginLeft: "85%" }}
-                      href="http://localhost:3000/create_post"
-                    >
+                    <a style={{ marginLeft: "85%" }} href="/create_post">
                       Create a Post
                     </a>
                     <h3

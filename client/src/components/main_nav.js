@@ -32,19 +32,19 @@ export const MainNav = () => (
           marginTop: "-8px",
         }}
       >
-        <Nav.Link href="/posts_home" style={{ color: "black" }}>
+        <Nav.Link href="/posts" style={{ color: "black" }}>
           All Posts
         </Nav.Link>
-        <Nav.Link href="/politics_home" style={{ color: "black" }}>
+        <Nav.Link href="/politics" style={{ color: "black" }}>
           Politics
         </Nav.Link>
-        <Nav.Link href="/economics_home" style={{ color: "black" }}>
+        <Nav.Link href="/economics" style={{ color: "black" }}>
           Economics
         </Nav.Link>
-        <Nav.Link href="/business_home" style={{ color: "black" }}>
+        <Nav.Link href="/business" style={{ color: "black" }}>
           Business
         </Nav.Link>
-        <Nav.Link href="/technology_home" style={{ color: "black" }}>
+        <Nav.Link href="/technology" style={{ color: "black" }}>
           Technology
         </Nav.Link>
       </Nav>

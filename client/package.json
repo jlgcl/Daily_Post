@@ -40,7 +40,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8080",
+  "proxy": "http://localhost:8080/api",
   "devDependencies": {
     "concurrently": "^5.2.0",
     "nodemon": "^2.0.4"

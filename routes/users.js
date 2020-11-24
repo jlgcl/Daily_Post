@@ -6,7 +6,7 @@ const { sanitizeBody } = require("express-validator/filter");
 const jwt = require("jsonwebtoken");
 
 /* GET users listing. */
-router.get("/users", function (req, res, next) {
+router.get("/api/users", function (req, res, next) {
   User.find({}, "uid username").exec(function (err, results) {
     if (err) {
       return next(err);
@@ -15,7 +15,7 @@ router.get("/users", function (req, res, next) {
   });
 });
 
-router.post("/users/:id", function (req, res, next) {
+router.post("/api/users/:id", function (req, res, next) {
   User.findById(req.params.id).exec(function (err, result) {
     if (err) {
       return next(err);
@@ -24,7 +24,7 @@ router.post("/users/:id", function (req, res, next) {
   });
 });
 
-router.post("/users/:id/delete", (req, res, next) => {
+router.post("/api/users/:id/delete", (req, res, next) => {
   User.findById(req.params.id, (err, result) => {
     if (err) {
       return next(err);
