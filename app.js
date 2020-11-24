@@ -97,20 +97,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(signupRouter);
 
 //login authentication
-//app.use(auth);
+app.use(auth);
 
-// app.get("/user_data", (req, res, next) => {
-//   User.find({ username: req.user.username }, (err, result) => {
-//     if (err) {
-//       return next(err);
-//     }
-//     if (result == undefined || result == null) {
-//       res.json("not found");
-//     } else {
-//       res.json(result[0].username);
-//     }
-//   });
-// });
+app.get("/user_data", (req, res, next) => {
+  User.find({ username: req.user.username }, (err, result) => {
+    if (err) {
+      return next(err);
+    }
+    if (result == undefined || result == null) {
+      res.json("not found");
+    } else {
+      res.json(result[0].username);
+    }
+  });
+});
 
 //post controls
 app.use(postRoutes);
@@ -122,7 +122,7 @@ app.use(postRoutes);
 // app.use(postDelete);
 
 //user get & delete
-//app.use(passport.authenticate("jwt"), users);
+app.use(passport.authenticate("jwt"), users);
 
 //logout
 // app.get("/logout", (req, res) => {
