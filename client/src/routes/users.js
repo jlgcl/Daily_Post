@@ -67,7 +67,7 @@ class Users extends React.Component {
           Authorization: `bearer ${token}`,
         },
       });
-      window.location.href = "/users";
+      window.location.href = "/usersPage";
     } catch (err) {
       console.log(err.message);
     }
