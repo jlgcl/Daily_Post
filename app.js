@@ -91,7 +91,7 @@ app.use(express.urlencoded({ extended: false }));
 //   );
 //   next();
 // });
-//app.use(cors());
+app.use(cors());
 
 //sign-up GET/POST
 app.use(signupRouter);
