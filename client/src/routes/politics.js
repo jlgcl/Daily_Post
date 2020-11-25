@@ -359,7 +359,7 @@ class Politics extends React.Component {
                       Politics
                     </h1>
                     <hr className="topLine"></hr>
-                    <a style={{ marginLeft: "85%" }} href="/create_post">
+                    <a style={{ marginLeft: "85%" }} href="/create_postPage">
                       Create a Post
                     </a>
                     <h3

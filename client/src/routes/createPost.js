@@ -182,13 +182,13 @@ class CreatePost extends React.Component {
               type="text"
               name="title"
               onChange={this.titleInput}
-              maxlength="20"
+              maxlength="50"
             ></input>
             <label for="summary">Summary:&nbsp;</label>
             <textarea
               name="summary"
               onChange={this.summaryInput}
-              maxlength="20"
+              maxlength="50"
             ></textarea>
             <label for="message">Message:&nbsp;</label>
             <textarea

@@ -114,7 +114,7 @@ class Unpublished extends React.Component {
         <Switch>
           <Route
             expact
-            path="/unpublished"
+            path="/unpublishedPage"
             exact
             render={() => {
               return (
