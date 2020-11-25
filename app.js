@@ -122,7 +122,7 @@ app.use(postRoutes);
 // app.use(postDelete);
 
 //user get & delete
-//app.use(passport.authenticate("jwt"), users);
+app.use("/users", passport.authenticate("jwt"), users);
 
 //logout
 // app.get("/logout", (req, res) => {
