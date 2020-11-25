@@ -18,4 +18,6 @@ To have full access to all functionalities, login as:
 * Username: admin
 * Password: adminPass
 
+Build Status: responsive design under development
+
 # Demo
