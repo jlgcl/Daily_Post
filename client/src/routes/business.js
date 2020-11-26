@@ -403,6 +403,7 @@ class Business extends React.Component {
                             backgroundImage: `url(" ${this.renderImg(
                               posts[posts.length - 1]
                             )} ")`,
+                            height: "70%",
                           }}
                         ></div>
                       </div>
@@ -412,7 +413,7 @@ class Business extends React.Component {
                           <Link to={`/${posts[posts.length - 2]._id}`}>
                             <h3
                               style={{
-                                fontSize: "25px",
+                                fontSize: "20px",
                                 fontWeight: "700",
                                 wordWrap: "break-word",
                               }}
@@ -421,7 +422,7 @@ class Business extends React.Component {
                             </h3>
                           </Link>
                           <h7
-                            style={{ fontSize: "18px", wordWrap: "break-word" }}
+                            style={{ fontSize: "16px", wordWrap: "break-word" }}
                           >
                             {posts[posts.length - 2].summary}
                           </h7>
@@ -444,7 +445,7 @@ class Business extends React.Component {
                           <Link to={"/" + posts[posts.length - 3]._id}>
                             <h3
                               style={{
-                                fontSize: "25px",
+                                fontSize: "20px",
                                 fontWeight: "700",
                                 wordWrap: "break-word",
                               }}
@@ -453,7 +454,7 @@ class Business extends React.Component {
                             </h3>
                           </Link>
                           <h7
-                            style={{ fontSize: "18px", wordWrap: "break-word" }}
+                            style={{ fontSize: "16px", wordWrap: "break-word" }}
                           >
                             {posts[posts.length - 3].summary}
                           </h7>

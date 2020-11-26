@@ -6,10 +6,6 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const { v4: uuidv4 } = require("../node_modules/uuid");
 
-// router.get("./sign-up", (req, res) => {
-//   res.render("./views/sign_up");
-// });
-
 router.post("/signup", [
   body("username").trim().isLength({ min: 0 }),
   body("password")
@@ -41,7 +37,6 @@ router.post("/signup", [
       });
 
       if (!errors.isEmpty()) {
-        //errors exist - rerender with errors & sanitized data
         res.render("../views/sign-up-error.pug", { errors: errors.array() });
         return;
       } else {
@@ -60,10 +55,6 @@ router.post("/signup", [
               res.json(user);
             });
           } else if (results) {
-            // res.render("../views/sign-up-error.pug", {
-            //   title: "username already exists",
-            // }
-            // );
             res.json("username already exists");
           }
         });

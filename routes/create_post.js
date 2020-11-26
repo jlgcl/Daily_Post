@@ -43,17 +43,4 @@ router.post("/create_post", [
   },
 ]);
 
-/// NOT GOING TO BE USED ///
-// function verifyToken(req, res, next) {
-//   const bearerHeader = req.headers["authorization"];
-//   if (typeof bearerHeader !== "undefined") {
-//     const bearer = bearerHeader.split(" ");
-//     const bearerToken = bearer[1];
-//     req.token = bearerToken;
-//     next();
-//   } else {
-//     res.sendStatus(404);
-//   }
-// }
-
 module.exports = router;

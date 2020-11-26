@@ -75,7 +75,7 @@ router.post("/uploadimg", upload.single("file"), (req, res, next) => {
     var image = new Image({
       uid: req.body.uid,
       img: req.file,
-      path: req.file.path, //IMPORTANT: locates the path in which the multer stored the file.
+      path: req.file.path, //locates the path in which the multer stored the file.
     });
 
     if (!errors.isEmpty()) {
@@ -106,7 +106,7 @@ router.post("/updateimg", upload.single("file"), (req, res, next) => {
     });
 
     Image.findByIdAndUpdate(
-      { _id: result[0]._id }, //REMEMBER: use result[0] since result is an array
+      { _id: result[0]._id }, //uses result[0] since result is an array
       { img: req.file, path: req.file.path },
       { new: true },
       function (err, theimage) {
@@ -377,15 +377,6 @@ router.post("/posts/:id/update", [
       res.send("UPDATE ERROR");
       return;
     }
-
-    // var post = new Post({
-    //   title: req.body.title,
-    //   summary: req.body.summary,
-    //   message: req.body.message,
-    //   date: new Date(),
-    //   status: req.body.status,
-    //   _id: req.params.id,
-    // });
 
     Post.findById(req.params.id, (err, result) => {
       if (err) {

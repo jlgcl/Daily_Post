@@ -143,7 +143,7 @@ class UpdatePost extends React.Component {
         `/posts/${this.props.post._id}/update`,
         setting
       );
-      window.location.href = `/posts`;
+      window.location.href = `/postsPage`;
     } catch (err) {
       console.log("error");
     }

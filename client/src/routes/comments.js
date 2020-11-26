@@ -330,10 +330,6 @@ class Comments extends React.Component {
         stateCopy.comments[commentInd].dislikeSym = "active";
         stateCopy.comments[commentInd].dislikesCheck = true;
         this.setState(stateCopy);
-
-        // this.setState({
-        //   likes: "checked",
-        // });
       } catch (err) {
         console.log(err.message);
       }

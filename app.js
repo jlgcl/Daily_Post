@@ -19,12 +19,6 @@ var usersRouter = require("./routes/users");
 var passportRouter = require("passport");
 var auth = require("./routes/auth");
 var signupRouter = require("./routes/sign_up");
-// var createPostRouter = require("./routes/create_post");
-// var postRouter = require("./routes/posts");
-// var unpubPostRouter = require("./routes/unpublished_post");
-// var postDetail = require("./routes/post_detail");
-// var postUpdate = require("./routes/update_post");
-// var postDelete = require("./routes/delete_post");
 var postRoutes = require("./routes/post_routes");
 var users = require("./routes/users");
 var userDelete = require("./routes/delete_user");
@@ -54,12 +48,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public"))); // defines public directory and access to the files inside the directory.
 
 /// Serve static React files once it's in production ///
-// THESE CODE WILL GIVE 304 ERROR IF REQ SENT TO SERVER W/O DEPLOYMENT
-// app.use(express.static(path.join(__dirname, "build")));
-
-// app.get("/*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
@@ -68,8 +56,6 @@ app.use("/", indexRouter);
 //app.use("/users", usersRouter);
 
 ///--------------------PROJECT CODE--------------------------///
-
-//add protected route for protected page (edit posts)
 
 //log-in passport.js file, NOT passportJS dependency
 require("./passport");
@@ -82,15 +68,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
-//CORS
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   next();
-// });
 app.use(cors());
 
 //sign-up GET/POST
@@ -114,22 +91,9 @@ app.get("/user_data", (req, res, next) => {
 
 //post controls
 app.use(postRoutes);
-// app.use(postRouter);
-// app.use(unpubPostRouter);
-// app.use(createPostRouter);
-// app.use(postDetail);
-// app.use(postUpdate);
-// app.use(postDelete);
 
 //user get & delete
 app.use("/users", passport.authenticate("jwt"), users);
-
-//logout
-// app.get("/logout", (req, res) => {
-//   req.session.destroy();
-//   req.logout();
-//   res.redirect("/");
-// });
 
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/build/index.html"));
