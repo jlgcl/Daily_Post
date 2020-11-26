@@ -20,4 +20,3 @@ To have full access to all functionalities, login as:
 
 Build Status: responsive design under development
 
-# Demo
